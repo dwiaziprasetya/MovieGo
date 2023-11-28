@@ -13,9 +13,9 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <!-- Resource Image Slider -->
-    <string-array name="image_slider">
+    <integer-array name="image_slider">
         <item>@drawable/frozen_2_image_slider</item>
         <item>@drawable/edge_of_tomorrow_image_slider</item>
         <item>@drawable/xmen_days_of_future_past_image_slider</item>
-    </string-array>
+    </integer-array>
 </resources>
