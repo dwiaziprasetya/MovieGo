@@ -16,7 +16,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="260dp"
+            android:layout_height="290dp"
             app:layout_constraintBottom_toTopOf="@+id/tv_upcoming_movoes"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -24,11 +24,11 @@
             app:layout_constraintVertical_bias="0.0"/>
 
         <TextView
-            android:id="@+id/tv_upcoming_movoes"
+            android:id="@+id/tv_upcoming_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/dmsans_bold"
             android:text="@string/upcoming_movies"
@@ -45,11 +45,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_upcoming_movoes"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_upcoming_movies" />
 
         <ProgressBar
             android:id="@+id/pb_1"
@@ -58,7 +56,77 @@
             app:layout_constraintBottom_toBottomOf="@+id/rv_upcoming_movies"
             app:layout_constraintEnd_toEndOf="@+id/rv_upcoming_movies"
             app:layout_constraintStart_toStartOf="@+id/rv_upcoming_movies"
-            app:layout_constraintTop_toBottomOf="@+id/tv_upcoming_movoes"/>
+            app:layout_constraintTop_toTopOf="@+id/rv_upcoming_movies"/>
+
+        <TextView
+            android:id="@+id/tv_popular_movies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/dmsans_bold"
+            android:text="@string/popular_movies"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rv_upcoming_movies"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_popular_movies"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_popular_movies" />
+
+        <ProgressBar
+            android:id="@+id/pb_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@+id/rv_popular_movies"
+            app:layout_constraintEnd_toEndOf="@+id/rv_popular_movies"
+            app:layout_constraintStart_toStartOf="@+id/rv_popular_movies"
+            app:layout_constraintTop_toTopOf="@+id/rv_popular_movies" />
+
+        <TextView
+            android:id="@+id/tv_now_playing_movies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/dmsans_bold"
+            android:text="@string/now_playing"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_popular_movies"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_now_playing_movies"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_now_playing_movies"/>
+
+        <ProgressBar
+            android:id="@+id/pb_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="@+id/rv_now_playing_movies"
+            app:layout_constraintStart_toStartOf="@+id/rv_now_playing_movies"
+            app:layout_constraintEnd_toEndOf="@+id/rv_now_playing_movies"
+            app:layout_constraintBottom_toBottomOf="@+id/rv_now_playing_movies"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

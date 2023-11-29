@@ -1,11 +1,10 @@
 @file:Suppress("DEPRECATION")
 
-package com.example.moviedatabase.ui
+package com.example.moviedatabase.ui.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.core.view.WindowCompat
 import com.example.moviedatabase.databinding.ActivityIntroductionBinding
 

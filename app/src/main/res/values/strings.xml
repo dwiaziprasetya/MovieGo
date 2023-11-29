@@ -12,8 +12,9 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="upcoming_movies">Upcoming Movies</string>
-    <string name="best_movies">Best Movies</string>
+    <string name="popular_movies">Popular</string>
     <string name="now_showing">Now Showing</string>
+    <string name="now_playing">Now Playing</string>
 
     <!-- Resource Image Slider -->
     <integer-array name="image_slider">

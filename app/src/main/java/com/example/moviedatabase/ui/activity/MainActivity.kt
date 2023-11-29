@@ -1,4 +1,4 @@
-package com.example.moviedatabase.ui
+package com.example.moviedatabase.ui.activity
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
