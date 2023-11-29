@@ -13,10 +13,12 @@ class RvUpComingMovieAdapter : ListAdapter<ResultsItem, RvUpComingMovieAdapter.M
     class MyViewHolder (val binding: ItemMoviesBinding): RecyclerView.ViewHolder(binding.root){
         private val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
         fun bindMovie(movie : ResultsItem){
-            binding.tvMovieTitle.text = movie.title
-            Glide.with(itemView)
-                .load(IMAGE_BASE_URL + movie.posterPath)
-                .into(binding.imgItemPhoto)
+            if (movie != null) {
+                binding.tvMovieTitle.text = movie.title
+                Glide.with(itemView)
+                    .load(IMAGE_BASE_URL + movie.posterPath)
+                    .into(binding.imgItemPhoto)
+            }
         }
     }
 
