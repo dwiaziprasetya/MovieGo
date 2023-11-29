@@ -17,9 +17,10 @@
 
     <!-- Resource Image Slider -->
     <integer-array name="image_slider">
-        <item>@drawable/frozen_2_image_slider</item>
-        <item>@drawable/edge_of_tomorrow_image_slider</item>
+        <item>@drawable/insidious_2_image_slider</item>
+        <item>@drawable/pathaan_image_slider</item>
         <item>@drawable/xmen_days_of_future_past_image_slider</item>
+        <item>@drawable/looper_image_slider</item>
     </integer-array>
 
 </resources>
