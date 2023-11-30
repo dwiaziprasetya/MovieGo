@@ -11,9 +11,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviedatabase.R
 import com.example.moviedatabase.adapter.ImageSliderAdapter
+import com.example.moviedatabase.adapter.RvPopularMovieAdapter
 import com.example.moviedatabase.adapter.RvUpComingMovieAdapter
 import com.example.moviedatabase.databinding.FragmentHomeBinding
 import com.example.moviedatabase.model.ImageData
+import com.example.moviedatabase.response.PopularMovieResponse
+import com.example.moviedatabase.response.PopularMovieResultsItem
 import com.example.moviedatabase.response.ResultsItem
 import com.example.moviedatabase.response.UpComingMovieResponse
 import com.example.moviedatabase.retrofit.ApiConfig
@@ -33,8 +36,12 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         showImageSlider()
-        showRecyclerView()
-        getMovieData()
+
+        showRecyclerViewUpComingMovie()
+        getUpComingMovieData()
+
+        showRecyclerViewPopularMovie()
+        getPopularMovieData()
     }
 
     override fun onCreateView(
@@ -49,20 +56,19 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun getMovieData(){
-        val client = ApiConfig.getApiService().getMovie()
+    private fun getUpComingMovieData(){
+        val client = ApiConfig.getApiService().getUpComingMovies()
         client.enqueue(object : Callback<UpComingMovieResponse> {
             override fun onResponse(call: Call<UpComingMovieResponse>, response: Response<UpComingMovieResponse>) {
                 showLoading(false)
                 if (response.isSuccessful){
                     val responseBody = response.body()
                     if (response.body() != null){
-                        setMovieData(responseBody!!.results)
+                        setUpComingMovieData(responseBody!!.results)
                     }
                 } else {
                     Log.e(TAG, "onFailure : ${response.message()}")
                 }
-
             }
 
             override fun onFailure(call: Call<UpComingMovieResponse>, t: Throwable) {
@@ -72,15 +78,40 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun showRecyclerView() {
+    private fun getPopularMovieData(){
+        val client = ApiConfig.getApiService().getPopularMovies()
+        client.enqueue(object : Callback<PopularMovieResponse> {
+            override fun onResponse(
+                call: Call<PopularMovieResponse>,
+                response: Response<PopularMovieResponse>,
+            ) {
+                showLoading(false)
+                if (response.isSuccessful){
+                    val responseBody = response.body()
+                    if (responseBody != null){
+                        setPopularMovieData(responseBody.results)
+                    } else {
+                        Log.e(TAG, "onFailure : ${response.message()}")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<PopularMovieResponse>, t: Throwable) {
+                showLoading(false)
+                Log.e(TAG, "onFailure : ${t.message}")
+            }
+
+        })
+    }
+
+    private fun showRecyclerViewUpComingMovie() {
         binding.rvUpcomingMovies.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
         binding.rvUpcomingMovies.hasFixedSize()
     }
 
-    private fun setMovieData(movies : List<ResultsItem>){
-        val adapter = RvUpComingMovieAdapter()
-        adapter.submitList(movies)
-        binding.rvUpcomingMovies.adapter = adapter
+    private fun showRecyclerViewPopularMovie(){
+        binding.rvPopularMovies.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvPopularMovies.hasFixedSize()
     }
 
     @SuppressLint("Recycle")
@@ -99,6 +130,19 @@ class HomeFragment : Fragment() {
         _binding = null
     }
 
+    // Function Set Data
+    private fun setPopularMovieData(movies: List<PopularMovieResultsItem>){
+        val adapter = RvPopularMovieAdapter()
+        adapter.submitList(movies)
+        binding.rvPopularMovies.adapter = adapter
+    }
+
+    private fun setUpComingMovieData(movies : List<ResultsItem>){
+        val adapter = RvUpComingMovieAdapter()
+        adapter.submitList(movies)
+        binding.rvUpcomingMovies.adapter = adapter
+    }
+
     private fun showImageSlider() {
         val adapter : ImageSliderAdapter
         val list = ArrayList<ImageData>()
@@ -110,8 +154,10 @@ class HomeFragment : Fragment() {
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
             binding.pb1.visibility = View.VISIBLE
+            binding.pb2.visibility = View.VISIBLE
         } else {
             binding.pb1.visibility = View.GONE
+            binding.pb2.visibility = View.GONE
         }
     }
 }
