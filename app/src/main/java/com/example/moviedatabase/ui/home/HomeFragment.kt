@@ -11,10 +11,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviedatabase.R
 import com.example.moviedatabase.adapter.ImageSliderAdapter
+import com.example.moviedatabase.adapter.RvNowPlayingMovieAdapter
 import com.example.moviedatabase.adapter.RvPopularMovieAdapter
 import com.example.moviedatabase.adapter.RvUpComingMovieAdapter
 import com.example.moviedatabase.databinding.FragmentHomeBinding
 import com.example.moviedatabase.model.ImageData
+import com.example.moviedatabase.response.NowPlayingMovieResponse
+import com.example.moviedatabase.response.NowPlayingMovieResultsItem
 import com.example.moviedatabase.response.PopularMovieResponse
 import com.example.moviedatabase.response.PopularMovieResultsItem
 import com.example.moviedatabase.response.ResultsItem
@@ -42,6 +45,9 @@ class HomeFragment : Fragment() {
 
         showRecyclerViewPopularMovie()
         getPopularMovieData()
+
+        showRecyclerViewNowPlayingMovie()
+        getNowPlayingMovieData()
     }
 
     override fun onCreateView(
@@ -56,7 +62,8 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    private fun getUpComingMovieData(){
+    // Function Get Movie Data
+    private fun getUpComingMovieData(){ // Up Coming
         val client = ApiConfig.getApiService().getUpComingMovies()
         client.enqueue(object : Callback<UpComingMovieResponse> {
             override fun onResponse(call: Call<UpComingMovieResponse>, response: Response<UpComingMovieResponse>) {
@@ -78,7 +85,7 @@ class HomeFragment : Fragment() {
         })
     }
 
-    private fun getPopularMovieData(){
+    private fun getPopularMovieData(){ // Popular
         val client = ApiConfig.getApiService().getPopularMovies()
         client.enqueue(object : Callback<PopularMovieResponse> {
             override fun onResponse(
@@ -104,6 +111,33 @@ class HomeFragment : Fragment() {
         })
     }
 
+    private fun getNowPlayingMovieData(){ // Now Playing
+        val client = ApiConfig.getApiService().getNowPlayingMovies()
+        client.enqueue(object: Callback<NowPlayingMovieResponse> {
+            override fun onResponse(
+                call: Call<NowPlayingMovieResponse>,
+                response: Response<NowPlayingMovieResponse>,
+            ) {
+                showLoading(false)
+                if (response.isSuccessful){
+                    val responseBody = response.body()
+                    if (responseBody != null){
+                        setNowPlayingMovieData(responseBody.results)
+                    } else {
+                        Log.e(TAG, "onFailure : ${response.message()}")
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<NowPlayingMovieResponse>, t: Throwable) {
+                showLoading(false)
+                Log.e(TAG, "onFailure : ${t.message}")
+            }
+
+        })
+    }
+
+    // Function Show RecyclerView
     private fun showRecyclerViewUpComingMovie() {
         binding.rvUpcomingMovies.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
         binding.rvUpcomingMovies.hasFixedSize()
@@ -112,6 +146,39 @@ class HomeFragment : Fragment() {
     private fun showRecyclerViewPopularMovie(){
         binding.rvPopularMovies.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
         binding.rvPopularMovies.hasFixedSize()
+    }
+
+    private fun showRecyclerViewNowPlayingMovie(){
+        binding.rvNowPlayingMovies.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.HORIZONTAL, false)
+        binding.rvNowPlayingMovies.hasFixedSize()
+    }
+
+    // Function Set Data Movie
+    private fun setPopularMovieData(movies: List<PopularMovieResultsItem>){
+        val adapter = RvPopularMovieAdapter()
+        adapter.submitList(movies)
+        binding.rvPopularMovies.adapter = adapter
+    }
+
+    private fun setUpComingMovieData(movies : List<ResultsItem>){
+        val adapter = RvUpComingMovieAdapter()
+        adapter.submitList(movies)
+        binding.rvUpcomingMovies.adapter = adapter
+    }
+
+    private fun setNowPlayingMovieData(movies : List<NowPlayingMovieResultsItem>){
+        val adapter = RvNowPlayingMovieAdapter()
+        adapter.submitList(movies)
+        binding.rvNowPlayingMovies.adapter = adapter
+    }
+
+    // Function Image Slider
+    private fun showImageSlider() {
+        val adapter : ImageSliderAdapter
+        val list = ArrayList<ImageData>()
+        list.addAll(getListImageSlider())
+        adapter = ImageSliderAdapter(list)
+        binding.viewPager.adapter = adapter
     }
 
     @SuppressLint("Recycle")
@@ -125,39 +192,21 @@ class HomeFragment : Fragment() {
         return listImage
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
-
-    // Function Set Data
-    private fun setPopularMovieData(movies: List<PopularMovieResultsItem>){
-        val adapter = RvPopularMovieAdapter()
-        adapter.submitList(movies)
-        binding.rvPopularMovies.adapter = adapter
-    }
-
-    private fun setUpComingMovieData(movies : List<ResultsItem>){
-        val adapter = RvUpComingMovieAdapter()
-        adapter.submitList(movies)
-        binding.rvUpcomingMovies.adapter = adapter
-    }
-
-    private fun showImageSlider() {
-        val adapter : ImageSliderAdapter
-        val list = ArrayList<ImageData>()
-        list.addAll(getListImageSlider())
-        adapter = ImageSliderAdapter(list)
-        binding.viewPager.adapter = adapter
-    }
-
+    // Function Show Loading
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
             binding.pb1.visibility = View.VISIBLE
             binding.pb2.visibility = View.VISIBLE
+            binding.pb3.visibility = View.VISIBLE
         } else {
             binding.pb1.visibility = View.GONE
             binding.pb2.visibility = View.GONE
+            binding.pb3.visibility = View.GONE
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

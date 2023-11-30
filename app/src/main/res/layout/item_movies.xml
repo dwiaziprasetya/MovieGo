@@ -29,6 +29,7 @@
         android:fontFamily="@font/dmsans_regular"
         android:maxLines="2"
         android:text="@string/title_movie"
+        android:paddingBottom="5dp"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         card_view:layout_constraintEnd_toEndOf="@+id/img_item_photo"
