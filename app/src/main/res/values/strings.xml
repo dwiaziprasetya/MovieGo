@@ -15,6 +15,7 @@
     <string name="popular_movies">Popular Movies</string>
     <string name="now_showing">Now Showing</string>
     <string name="now_playing">Now Playing</string>
+    <string name="profile">Profile</string>
 
     <!-- Resource Image Slider -->
     <integer-array name="image_slider">
