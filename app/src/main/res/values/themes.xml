@@ -2,9 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.MovieDatabase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/gold</item>
         <item name="colorPrimaryVariant">@color/primaryVariant</item>
         <item name="colorOnPrimary">@color/background_theme</item>
+        <item name="colorOnSurface">@color/gold</item>
         <item name="colorOnSurfaceVariant">#FFFFFF</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

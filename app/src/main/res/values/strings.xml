@@ -16,13 +16,14 @@
     <string name="now_showing">Now Showing</string>
     <string name="now_playing">Now Playing</string>
     <string name="profile">Profile</string>
+    <string name="movie_genre">Movie Genre</string>
+    <string name="movie_release">2019-02-20</string>
 
     <!-- Resource Image Slider -->
     <integer-array name="image_slider">
-        <item>@drawable/insidious_2_image_slider</item>
-        <item>@drawable/pathaan_image_slider</item>
-        <item>@drawable/xmen_days_of_future_past_image_slider</item>
-        <item>@drawable/looper_image_slider</item>
+        <item>@drawable/dune_image_slider</item>
+        <item>@drawable/mortal_kombat_image_slider</item>
+        <item>@drawable/kingdom_of_the_planet_of_the_apes_image_slider</item>
     </integer-array>
 
 </resources>
