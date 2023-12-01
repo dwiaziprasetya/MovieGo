@@ -28,7 +28,10 @@ class MovieFragment : Fragment() {
     }
 
     override fun onDestroy() {
+        if (view != null){
+            val parentViewGroup = requireView().parent as ViewGroup?
+            parentViewGroup?.removeAllViews()
+        }
         super.onDestroy()
-        _binding = null
     }
 }

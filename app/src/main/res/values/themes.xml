@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.MovieDatabase" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimary">@color/white</item>
         <item name="colorPrimaryVariant">@color/primaryVariant</item>
         <item name="colorOnPrimary">@color/background_theme</item>
         <item name="colorOnSurfaceVariant">#FFFFFF</item>

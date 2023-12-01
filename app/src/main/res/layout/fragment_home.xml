@@ -23,20 +23,41 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="290dp"
+            android:background="@drawable/gradient_background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/view_pager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <LinearLayout
+            android:id="@+id/dots_indicator"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical|center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/view_pager"/>
+
+
         <TextView
             android:id="@+id/tv_upcoming_movies"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/dmsans_bold"
             android:text="@string/upcoming_movies"
-            android:textColor="#FFB000"
+            android:textColor="@color/gold"
             android:textSize="18sp"
+            app:layout_constraintTop_toBottomOf="@id/dots_indicator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/view_pager" />
+            tools:layout_editor_absoluteY="306dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_upcoming_movies"
@@ -67,7 +88,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/dmsans_bold"
             android:text="@string/popular_movies"
-            android:textColor="#FFB000"
+            android:textColor="@color/gold"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -102,7 +123,7 @@
             android:layout_marginEnd="16dp"
             android:fontFamily="@font/dmsans_bold"
             android:text="@string/now_playing"
-            android:textColor="#FFB000"
+            android:textColor="@color/gold"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

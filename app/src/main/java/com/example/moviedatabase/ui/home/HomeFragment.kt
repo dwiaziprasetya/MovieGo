@@ -1,14 +1,23 @@
 package com.example.moviedatabase.ui.home
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.text.Html
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.content.ContextCompat
+import androidx.core.view.isEmpty
+import androidx.core.view.isNotEmpty
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.viewpager2.widget.ViewPager2
 import com.example.moviedatabase.R
 import com.example.moviedatabase.adapter.ImageSliderAdapter
 import com.example.moviedatabase.adapter.RvNowPlayingMovieAdapter
@@ -31,6 +40,11 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
+    private lateinit var adapter : ImageSliderAdapter
+    private val list = ArrayList<ImageData>()
+    private lateinit var dots : ArrayList<TextView>
+    private lateinit var handler: Handler
+    private lateinit var runnable: Runnable
 
     companion object {
         private const val TAG = "HomeFragment"
@@ -38,6 +52,19 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        handler = Handler(Looper.getMainLooper())
+        runnable = object : Runnable {
+            var index = 0
+            override fun run() {
+                if (index == list.size) index = 0
+                Log.e("Runnable","$index")
+                binding.viewPager.currentItem = index
+                index++
+                handler.postDelayed(this,2000)
+            }
+
+        }
+
         showImageSlider()
 
         showRecyclerViewUpComingMovie()
@@ -48,6 +75,15 @@ class HomeFragment : Fragment() {
 
         showRecyclerViewNowPlayingMovie()
         getNowPlayingMovieData()
+
+        dots = ArrayList()
+        setIndicator()
+        binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
+            override fun onPageSelected(position: Int) {
+                selectedDot(position)
+                super.onPageSelected(position)
+            }
+        })
     }
 
     override fun onCreateView(
@@ -173,14 +209,6 @@ class HomeFragment : Fragment() {
     }
 
     // Function Image Slider
-    private fun showImageSlider() {
-        val adapter : ImageSliderAdapter
-        val list = ArrayList<ImageData>()
-        list.addAll(getListImageSlider())
-        adapter = ImageSliderAdapter(list)
-        binding.viewPager.adapter = adapter
-    }
-
     @SuppressLint("Recycle")
     private fun getListImageSlider() : ArrayList<ImageData> {
         val dataImage = resources.obtainTypedArray(R.array.image_slider)
@@ -190,6 +218,41 @@ class HomeFragment : Fragment() {
             listImage.add(image)
         }
         return listImage
+    }
+
+    private fun showImageSlider() {
+        list.addAll(getListImageSlider())
+        adapter = ImageSliderAdapter(list)
+        binding.viewPager.adapter = adapter
+    }
+
+    // Dot Slider
+    private fun selectedDot(position: Int){
+        for (i in 0 until list.size){
+            if (i == position)
+                dots[i].setTextColor(ContextCompat.getColor(requireActivity(), R.color.white))
+            else
+                dots[i].setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey))
+        }
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    private fun resetListSize() {
+        list.clear()
+        list.addAll(getListImageSlider())
+        adapter.notifyDataSetChanged()
+    }
+
+    private fun setIndicator() {
+        binding.dotsIndicator.removeAllViews()
+        dots.clear()
+        resetListSize()
+        for (i in 0 until list.size){
+            dots.add(TextView(requireActivity()))
+            dots[i].text = Html.fromHtml("&#9679", Html.FROM_HTML_MODE_LEGACY).toString()
+            dots[i].textSize = 14f
+            binding.dotsIndicator.addView(dots[i])
+        }
     }
 
     // Function Show Loading
@@ -205,8 +268,13 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    override fun onStart() {
+        super.onStart()
+        handler.post(runnable)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        handler.removeCallbacks(runnable)
     }
 }
