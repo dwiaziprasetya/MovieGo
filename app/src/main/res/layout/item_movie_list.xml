@@ -2,15 +2,11 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_view"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_marginStart="8dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginEnd="8dp"
-    android:layout_marginBottom="8dp"
-    card_view:cardCornerRadius="4dp">
+    card_view:cardElevation="4dp"
+    card_view:cardCornerRadius="8dp"
+    android:layout_margin="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -19,7 +15,7 @@
         android:padding="8dp">
 
         <ImageView
-            android:id="@+id/img_item_photo"
+            android:id="@+id/img_movie_list_photo"
             android:layout_width="100dp"
             android:layout_height="150dp"
             android:scaleType="centerCrop"
@@ -34,31 +30,17 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:layout_toEndOf="@id/img_item_photo"
+            android:layout_toEndOf="@id/img_movie_list_photo"
             android:fontFamily="@font/dmsans_bold"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold"
+            card_view:layout_constraintTop_toTopOf="@id/img_movie_list_photo"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/img_item_photo"
+            card_view:layout_constraintStart_toEndOf="@+id/img_movie_list_photo"
             tools:layout_editor_absoluteY="8dp"
             tools:text="@string/title_movie" />
 
-        <TextView
-            android:id="@+id/tv_movie_list_genre"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:textColor="@color/grey"
-            android:layout_toEndOf="@id/img_item_photo"
-            android:fontFamily="@font/dmsans_bold"
-            android:textSize="13sp"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/img_item_photo"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_movie_list_name"
-            tools:text="@string/movie_genre"/>
 
         <TextView
             android:id="@+id/tv_movie_release_date"
@@ -68,15 +50,16 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:textColor="@color/grey"
-            android:layout_toEndOf="@id/img_item_photo"
+            android:layout_toEndOf="@id/img_movie_list_photo"
             android:fontFamily="@font/dmsans_bold"
             android:textSize="13sp"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/img_item_photo"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_movie_list_genre"
+            card_view:layout_constraintTop_toBottomOf="@id/tv_movie_list_name"
+            card_view:layout_constraintStart_toEndOf="@+id/img_movie_list_photo"
             tools:text="@string/movie_release" />
 
         <RatingBar
+            android:id="@+id/rb_rating_movie"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -86,10 +69,10 @@
             android:progressBackgroundTint="@color/white"
             android:progressTint="@color/gold"
             android:rating="3.5"
-            card_view:layout_constraintBottom_toBottomOf="@+id/img_item_photo"
+            card_view:layout_constraintBottom_toBottomOf="@+id/img_movie_list_photo"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintHorizontal_bias="0.0"
-            card_view:layout_constraintStart_toEndOf="@+id/img_item_photo"
+            card_view:layout_constraintStart_toEndOf="@+id/img_movie_list_photo"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_movie_release_date"
             card_view:layout_constraintVertical_bias="0.0" />
 

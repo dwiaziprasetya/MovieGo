@@ -11,11 +11,11 @@ import com.example.moviedatabase.response.NowPlayingMovieResultsItem
 
 class RvNowPlayingMovieAdapter: ListAdapter<NowPlayingMovieResultsItem, RvNowPlayingMovieAdapter.MyViewHolder>(DIFF_CALLBACK){
     class MyViewHolder(val binding: ItemMoviesBinding) : RecyclerView.ViewHolder(binding.root) {
-        val IMAGE_BAS_URL = "https://image.tmdb.org/t/p/w500/"
+        val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
         fun bind(movie : NowPlayingMovieResultsItem){
             binding.tvMovieTitle.text = movie.title
             Glide.with(itemView)
-                .load(IMAGE_BAS_URL + movie.posterPath)
+                .load(IMAGE_BASE_URL + movie.posterPath)
                 .into(binding.imgItemPhoto)
         }
     }
