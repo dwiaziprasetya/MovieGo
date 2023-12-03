@@ -1,6 +1,7 @@
 package com.example.moviedatabase.ui.movie
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import com.example.moviedatabase.databinding.FragmentMovieBinding
 import com.example.moviedatabase.response.DiscoverMovieResponse
 import com.example.moviedatabase.response.DiscoverMovieResultsItem
 import com.example.moviedatabase.retrofit.ApiConfig
+import com.example.moviedatabase.ui.activity.DetailActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -49,6 +51,14 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                     }
                 }
                 super.onScrolled(recyclerView, dx, dy)
+            }
+        })
+
+        adapter.setOnItemClickCallback(object : RvDiscoverMovieAdapter.OnitemClickCallback{
+            override fun onItemClicked(data: DiscoverMovieResultsItem) {
+                val intent = Intent(requireActivity(), DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
+                startActivity(intent)
             }
         })
     }

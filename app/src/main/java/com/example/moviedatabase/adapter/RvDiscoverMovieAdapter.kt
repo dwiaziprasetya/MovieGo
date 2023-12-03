@@ -11,7 +11,7 @@ import com.example.moviedatabase.databinding.ItemMovieListBinding
 import com.example.moviedatabase.response.DiscoverMovieResultsItem
 
 class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
-
+    private lateinit var onItemCallback :OnitemClickCallback
     private var movie = ArrayList<DiscoverMovieResultsItem>()
     class MyViewHolder(val binding : ItemMovieListBinding) : RecyclerView.ViewHolder(binding.root) {
         val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
@@ -52,6 +52,9 @@ class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMo
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val movie = getItem(position)
         holder.bind(movie)
+        holder.binding.root.setOnClickListener {
+            onItemCallback.onItemClicked(movie)
+        }
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -64,5 +67,13 @@ class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMo
     fun clear(){
         movie.clear()
         notifyDataSetChanged()
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnitemClickCallback){
+        this.onItemCallback = onItemClickCallback
+    }
+
+    interface OnitemClickCallback {
+        fun onItemClicked(data : DiscoverMovieResultsItem)
     }
 }

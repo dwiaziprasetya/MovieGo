@@ -1,6 +1,10 @@
 package com.example.moviedatabase.response
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
+import java.io.Serializable
 
 data class DiscoverMovieResponse(
 
@@ -16,7 +20,7 @@ data class DiscoverMovieResponse(
 	@field:SerializedName("total_results")
 	val totalResults: Int
 )
-
+@Parcelize
 data class DiscoverMovieResultsItem(
 
 	@field:SerializedName("overview")
@@ -47,10 +51,10 @@ data class DiscoverMovieResultsItem(
 	val releaseDate: String,
 
 	@field:SerializedName("popularity")
-	val popularity: Any,
+	val popularity: @RawValue Any,
 
 	@field:SerializedName("vote_average")
-	val voteAverage: Any,
+	val voteAverage: @RawValue Any,
 
 	@field:SerializedName("id")
 	val id: Int,
@@ -60,7 +64,7 @@ data class DiscoverMovieResultsItem(
 
 	@field:SerializedName("vote_count")
 	val voteCount: Int
-){
+):Parcelable{
 	fun movieRate(): Double {
 		return voteAverage as Double / 2
 	}

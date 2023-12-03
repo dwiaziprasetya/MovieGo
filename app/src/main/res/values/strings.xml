@@ -18,6 +18,8 @@
     <string name="profile">Profile</string>
     <string name="movie_genre">Movie Genre</string>
     <string name="movie_release">2019-02-20</string>
+    <string name="movie_overview">Overview</string>
+    <string name="movie_overview_template">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, assumenda dicta doloremque earum eligendi error est expedita ipsum iste non quos, reiciendis repellat sapiente sed sunt! Aperiam est harum id.</string>
 
     <!-- Resource Image Slider -->
     <integer-array name="image_slider">
