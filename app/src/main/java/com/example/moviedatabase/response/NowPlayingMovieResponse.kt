@@ -1,7 +1,12 @@
 package com.example.moviedatabase.response
 
+import android.os.Parcelable
+import com.example.moviedatabase.MovieItem
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
+import kotlinx.parcelize.RawValue
 
+@Parcelize
 data class NowPlayingMovieResponse(
 
 	@field:SerializedName("dates")
@@ -18,12 +23,13 @@ data class NowPlayingMovieResponse(
 
 	@field:SerializedName("total_results")
 	val totalResults: Int
-)
+): Parcelable
 
+@Parcelize
 data class NowPlayingMovieResultsItem(
 
 	@field:SerializedName("overview")
-	val overview: String,
+	override val overview: String,
 
 	@field:SerializedName("original_language")
 	val originalLanguage: String,
@@ -35,36 +41,41 @@ data class NowPlayingMovieResultsItem(
 	val video: Boolean,
 
 	@field:SerializedName("title")
-	val title: String,
+	override val title: String,
 
 	@field:SerializedName("genre_ids")
-	val genreIds: List<Int>,
+	override val genreIds: List<Int>,
 
 	@field:SerializedName("poster_path")
 	val posterPath: String,
 
 	@field:SerializedName("backdrop_path")
-	val backdropPath: String,
+	override val backdropPath: String,
 
 	@field:SerializedName("release_date")
 	val releaseDate: String,
 
 	@field:SerializedName("popularity")
-	val popularity: Any,
+	val popularity: @RawValue Any,
 
 	@field:SerializedName("vote_average")
-	val voteAverage: Any,
+	val voteAverage: @RawValue Any,
 
 	@field:SerializedName("id")
-	val id: Int,
+	override val id: Int,
 
 	@field:SerializedName("adult")
 	val adult: Boolean,
 
 	@field:SerializedName("vote_count")
 	val voteCount: Int
-)
+): Parcelable, MovieItem {
+	override fun movieRate(): Double {
+		return voteAverage as Double / 2
+	}
+}
 
+@Parcelize
 data class NowPlayingDates(
 
 	@field:SerializedName("maximum")
@@ -72,4 +83,4 @@ data class NowPlayingDates(
 
 	@field:SerializedName("minimum")
 	val minimum: String
-)
+): Parcelable

@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.moviedatabase.MovieItem
 import com.example.moviedatabase.adapter.RvCastMovieAdapter
 import com.example.moviedatabase.databinding.ActivityDetailBinding
 import com.example.moviedatabase.response.CastItem
@@ -14,6 +15,7 @@ import com.example.moviedatabase.response.CastandCrewResponse
 import com.example.moviedatabase.response.DiscoverMovieResultsItem
 import com.example.moviedatabase.response.GenreResponse
 import com.example.moviedatabase.response.GenresItem
+import com.example.moviedatabase.response.NowPlayingMovieResultsItem
 import com.example.moviedatabase.retrofit.ApiConfig
 import com.example.moviedatabase.ui.home.HomeFragment
 import retrofit2.Call
@@ -33,14 +35,14 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         WindowCompat.setDecorFitsSystemWindows(window,false)
-        val movie = intent.getParcelableExtra<DiscoverMovieResultsItem>(EXTRA_MOVIES)
-        val movieId = movie?.id!!
-
-        setData(movie)
-
-        showRecycleView()
-        getMovieCast(movieId)
-        getMovieGenre(movie.genreIds)
+        val movieItem : MovieItem? = intent.getParcelableExtra(EXTRA_MOVIES)
+        movieItem?.let {
+            val movieId = movieItem.id
+            setData(it)
+            showRecycleView()
+            getMovieCast(movieId)
+            getMovieGenre(movieItem.genreIds)
+        }
     }
 
     private fun getMovieGenre(movieGenreIds: List<Int>){
@@ -65,7 +67,7 @@ class DetailActivity : AppCompatActivity() {
         })
     }
 
-    private fun setData(movie: DiscoverMovieResultsItem){
+    private fun setData(movie: MovieItem){
         val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
         binding.tvDetailMovieName.text = movie.title
         binding.ratingBar.rating = movie.movieRate().toFloat()

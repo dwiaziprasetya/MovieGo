@@ -2,6 +2,7 @@ package com.example.moviedatabase.ui.home
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -30,6 +31,7 @@ import com.example.moviedatabase.response.PopularMovieResultsItem
 import com.example.moviedatabase.response.ResultsItem
 import com.example.moviedatabase.response.UpComingMovieResponse
 import com.example.moviedatabase.retrofit.ApiConfig
+import com.example.moviedatabase.ui.activity.DetailActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,6 +45,9 @@ class HomeFragment : Fragment() {
     private lateinit var dots : ArrayList<TextView>
     private lateinit var handler: Handler
     private lateinit var runnable: Runnable
+    private var adapterUpComingMovie = RvUpComingMovieAdapter()
+    private var adapterPopularMovie = RvPopularMovieAdapter()
+    private var adapterNowPlayingMovie = RvNowPlayingMovieAdapter()
 
     companion object {
         private const val TAG = "HomeFragment"
@@ -80,6 +85,30 @@ class HomeFragment : Fragment() {
             override fun onPageSelected(position: Int) {
                 selectedDot(position)
                 super.onPageSelected(position)
+            }
+        })
+
+        adapterNowPlayingMovie.setOnItemClickCallback(object : RvNowPlayingMovieAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: NowPlayingMovieResultsItem) {
+                val intent = Intent(requireActivity(), DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
+                startActivity(intent)
+            }
+        })
+
+        adapterPopularMovie.setOnItemClickCallback(object : RvPopularMovieAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: PopularMovieResultsItem) {
+                val intent = Intent(requireActivity(), DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
+                startActivity(intent)
+            }
+        })
+
+        adapterUpComingMovie.setOnItemClickCallback(object : RvUpComingMovieAdapter.OnItemClickCallback {
+            override fun onItemClicked(data: ResultsItem) {
+                val intent = Intent(requireActivity(), DetailActivity::class.java)
+                intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
+                startActivity(intent)
             }
         })
     }
@@ -189,21 +218,18 @@ class HomeFragment : Fragment() {
 
     // Function Set Data Movie
     private fun setPopularMovieData(movies: List<PopularMovieResultsItem>){
-        val adapter = RvPopularMovieAdapter()
-        adapter.submitList(movies)
-        binding.rvPopularMovies.adapter = adapter
+        adapterPopularMovie.submitList(movies)
+        binding.rvPopularMovies.adapter = adapterPopularMovie
     }
 
     private fun setUpComingMovieData(movies : List<ResultsItem>){
-        val adapter = RvUpComingMovieAdapter()
-        adapter.submitList(movies)
-        binding.rvUpcomingMovies.adapter = adapter
+        adapterUpComingMovie.submitList(movies)
+        binding.rvUpcomingMovies.adapter = adapterUpComingMovie
     }
 
     private fun setNowPlayingMovieData(movies : List<NowPlayingMovieResultsItem>){
-        val adapter = RvNowPlayingMovieAdapter()
-        adapter.submitList(movies)
-        binding.rvNowPlayingMovies.adapter = adapter
+        adapterNowPlayingMovie.submitList(movies)
+        binding.rvNowPlayingMovies.adapter = adapterNowPlayingMovie
     }
 
     // Function Image Slider
@@ -227,10 +253,11 @@ class HomeFragment : Fragment() {
     // Dot Slider
     private fun selectedDot(position: Int){
         for (i in 0 until list.size){
-            if (i == position)
+            if (i == position){
                 dots[i].setTextColor(ContextCompat.getColor(requireActivity(), R.color.white))
-            else
+            } else {
                 dots[i].setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey))
+            }
         }
     }
 

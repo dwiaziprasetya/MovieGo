@@ -10,6 +10,7 @@ import com.example.moviedatabase.databinding.ItemMoviesBinding
 import com.example.moviedatabase.response.ResultsItem
 
 class RvUpComingMovieAdapter : ListAdapter<ResultsItem, RvUpComingMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
+    private lateinit var onItemCallback : OnItemClickCallback
     class MyViewHolder (val binding: ItemMoviesBinding): RecyclerView.ViewHolder(binding.root){
         private val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
         fun bindMovie(movie : ResultsItem){
@@ -41,5 +42,16 @@ class RvUpComingMovieAdapter : ListAdapter<ResultsItem, RvUpComingMovieAdapter.M
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val movie = getItem(position)
         holder.bindMovie(movie)
+        holder.binding.root.setOnClickListener {
+            onItemCallback.onItemClicked(movie)
+        }
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+        this.onItemCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(data : ResultsItem)
     }
 }
