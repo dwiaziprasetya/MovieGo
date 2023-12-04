@@ -22,6 +22,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity() {
 
     companion object {
@@ -43,6 +44,10 @@ class DetailActivity : AppCompatActivity() {
             getMovieCast(movieId)
             getMovieGenre(movieItem.genreIds)
         }
+
+        binding.imgBtnBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun getMovieGenre(movieGenreIds: List<Int>){
@@ -55,7 +60,7 @@ class DetailActivity : AppCompatActivity() {
                         val genres = responseBody.genres
                         val movieGenre = genres.filter { it.id in movieGenreIds}
                         val genreNames = movieGenre.map { it.name }
-                        binding.tvDetailMovieRelease.text = genreNames.joinToString(", ")
+                        binding.tvDetailMovieGenre.text = genreNames.joinToString(", ")
                     }
                 }
             }

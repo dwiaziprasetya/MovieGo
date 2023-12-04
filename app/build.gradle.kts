@@ -36,12 +36,11 @@ android {
         jvmTarget = "1.8"
     }
 
-    dataBinding {
-        enable = true
-    }
 
     buildFeatures {
         viewBinding = true
+        //noinspection DataBindingWithoutKapt
+        dataBinding = true
     }
 }
 

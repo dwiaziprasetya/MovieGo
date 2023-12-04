@@ -10,8 +10,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/title_favorite"
+        android:text="@string/movie_favorite_template"
         android:textColor="@color/white"
+        android:textSize="16sp"
+        android:fontFamily="@font/dmsans_bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

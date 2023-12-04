@@ -15,6 +15,7 @@ import com.example.moviedatabase.adapter.RvDiscoverMovieAdapter
 import com.example.moviedatabase.databinding.FragmentMovieBinding
 import com.example.moviedatabase.response.DiscoverMovieResponse
 import com.example.moviedatabase.response.DiscoverMovieResultsItem
+import com.example.moviedatabase.response.GenreResponse
 import com.example.moviedatabase.retrofit.ApiConfig
 import com.example.moviedatabase.ui.activity.DetailActivity
 import retrofit2.Call
@@ -37,6 +38,7 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         binding.rvDiscoverMovie.adapter = adapter
         binding.rvDiscoverMovie.hasFixedSize()
         binding.swipeRefresh.setOnRefreshListener(this)
+        getMovieGenre()
         getDiscoverMovie(false)
 
         binding.rvDiscoverMovie.addOnScrollListener(object : RecyclerView.OnScrollListener(){
@@ -103,6 +105,21 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
             override fun onFailure(call: Call<DiscoverMovieResponse>, t: Throwable) {
                 Log.e("MovieFragment", "onFailure : ${t.message}")
             }
+        })
+    }
+
+    private fun getMovieGenre() {
+        val client = ApiConfig.getApiService().getMovieGenre()
+        client.enqueue(object : Callback<GenreResponse> {
+            override fun onResponse(call: Call<GenreResponse>, response: Response<GenreResponse>) {
+                val genreList = response.body()?.genres ?: emptyList()
+                adapter.setGenreList(genreList)
+            }
+
+            override fun onFailure(call: Call<GenreResponse>, t: Throwable) {
+                Log.e("MovieFragment", "onFailure: ${t.message}")
+            }
+
         })
     }
 

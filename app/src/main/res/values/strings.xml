@@ -17,15 +17,19 @@
     <string name="now_playing">Now Playing</string>
     <string name="profile">Profile</string>
     <string name="movie_genre">Movie Genre</string>
-    <string name="movie_release">2019-02-20</string>
+    <string name="movie_release">2019–02-20</string>
     <string name="movie_overview">Overview</string>
     <string name="movie_overview_template">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, assumenda dicta doloremque earum eligendi error est expedita ipsum iste non quos, reiciendis repellat sapiente sed sunt! Aperiam est harum id.</string>
     <string name="movie_cast">Cast</string>
+    <string name="movie_rating_sample">3.5</string>
+    <string name="movie_favorite_template">You don\'t have a favorite movie yet</string>
 
     <!-- Resource Image Slider -->
     <integer-array name="image_slider">
         <item>@drawable/dune_image_slider</item>
+        <item>@drawable/the_martian_image_slider</item>
         <item>@drawable/mortal_kombat_image_slider</item>
+        <item>@drawable/inception_image_slider</item>
         <item>@drawable/kingdom_of_the_planet_of_the_apes_image_slider</item>
     </integer-array>
 

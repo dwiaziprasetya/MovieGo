@@ -9,19 +9,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemMovieListBinding
 import com.example.moviedatabase.response.DiscoverMovieResultsItem
+import com.example.moviedatabase.response.GenresItem
+import java.text.DecimalFormat
 
 class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemCallback :OnitemClickCallback
     private var movie = ArrayList<DiscoverMovieResultsItem>()
+    private var genreList: List<GenresItem> = emptyList()
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setGenreList(genres: List<GenresItem>){
+        genreList = genres
+        notifyDataSetChanged()
+    }
     class MyViewHolder(val binding : ItemMovieListBinding) : RecyclerView.ViewHolder(binding.root) {
         val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
         fun bind(movie : DiscoverMovieResultsItem){
+            val decimalFormat = DecimalFormat("#.#")
             binding.tvMovieListName.text = movie.title
-            binding.tvMovieReleaseDate.text = movie.releaseDate
             binding.rbRatingMovie.rating = movie.movieRate().toFloat()
             Glide.with(itemView)
                 .load(IMAGE_BASE_URL + movie.posterPath)
                 .into(binding.imgMovieListPhoto)
+            binding.tvRatingMovie.text = decimalFormat.format(movie.movieRate())
         }
     }
 
@@ -52,9 +62,22 @@ class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMo
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val movie = getItem(position)
         holder.bind(movie)
+        val genreNames = getGenreNames(movie.genreIds)
+        holder.binding.tvMovieGenre.text = genreNames
         holder.binding.root.setOnClickListener {
             onItemCallback.onItemClicked(movie)
         }
+    }
+
+    private fun getGenreNames(genreIds: List<Int>) : String {
+        val genreNames = mutableListOf<String>()
+        for (genreId in genreIds) {
+            val genre = genreList.find { it.id == genreId }
+            genre?.let {
+                genreNames.add(it.name)
+            }
+        }
+        return genreNames.joinToString(", ")
     }
 
     @SuppressLint("NotifyDataSetChanged")
