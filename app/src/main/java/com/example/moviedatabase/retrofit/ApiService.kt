@@ -1,6 +1,8 @@
 package com.example.moviedatabase.retrofit
 
+import com.example.moviedatabase.response.CastandCrewResponse
 import com.example.moviedatabase.response.DiscoverMovieResponse
+import com.example.moviedatabase.response.GenreResponse
 import com.example.moviedatabase.response.NowPlayingMovieResponse
 import com.example.moviedatabase.response.PopularMovieResponse
 import com.example.moviedatabase.response.UpComingMovieResponse
@@ -20,4 +22,12 @@ interface ApiService {
     fun getDiscoverMovies(
         @QueryMap parameters : HashMap<String,String>
     ): Call<DiscoverMovieResponse>
+
+    @GET("/3/movie/{movie_id}/credits?api_key=82256da64f15d00832814203f0657b91")
+    fun getCastMovie(
+        @Path("movie_id") movieId : Int
+    ): Call<CastandCrewResponse>
+
+    @GET("/3/genre/movie/list?api_key=82256da64f15d00832814203f0657b91")
+    fun getMovieGenre() : Call<GenreResponse>
 }

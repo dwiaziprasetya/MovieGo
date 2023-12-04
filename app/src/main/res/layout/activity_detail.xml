@@ -16,7 +16,6 @@
             android:id="@+id/img_detail_movie_photo"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:adjustViewBounds="true"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +35,7 @@
             android:id="@+id/tv_detail_movie_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="4dp"
             android:fontFamily="@font/dmsans_bold"
             android:text="@string/title_movie"
             android:textAlignment="center"
@@ -52,11 +51,9 @@
             android:id="@+id/tv_detail_movie_release"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:fontFamily="@font/dmsans_regular"
             android:text="@string/movie_release"
             android:textColor="@color/grey"
-            android:textSize="13sp"
             app:layout_constraintBottom_toTopOf="@+id/ratingBar"
             app:layout_constraintEnd_toEndOf="@id/tv_detail_movie_name"
             app:layout_constraintStart_toStartOf="@id/tv_detail_movie_name" />
@@ -102,19 +99,71 @@
             android:justificationMode="inter_word"
             android:text="@string/movie_overview_template"
             android:textColor="@color/grey"
-            android:textSize="13sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_detail_movie_overview"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="150dp"
+        <TextView
+            android:id="@+id/tv_movie_cast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="365dp"
+            android:fontFamily="@font/dmsans_bold"
+            android:text="@string/movie_cast"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_movie_overview_data" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_cast_movie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_detail_movie_overview_data" />
+            app:layout_constraintTop_toBottomOf="@id/tv_movie_cast" />
+
+        <ProgressBar
+            android:id="@+id/pb_caster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/rv_cast_movie"
+            app:layout_constraintTop_toTopOf="@id/rv_cast_movie"
+            app:layout_constraintEnd_toEndOf="@id/rv_cast_movie"
+            app:layout_constraintBottom_toBottomOf="@id/rv_cast_movie"/>
+
+        <ImageButton
+            android:id="@+id/img_btn_back"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:background="@drawable/circle_button"
+            android:src="@drawable/baseline_arrow_back_24"
+            app:layout_constraintBottom_toTopOf="@+id/tv_detail_movie_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageButton
+            android:id="@+id/img_btn_favorite"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/circle_button"
+            android:src="@drawable/baseline_favorite_24"
+            app:layout_constraintBottom_toTopOf="@+id/tv_detail_movie_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
