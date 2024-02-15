@@ -16,7 +16,7 @@
         android:background="@color/background_theme"
         app:itemRippleColor="@color/background_theme"
         android:visibility="visible"
-        app:labelVisibilityMode="selected"
+        app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

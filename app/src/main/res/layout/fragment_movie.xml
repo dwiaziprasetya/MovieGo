@@ -15,7 +15,19 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:background="@color/black"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"/>
+
+            </com.google.android.material.appbar.AppBarLayout>
+
             <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginTop="8dp"
                 android:id="@+id/rvDiscoverMovie"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -23,8 +35,11 @@
             <ProgressBar
                 android:id="@+id/pbDiscoverMovie"
                 android:layout_width="match_parent"
+                android:indeterminateTint="@color/gold"
                 android:layout_height="48dp" />
+
         </LinearLayout>
+
     </ScrollView>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

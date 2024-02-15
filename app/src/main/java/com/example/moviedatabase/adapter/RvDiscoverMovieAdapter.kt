@@ -14,7 +14,6 @@ import java.text.DecimalFormat
 
 class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemCallback :OnitemClickCallback
-    private var movie = ArrayList<DiscoverMovieResultsItem>()
     private var genreList: List<GenresItem> = emptyList()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -80,17 +79,11 @@ class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMo
         return genreNames.joinToString(", ")
     }
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun addList(item : ArrayList<DiscoverMovieResultsItem>){
-        movie.addAll(item)
-        notifyDataSetChanged()
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun clear(){
-        movie.clear()
-        notifyDataSetChanged()
-    }
+//    @SuppressLint("NotifyDataSetChanged")
+//    fun clear(){
+//        movie.clear()
+//        notifyDataSetChanged()
+//    }
 
     fun setOnItemClickCallback(onItemClickCallback: OnitemClickCallback){
         this.onItemCallback = onItemClickCallback

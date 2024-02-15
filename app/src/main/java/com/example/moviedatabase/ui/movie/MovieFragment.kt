@@ -1,6 +1,5 @@
 package com.example.moviedatabase.ui.movie
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -52,6 +51,7 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                         getDiscoverMovie(false)
                     }
                 }
+                Log.d("MovieFragment", "Page = ${page}, visibleItemCount: $visibleItemCount, pastVisibleItem: $pastVisibleItem, total: $total")
                 super.onScrolled(recyclerView, dx, dy)
             }
         })
@@ -88,7 +88,7 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 response: Response<DiscoverMovieResponse>,
             ) {
                 totalPage = response.body()?.totalPages!!
-                val listResponse = response.body()!!.results
+                val listResponse = response.body()?.results
                 if (listResponse != null){
                     setDiscoverMovieData(listResponse)
                 }
@@ -96,7 +96,7 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 if (page == totalPage){
                     binding.pbDiscoverMovie.visibility = View.GONE
                 } else {
-                    binding.pbDiscoverMovie.visibility = View.INVISIBLE
+                    binding.pbDiscoverMovie.visibility = View.GONE
                 }
                 isLoading = false
                 binding.swipeRefresh.isRefreshing = false
@@ -123,14 +123,16 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         })
     }
 
-    @SuppressLint("NotifyDataSetChanged")
     private fun setDiscoverMovieData(movies: List<DiscoverMovieResultsItem>){
-        adapter.submitList(movies)
+        val currentList = adapter.currentList.toMutableList()
+        currentList.addAll(movies)
+        adapter.submitList(currentList.toList())
     }
 
     override fun onRefresh() {
-        adapter.clear()
         page = 1
+        Log.d("Ini page ke -> ", "$page")
+        adapter.submitList(emptyList())
         getDiscoverMovie(true)
     }
 }

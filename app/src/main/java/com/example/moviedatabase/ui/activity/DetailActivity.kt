@@ -36,6 +36,7 @@ class DetailActivity : AppCompatActivity() {
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
         WindowCompat.setDecorFitsSystemWindows(window,false)
+
         val movieItem : MovieItem? = intent.getParcelableExtra(EXTRA_MOVIES)
         movieItem?.let {
             val movieId = movieItem.id

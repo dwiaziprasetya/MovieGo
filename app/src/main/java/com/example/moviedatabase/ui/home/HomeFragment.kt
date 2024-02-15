@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
             var index = 0
             override fun run() {
                 if (index == list.size) index = 0
-                Log.e("Runnable","$index")
+                Log.d("Runnable","$index")
                 binding.viewPager.currentItem = index
                 index++
                 handler.postDelayed(this,2000)
