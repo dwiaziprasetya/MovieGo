@@ -4,19 +4,19 @@
     <item
         android:id="@+id/navigation_home"
         android:enabled="true"
-        android:icon="@drawable/baseline_home_24_grey"
+        android:icon="@drawable/icon_home_checked"
         android:title="@string/title_home"/>
 
     <item
         android:id="@+id/navigation_movie"
         android:enabled="true"
-        android:icon="@drawable/baseline_movie_24_grey"
+        android:icon="@drawable/icon_movie_checked"
         android:title="@string/title_movie"/>
 
     <item
         android:id="@+id/navigation_favorite"
         android:enabled="true"
-        android:icon="@drawable/baseline_favorite_border_24_grey"
+        android:icon="@drawable/icon_favourite_checked"
         android:title="@string/title_favorite"/>
 
 </menu>
