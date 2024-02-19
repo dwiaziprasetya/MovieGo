@@ -21,6 +21,7 @@ class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMo
         genreList = genres
         notifyDataSetChanged()
     }
+
     class MyViewHolder(val binding : ItemMovieListBinding) : RecyclerView.ViewHolder(binding.root) {
         val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
         fun bind(movie : DiscoverMovieResultsItem){

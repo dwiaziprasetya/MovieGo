@@ -1,44 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/swipeRefresh"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="?attr/colorOnPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.movie.MovieFragment">
 
-    <ScrollView
+    <com.google.android.material.appbar.AppBarLayout
+        app:liftOnScrollColor="@android:color/transparent"
+        android:background="?attr/colorOnPrimary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="75dp">
 
-        <LinearLayout
+        <com.google.android.material.search.SearchBar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:hint="Search your movie..."
+            app:navigationIconTint="@color/grey" />
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    </com.google.android.material.appbar.AppBarLayout>
 
-                <com.google.android.material.appbar.MaterialToolbar
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"/>
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-            </com.google.android.material.appbar.AppBarLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_marginTop="8dp"
                 android:id="@+id/rvDiscoverMovie"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"/>
 
             <ProgressBar
                 android:id="@+id/pbDiscoverMovie"
                 android:layout_width="match_parent"
-                android:indeterminateTint="@color/gold"
-                android:layout_height="48dp" />
+                android:layout_height="48dp"
+                android:indeterminateTint="@color/gold"/>
 
         </LinearLayout>
+<!--            tools:listitem="@layout/item_movie_list"/>-->
 
-    </ScrollView>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

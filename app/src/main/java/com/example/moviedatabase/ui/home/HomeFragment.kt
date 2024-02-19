@@ -16,6 +16,9 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.moviedatabase.R
 import com.example.moviedatabase.adapter.ImageSliderAdapter
@@ -32,9 +35,11 @@ import com.example.moviedatabase.response.ResultsItem
 import com.example.moviedatabase.response.UpComingMovieResponse
 import com.example.moviedatabase.retrofit.ApiConfig
 import com.example.moviedatabase.ui.activity.DetailActivity
+import okhttp3.internal.notify
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.math.abs
 
 class HomeFragment : Fragment() {
 
@@ -49,23 +54,16 @@ class HomeFragment : Fragment() {
     private var adapterPopularMovie = RvPopularMovieAdapter()
     private var adapterNowPlayingMovie = RvNowPlayingMovieAdapter()
 
-    companion object {
-        private const val TAG = "HomeFragment"
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         handler = Handler(Looper.getMainLooper())
+        handler.post {
+            binding.viewPager.currentItem = 2
+        }
         runnable = object : Runnable {
-            var index = 0
             override fun run() {
-                if (index == list.size) index = 0
-                Log.d("Runnable","$index")
-                binding.viewPager.currentItem = index
-                index++
-                handler.postDelayed(this,2000)
+                binding.viewPager.currentItem++
             }
-
         }
 
         showImageSlider()
@@ -84,6 +82,9 @@ class HomeFragment : Fragment() {
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 selectedDot(position)
+                handler.removeCallbacks(runnable)
+                Log.d("Posisi", position.toString())
+                handler.postDelayed(runnable, 4000)
                 super.onPageSelected(position)
             }
         })
@@ -246,15 +247,31 @@ class HomeFragment : Fragment() {
 
     private fun showImageSlider() {
         list.addAll(getListImageSlider())
-        adapter = ImageSliderAdapter(list)
-        binding.viewPager.adapter = adapter
+        adapter = ImageSliderAdapter(list, binding.viewPager)
+        with(binding){
+            viewPager.adapter = adapter
+            viewPager.offscreenPageLimit = 3
+            viewPager.clipChildren = false
+            viewPager.clipToPadding = false
+            viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+        }
+
+        val transformer = CompositePageTransformer()
+        transformer.addTransformer(MarginPageTransformer(40))
+        transformer.addTransformer { page, position ->
+            val r = 1 - abs(position)
+            page.scaleY = 0.85f + r * 0.14f
+        }
+
+        binding.viewPager.setPageTransformer(transformer)
     }
 
     // Dot Slider
-    private fun selectedDot(position: Int){
-        for (i in 0 until list.size){
-            if (i == position){
-                dots[i].setTextColor(ContextCompat.getColor(requireActivity(), R.color.white))
+    private fun selectedDot(position: Int) {
+        val dotIndex = position % dots.size // Mendapatkan indeks titik yang sesuai
+        for (i in dots.indices) {
+            if (i == dotIndex) {
+                dots[i].setTextColor(ContextCompat.getColor(requireActivity(), R.color.gold))
             } else {
                 dots[i].setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey))
             }
@@ -293,13 +310,17 @@ class HomeFragment : Fragment() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-        handler.post(runnable)
+    override fun onResume() {
+        super.onResume()
+        handler.postDelayed(runnable, 4000)
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         handler.removeCallbacks(runnable)
+    }
+
+    companion object {
+        private const val TAG = "HomeFragment"
     }
 }

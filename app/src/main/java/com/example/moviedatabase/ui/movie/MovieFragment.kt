@@ -96,7 +96,7 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 if (page == totalPage){
                     binding.pbDiscoverMovie.visibility = View.GONE
                 } else {
-                    binding.pbDiscoverMovie.visibility = View.GONE
+                    binding.pbDiscoverMovie.visibility = View.INVISIBLE
                 }
                 isLoading = false
                 binding.swipeRefresh.isRefreshing = false
@@ -104,6 +104,7 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
             override fun onFailure(call: Call<DiscoverMovieResponse>, t: Throwable) {
                 Log.e("MovieFragment", "onFailure : ${t.message}")
+                isLoading = false
             }
         })
     }

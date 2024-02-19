@@ -26,11 +26,11 @@
 
     <!-- Resource Image Slider -->
     <integer-array name="image_slider">
-        <item>@drawable/dune_image_slider</item>
-        <item>@drawable/the_martian_image_slider</item>
-        <item>@drawable/mortal_kombat_image_slider</item>
-        <item>@drawable/inception_image_slider</item>
-        <item>@drawable/kingdom_of_the_planet_of_the_apes_image_slider</item>
+        <item>@drawable/inter</item>
+        <item>@drawable/morbius</item>
+        <item>@drawable/aq</item>
+        <item>@drawable/openheimer</item>
+        <item>@drawable/kungfu</item>
     </integer-array>
 
 </resources>

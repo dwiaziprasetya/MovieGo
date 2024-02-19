@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/profile"
-        android:icon="@drawable/baseline_account_circle_24"
+        android:id="@+id/notification_menu"
+        android:icon="@drawable/notification_svgrepo_com"
         app:showAsAction="ifRoom"
-        android:title="@string/profile" />
+        android:title="@string/title_notifications" />
 </menu>

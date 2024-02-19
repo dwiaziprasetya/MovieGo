@@ -1,13 +1,15 @@
 package com.example.moviedatabase.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemSlideBinding
 import com.example.moviedatabase.model.ImageData
 
-class ImageSliderAdapter(private val items: List<ImageData>) : RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder>(){
+class ImageSliderAdapter(private val items: ArrayList<ImageData>, private val viewPager2: ViewPager2) : RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder>(){
     inner class ImageViewHolder(itemView : ItemSlideBinding) : RecyclerView.ViewHolder(itemView.root){
         private val binding = itemView
         fun bind(data: ImageData){
@@ -27,5 +29,17 @@ class ImageSliderAdapter(private val items: List<ImageData>) : RecyclerView.Adap
 
     override fun onBindViewHolder(holder: ImageViewHolder, position: Int) {
         holder.bind(items[position])
+        if (position == items.size - 2){
+            viewPager2.post(runnable)
+        }
+    }
+
+    private val runnable = object : Runnable {
+        @SuppressLint("NotifyDataSetChanged")
+        override fun run() {
+            items.addAll(items)
+            notifyDataSetChanged()
+        }
+
     }
 }
