@@ -31,3 +31,5 @@ interface ApiService {
     @GET("/3/genre/movie/list?api_key=82256da64f15d00832814203f0657b91")
     fun getMovieGenre() : Call<GenreResponse>
 }
+
+

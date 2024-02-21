@@ -12,12 +12,8 @@ import com.example.moviedatabase.adapter.RvCastMovieAdapter
 import com.example.moviedatabase.databinding.ActivityDetailBinding
 import com.example.moviedatabase.response.CastItem
 import com.example.moviedatabase.response.CastandCrewResponse
-import com.example.moviedatabase.response.DiscoverMovieResultsItem
 import com.example.moviedatabase.response.GenreResponse
-import com.example.moviedatabase.response.GenresItem
-import com.example.moviedatabase.response.NowPlayingMovieResultsItem
 import com.example.moviedatabase.retrofit.ApiConfig
-import com.example.moviedatabase.ui.home.HomeFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

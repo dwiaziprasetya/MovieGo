@@ -18,7 +18,7 @@ data class UpComingMovieResponse(
 	val totalPages: Int,
 
 	@field:SerializedName("results")
-	val results: List<ResultsItem>,
+	val results: List<UpComingMovieItems>,
 
 	@field:SerializedName("total_results")
 	val totalResults: Int
@@ -34,7 +34,7 @@ data class Dates(
 )
 
 @Parcelize
-data class ResultsItem(
+data class UpComingMovieItems(
 
 	@field:SerializedName("overview")
 	override val overview: String,

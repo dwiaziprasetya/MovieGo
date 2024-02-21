@@ -1,7 +1,6 @@
 package com.example.moviedatabase.ui.home
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -27,22 +26,13 @@ import com.example.moviedatabase.adapter.RvPopularMovieAdapter
 import com.example.moviedatabase.adapter.RvUpComingMovieAdapter
 import com.example.moviedatabase.databinding.FragmentHomeBinding
 import com.example.moviedatabase.model.ImageData
-import com.example.moviedatabase.response.NowPlayingMovieResponse
-import com.example.moviedatabase.response.NowPlayingMovieResultsItem
-import com.example.moviedatabase.response.PopularMovieResponse
-import com.example.moviedatabase.response.PopularMovieResultsItem
-import com.example.moviedatabase.response.ResultsItem
-import com.example.moviedatabase.response.UpComingMovieResponse
-import com.example.moviedatabase.retrofit.ApiConfig
+import com.example.moviedatabase.response.NowPlayingMovieItem
+import com.example.moviedatabase.response.PopularMovieItem
+import com.example.moviedatabase.response.UpComingMovieItems
 import com.example.moviedatabase.ui.activity.DetailActivity
-import okhttp3.internal.notify
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 import kotlin.math.abs
 
 class HomeFragment : Fragment() {
-
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter : ImageSliderAdapter
@@ -56,26 +46,35 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val homeViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[HomeViewModel::class.java]
+
+        homeViewModel.dataUpComingMovieItems.observe(viewLifecycleOwner) {
+            setUpComingMovieData(it)
+        }
+
+        homeViewModel.dataNowPlayingMovieItem.observe(viewLifecycleOwner) {
+            setNowPlayingMovieData(it)
+        }
+
+        homeViewModel.dataPopularMovieItem.observe(viewLifecycleOwner) {
+            setPopularMovieData(it)
+        }
+
+        homeViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
+
         handler = Handler(Looper.getMainLooper())
         handler.post {
             binding.viewPager.currentItem = 2
         }
-        runnable = object : Runnable {
-            override fun run() {
-                binding.viewPager.currentItem++
-            }
-        }
+        runnable = Runnable { binding.viewPager.currentItem++ }
 
         showImageSlider()
-
         showRecyclerViewUpComingMovie()
-        getUpComingMovieData()
-
         showRecyclerViewPopularMovie()
-        getPopularMovieData()
-
         showRecyclerViewNowPlayingMovie()
-        getNowPlayingMovieData()
 
         dots = ArrayList()
         setIndicator()
@@ -90,7 +89,7 @@ class HomeFragment : Fragment() {
         })
 
         adapterNowPlayingMovie.setOnItemClickCallback(object : RvNowPlayingMovieAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: NowPlayingMovieResultsItem) {
+            override fun onItemClicked(data: NowPlayingMovieItem) {
                 val intent = Intent(requireActivity(), DetailActivity::class.java)
                 intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
                 startActivity(intent)
@@ -98,7 +97,7 @@ class HomeFragment : Fragment() {
         })
 
         adapterPopularMovie.setOnItemClickCallback(object : RvPopularMovieAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: PopularMovieResultsItem) {
+            override fun onItemClicked(data: PopularMovieItem) {
                 val intent = Intent(requireActivity(), DetailActivity::class.java)
                 intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
                 startActivity(intent)
@@ -106,7 +105,7 @@ class HomeFragment : Fragment() {
         })
 
         adapterUpComingMovie.setOnItemClickCallback(object : RvUpComingMovieAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: ResultsItem) {
+            override fun onItemClicked(data: UpComingMovieItems) {
                 val intent = Intent(requireActivity(), DetailActivity::class.java)
                 intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
                 startActivity(intent)
@@ -119,86 +118,9 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
 
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    // Function Get Movie Data
-    private fun getUpComingMovieData(){ // Up Coming
-        val client = ApiConfig.getApiService().getUpComingMovies()
-        client.enqueue(object : Callback<UpComingMovieResponse> {
-            override fun onResponse(call: Call<UpComingMovieResponse>, response: Response<UpComingMovieResponse>) {
-                showLoading(false)
-                if (response.isSuccessful){
-                    val responseBody = response.body()
-                    if (response.body() != null){
-                        setUpComingMovieData(responseBody!!.results)
-                    }
-                } else {
-                    Log.e(TAG, "onFailure : ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<UpComingMovieResponse>, t: Throwable) {
-                showLoading(false)
-                Log.e(TAG, "onFailure : ${t.message}")
-            }
-        })
-    }
-
-    private fun getPopularMovieData(){ // Popular
-        val client = ApiConfig.getApiService().getPopularMovies()
-        client.enqueue(object : Callback<PopularMovieResponse> {
-            override fun onResponse(
-                call: Call<PopularMovieResponse>,
-                response: Response<PopularMovieResponse>,
-            ) {
-                showLoading(false)
-                if (response.isSuccessful){
-                    val responseBody = response.body()
-                    if (responseBody != null){
-                        setPopularMovieData(responseBody.results)
-                    } else {
-                        Log.e(TAG, "onFailure : ${response.message()}")
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<PopularMovieResponse>, t: Throwable) {
-                showLoading(false)
-                Log.e(TAG, "onFailure : ${t.message}")
-            }
-
-        })
-    }
-
-    private fun getNowPlayingMovieData(){ // Now Playing
-        val client = ApiConfig.getApiService().getNowPlayingMovies()
-        client.enqueue(object: Callback<NowPlayingMovieResponse> {
-            override fun onResponse(
-                call: Call<NowPlayingMovieResponse>,
-                response: Response<NowPlayingMovieResponse>,
-            ) {
-                showLoading(false)
-                if (response.isSuccessful){
-                    val responseBody = response.body()
-                    if (responseBody != null){
-                        setNowPlayingMovieData(responseBody.results)
-                    } else {
-                        Log.e(TAG, "onFailure : ${response.message()}")
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<NowPlayingMovieResponse>, t: Throwable) {
-                showLoading(false)
-                Log.e(TAG, "onFailure : ${t.message}")
-            }
-
-        })
     }
 
     // Function Show RecyclerView
@@ -218,17 +140,17 @@ class HomeFragment : Fragment() {
     }
 
     // Function Set Data Movie
-    private fun setPopularMovieData(movies: List<PopularMovieResultsItem>){
+    private fun setPopularMovieData(movies: List<PopularMovieItem>){
         adapterPopularMovie.submitList(movies)
         binding.rvPopularMovies.adapter = adapterPopularMovie
     }
 
-    private fun setUpComingMovieData(movies : List<ResultsItem>){
+    private fun setUpComingMovieData(movies : List<UpComingMovieItems>){
         adapterUpComingMovie.submitList(movies)
         binding.rvUpcomingMovies.adapter = adapterUpComingMovie
     }
 
-    private fun setNowPlayingMovieData(movies : List<NowPlayingMovieResultsItem>){
+    private fun setNowPlayingMovieData(movies : List<NowPlayingMovieItem>){
         adapterNowPlayingMovie.submitList(movies)
         binding.rvNowPlayingMovies.adapter = adapterNowPlayingMovie
     }
@@ -318,9 +240,5 @@ class HomeFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         handler.removeCallbacks(runnable)
-    }
-
-    companion object {
-        private const val TAG = "HomeFragment"
     }
 }

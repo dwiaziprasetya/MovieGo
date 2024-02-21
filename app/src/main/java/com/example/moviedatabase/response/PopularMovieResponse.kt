@@ -15,14 +15,14 @@ data class PopularMovieResponse(
 	val totalPages: Int,
 
 	@field:SerializedName("results")
-	val results: List<PopularMovieResultsItem>,
+	val results: List<PopularMovieItem>,
 
 	@field:SerializedName("total_results")
 	val totalResults: Int
 )
 
 @Parcelize
-data class PopularMovieResultsItem(
+data class PopularMovieItem(
 
 	@field:SerializedName("overview")
 	override val overview: String,

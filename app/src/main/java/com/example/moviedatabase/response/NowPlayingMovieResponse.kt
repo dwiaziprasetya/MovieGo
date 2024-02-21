@@ -19,14 +19,14 @@ data class NowPlayingMovieResponse(
 	val totalPages: Int,
 
 	@field:SerializedName("results")
-	val results: List<NowPlayingMovieResultsItem>,
+	val results: List<NowPlayingMovieItem>,
 
 	@field:SerializedName("total_results")
 	val totalResults: Int
 ): Parcelable
 
 @Parcelize
-data class NowPlayingMovieResultsItem(
+data class NowPlayingMovieItem(
 
 	@field:SerializedName("overview")
 	override val overview: String,

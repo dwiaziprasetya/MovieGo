@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemMoviesBinding
-import com.example.moviedatabase.response.ResultsItem
+import com.example.moviedatabase.response.UpComingMovieItems
 
-class RvUpComingMovieAdapter : ListAdapter<ResultsItem, RvUpComingMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
+class RvUpComingMovieAdapter : ListAdapter<UpComingMovieItems, RvUpComingMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
     private lateinit var onItemCallback : OnItemClickCallback
     class MyViewHolder (val binding: ItemMoviesBinding): RecyclerView.ViewHolder(binding.root){
         private val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
-        fun bindMovie(movie : ResultsItem){
+        fun bindMovie(movie : UpComingMovieItems){
             if (movie != null) {
                 binding.tvMovieTitle.text = movie.title
                 Glide.with(itemView)
@@ -24,11 +24,11 @@ class RvUpComingMovieAdapter : ListAdapter<ResultsItem, RvUpComingMovieAdapter.M
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ResultsItem>() {
-            override fun areContentsTheSame(oldItem: ResultsItem, newItem: ResultsItem): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UpComingMovieItems>() {
+            override fun areContentsTheSame(oldItem: UpComingMovieItems, newItem: UpComingMovieItems): Boolean {
                 return oldItem == newItem
             }
-            override fun areItemsTheSame(oldItem: ResultsItem, newItem: ResultsItem): Boolean {
+            override fun areItemsTheSame(oldItem: UpComingMovieItems, newItem: UpComingMovieItems): Boolean {
                 return oldItem == newItem
             }
         }
@@ -52,6 +52,6 @@ class RvUpComingMovieAdapter : ListAdapter<ResultsItem, RvUpComingMovieAdapter.M
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data : ResultsItem)
+        fun onItemClicked(data : UpComingMovieItems)
     }
 }

@@ -7,14 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemMoviesBinding
-import com.example.moviedatabase.response.NowPlayingMovieResultsItem
+import com.example.moviedatabase.response.NowPlayingMovieItem
 
-class RvNowPlayingMovieAdapter: ListAdapter<NowPlayingMovieResultsItem, RvNowPlayingMovieAdapter.MyViewHolder>(DIFF_CALLBACK){
+class RvNowPlayingMovieAdapter: ListAdapter<NowPlayingMovieItem, RvNowPlayingMovieAdapter.MyViewHolder>(DIFF_CALLBACK){
     private lateinit var onItemCallback : OnItemClickCallback
 
     class MyViewHolder(val binding: ItemMoviesBinding) : RecyclerView.ViewHolder(binding.root) {
         val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
-        fun bind(movie : NowPlayingMovieResultsItem){
+        fun bind(movie : NowPlayingMovieItem){
             binding.tvMovieTitle.text = movie.title
             Glide.with(itemView)
                 .load(IMAGE_BASE_URL + movie.posterPath)
@@ -23,17 +23,17 @@ class RvNowPlayingMovieAdapter: ListAdapter<NowPlayingMovieResultsItem, RvNowPla
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<NowPlayingMovieResultsItem>(){
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<NowPlayingMovieItem>(){
             override fun areContentsTheSame(
-                oldItem: NowPlayingMovieResultsItem,
-                newItem: NowPlayingMovieResultsItem
+                oldItem: NowPlayingMovieItem,
+                newItem: NowPlayingMovieItem
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areItemsTheSame(
-                oldItem: NowPlayingMovieResultsItem,
-                newItem: NowPlayingMovieResultsItem
+                oldItem: NowPlayingMovieItem,
+                newItem: NowPlayingMovieItem
             ): Boolean {
                 return oldItem == newItem
             }
@@ -58,6 +58,6 @@ class RvNowPlayingMovieAdapter: ListAdapter<NowPlayingMovieResultsItem, RvNowPla
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data : NowPlayingMovieResultsItem)
+        fun onItemClicked(data : NowPlayingMovieItem)
     }
 }
