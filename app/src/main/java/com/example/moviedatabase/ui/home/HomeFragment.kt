@@ -47,37 +47,33 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        dots = ArrayList()
+        handler = Handler(Looper.getMainLooper())
+        handler.post { binding.viewPager.currentItem = 2 }
+        runnable = Runnable { binding.viewPager.currentItem++ }
         val homeViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[HomeViewModel::class.java]
 
-        homeViewModel.dataUpComingMovieItems.observe(viewLifecycleOwner) {
-            setUpComingMovieData(it)
+        with(homeViewModel){
+            dataPopularMovieItem
+                .observe(viewLifecycleOwner) {
+                    setPopularMovieData(it)
+                }
+            dataNowPlayingMovieItem
+                .observe(viewLifecycleOwner) {
+                    setNowPlayingMovieData(it)
+                }
+            dataUpComingMovieItems
+                .observe(viewLifecycleOwner) {
+                    setUpComingMovieData(it)
+                }
+            isLoading
+                .observe(
+                    viewLifecycleOwner
+                ) {
+                    showLoading(it)
+                }
         }
 
-        homeViewModel.dataNowPlayingMovieItem.observe(viewLifecycleOwner) {
-            setNowPlayingMovieData(it)
-        }
-
-        homeViewModel.dataPopularMovieItem.observe(viewLifecycleOwner) {
-            setPopularMovieData(it)
-        }
-
-        homeViewModel.isLoading.observe(viewLifecycleOwner) {
-            showLoading(it)
-        }
-
-        handler = Handler(Looper.getMainLooper())
-        handler.post {
-            binding.viewPager.currentItem = 2
-        }
-        runnable = Runnable { binding.viewPager.currentItem++ }
-
-        showImageSlider()
-        showRecyclerViewUpComingMovie()
-        showRecyclerViewPopularMovie()
-        showRecyclerViewNowPlayingMovie()
-
-        dots = ArrayList()
-        setIndicator()
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
             override fun onPageSelected(position: Int) {
                 selectedDot(position)
@@ -111,6 +107,12 @@ class HomeFragment : Fragment() {
                 startActivity(intent)
             }
         })
+
+        setIndicator()
+        showImageSlider()
+        showRecyclerViewUpComingMovie()
+        showRecyclerViewPopularMovie()
+        showRecyclerViewNowPlayingMovie()
     }
 
     override fun onCreateView(

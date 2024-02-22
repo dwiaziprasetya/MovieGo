@@ -46,12 +46,11 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
                 val pastVisibleItem = layoutManager.findFirstVisibleItemPosition()
                 val total = adapter.itemCount
                 if (!isLoading && page < totalPage){
-                    if (visibleItemCount + pastVisibleItem >= total){
+                    if (visibleItemCount + pastVisibleItem >= total - 2){
                         page++
                         getDiscoverMovie(false)
                     }
                 }
-                Log.d("MovieFragment", "Page = ${page}, visibleItemCount: $visibleItemCount, pastVisibleItem: $pastVisibleItem, total: $total")
                 super.onScrolled(recyclerView, dx, dy)
             }
         })
@@ -69,7 +68,6 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        // Inflate the layout for this fragment
         _binding = FragmentMovieBinding.inflate(inflater, container, false)
         return binding.root
     }
