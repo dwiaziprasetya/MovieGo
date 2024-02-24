@@ -122,7 +122,7 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
         })
     }
 
-    private fun setDiscoverMovieData(movies: List<DiscoverMovieResultsItem>){
+    private fun setDiscoverMovieData(movies: List<DiscoverMovieResultsItem>) {
         val currentList = adapter.currentList.toMutableList()
         currentList.addAll(movies)
         adapter.submitList(currentList.toList())
@@ -130,7 +130,6 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
     override fun onRefresh() {
         page = 1
-        Log.d("Ini page ke -> ", "$page")
         adapter.submitList(emptyList())
         getDiscoverMovie(true)
     }

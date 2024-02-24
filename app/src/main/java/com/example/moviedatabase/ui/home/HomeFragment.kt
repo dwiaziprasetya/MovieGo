@@ -125,7 +125,6 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    // Function Show RecyclerView
     private fun showRecyclerViewUpComingMovie() {
         binding.rvUpcomingMovies.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
         binding.rvUpcomingMovies.hasFixedSize()
@@ -141,7 +140,6 @@ class HomeFragment : Fragment() {
         binding.rvNowPlayingMovies.hasFixedSize()
     }
 
-    // Function Set Data Movie
     private fun setPopularMovieData(movies: List<PopularMovieItem>){
         adapterPopularMovie.submitList(movies)
         binding.rvPopularMovies.adapter = adapterPopularMovie
@@ -157,7 +155,6 @@ class HomeFragment : Fragment() {
         binding.rvNowPlayingMovies.adapter = adapterNowPlayingMovie
     }
 
-    // Function Image Slider
     @SuppressLint("Recycle")
     private fun getListImageSlider() : ArrayList<ImageData> {
         val dataImage = resources.obtainTypedArray(R.array.image_slider)
@@ -190,9 +187,8 @@ class HomeFragment : Fragment() {
         binding.viewPager.setPageTransformer(transformer)
     }
 
-    // Dot Slider
     private fun selectedDot(position: Int) {
-        val dotIndex = position % dots.size // Mendapatkan indeks titik yang sesuai
+        val dotIndex = position % dots.size
         for (i in dots.indices) {
             if (i == dotIndex) {
                 dots[i].setTextColor(ContextCompat.getColor(requireActivity(), R.color.gold))
@@ -221,7 +217,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-    // Function Show Loading
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
             binding.pb1.visibility = View.VISIBLE
