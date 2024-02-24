@@ -108,8 +108,8 @@ class HomeFragment : Fragment() {
             }
         })
 
-        setIndicator()
         showImageSlider()
+        setIndicator()
         showRecyclerViewUpComingMovie()
         showRecyclerViewPopularMovie()
         showRecyclerViewNowPlayingMovie()
