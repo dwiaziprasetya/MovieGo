@@ -20,15 +20,15 @@ import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.example.moviedatabase.R
-import com.example.moviedatabase.adapter.ImageSliderAdapter
-import com.example.moviedatabase.adapter.RvNowPlayingMovieAdapter
-import com.example.moviedatabase.adapter.RvPopularMovieAdapter
-import com.example.moviedatabase.adapter.RvUpComingMovieAdapter
+import com.example.moviedatabase.ui.adapter.ImageSliderAdapter
+import com.example.moviedatabase.ui.adapter.RvNowPlayingMovieAdapter
+import com.example.moviedatabase.ui.adapter.RvPopularMovieAdapter
+import com.example.moviedatabase.ui.adapter.RvUpComingMovieAdapter
 import com.example.moviedatabase.databinding.FragmentHomeBinding
-import com.example.moviedatabase.model.ImageData
-import com.example.moviedatabase.response.NowPlayingMovieItem
-import com.example.moviedatabase.response.PopularMovieItem
-import com.example.moviedatabase.response.UpComingMovieItems
+import com.example.moviedatabase.data.local.model.ImageData
+import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
+import com.example.moviedatabase.data.remote.response.PopularMovieItem
+import com.example.moviedatabase.data.remote.response.UpComingMovieItems
 import com.example.moviedatabase.ui.activity.DetailActivity
 import kotlin.math.abs
 

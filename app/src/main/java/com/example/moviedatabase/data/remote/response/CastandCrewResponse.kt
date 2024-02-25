@@ -1,13 +1,13 @@
-package com.example.moviedatabase.response
+package com.example.moviedatabase.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
 data class CastandCrewResponse(
-	@field:SerializedName("cast")
+    @field:SerializedName("cast")
 	val cast: List<CastItem>,
 
-	val id: Int,
-	val crew: List<CrewItem>
+    val id: Int,
+    val crew: List<CrewItem>
 )
 
 data class CrewItem(

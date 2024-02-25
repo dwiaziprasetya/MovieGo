@@ -1,22 +1,23 @@
-package com.example.moviedatabase.retrofit
+package com.example.moviedatabase.data.remote.retrofit
 
-import com.example.moviedatabase.response.CastandCrewResponse
-import com.example.moviedatabase.response.DiscoverMovieResponse
-import com.example.moviedatabase.response.GenreResponse
-import com.example.moviedatabase.response.NowPlayingMovieResponse
-import com.example.moviedatabase.response.PopularMovieResponse
-import com.example.moviedatabase.response.UpComingMovieResponse
+import com.example.moviedatabase.data.remote.response.CastandCrewResponse
+import com.example.moviedatabase.data.remote.response.DiscoverMovieResponse
+import com.example.moviedatabase.data.remote.response.GenreResponse
+import com.example.moviedatabase.data.remote.response.NowPlayingMovieResponse
+import com.example.moviedatabase.data.remote.response.PopularMovieResponse
+import com.example.moviedatabase.data.remote.response.UpComingMovieResponse
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 interface ApiService {
     @GET("/3/movie/upcoming?api_key=82256da64f15d00832814203f0657b91")
-    fun getUpComingMovies(): Call<UpComingMovieResponse>
+    suspend fun getUpComingMovies(): Response<UpComingMovieResponse>
 
     @GET("/3/movie/popular?api_key=82256da64f15d00832814203f0657b91")
-    fun getPopularMovies(): Call<PopularMovieResponse>
+    suspend fun getPopularMovies(): Response<PopularMovieResponse>
 
     @GET("/3/movie/now_playing?api_key=82256da64f15d00832814203f0657b91")
-    fun getNowPlayingMovies(): Call<NowPlayingMovieResponse>
+    suspend fun getNowPlayingMovies(): Response<NowPlayingMovieResponse>
 
     @GET("/3/discover/movie?api_key=82256da64f15d00832814203f0657b91")
     fun getDiscoverMovies(

@@ -1,4 +1,4 @@
-package com.example.moviedatabase.retrofit
+package com.example.moviedatabase.data.remote.retrofit
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

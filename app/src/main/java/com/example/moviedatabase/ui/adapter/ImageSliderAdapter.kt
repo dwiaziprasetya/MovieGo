@@ -1,4 +1,4 @@
-package com.example.moviedatabase.adapter
+package com.example.moviedatabase.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemSlideBinding
-import com.example.moviedatabase.model.ImageData
+import com.example.moviedatabase.data.local.model.ImageData
 
 class ImageSliderAdapter(private val items: ArrayList<ImageData>, private val viewPager2: ViewPager2) : RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder>(){
     inner class ImageViewHolder(itemView : ItemSlideBinding) : RecyclerView.ViewHolder(itemView.root){

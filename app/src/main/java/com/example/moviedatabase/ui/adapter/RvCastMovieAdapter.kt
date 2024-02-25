@@ -1,4 +1,4 @@
-package com.example.moviedatabase.adapter
+package com.example.moviedatabase.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemMoviesBinding
-import com.example.moviedatabase.response.CastItem
+import com.example.moviedatabase.data.remote.response.CastItem
 class RvCastMovieAdapter : ListAdapter<CastItem, RvCastMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(val binding : ItemMoviesBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cast : CastItem){

@@ -1,28 +1,40 @@
-package com.example.moviedatabase.response
+package com.example.moviedatabase.data.remote.response
 
 import android.os.Parcelable
-import com.example.moviedatabase.MovieItem
+import com.example.moviedatabase.utils.MovieItem
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
 
-data class PopularMovieResponse(
+data class UpComingMovieResponse(
 
-	@field:SerializedName("page")
+    @field:SerializedName("dates")
+	val dates: Dates,
+
+    @field:SerializedName("page")
 	val page: Int,
 
-	@field:SerializedName("total_pages")
+    @field:SerializedName("total_pages")
 	val totalPages: Int,
 
-	@field:SerializedName("results")
-	val results: List<PopularMovieItem>,
+    @field:SerializedName("results")
+	val results: List<UpComingMovieItems>,
 
-	@field:SerializedName("total_results")
+    @field:SerializedName("total_results")
 	val totalResults: Int
 )
 
+data class Dates(
+
+	@field:SerializedName("maximum")
+	val maximum: String,
+
+	@field:SerializedName("minimum")
+	val minimum: String
+)
+
 @Parcelize
-data class PopularMovieItem(
+data class UpComingMovieItems(
 
 	@field:SerializedName("overview")
 	override val overview: String,
@@ -65,7 +77,7 @@ data class PopularMovieItem(
 
 	@field:SerializedName("vote_count")
 	val voteCount: Int
-): Parcelable, MovieItem{
+) : Parcelable, MovieItem {
 	override fun movieRate(): Double {
 		return voteAverage as Double / 2
 	}

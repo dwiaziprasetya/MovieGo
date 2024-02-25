@@ -10,12 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.moviedatabase.adapter.RvDiscoverMovieAdapter
+import com.example.moviedatabase.ui.adapter.RvDiscoverMovieAdapter
 import com.example.moviedatabase.databinding.FragmentMovieBinding
-import com.example.moviedatabase.response.DiscoverMovieResponse
-import com.example.moviedatabase.response.DiscoverMovieResultsItem
-import com.example.moviedatabase.response.GenreResponse
-import com.example.moviedatabase.retrofit.ApiConfig
+import com.example.moviedatabase.data.remote.response.DiscoverMovieResponse
+import com.example.moviedatabase.data.remote.response.DiscoverMovieResultsItem
+import com.example.moviedatabase.data.remote.response.GenreResponse
+import com.example.moviedatabase.data.remote.retrofit.ApiConfig
 import com.example.moviedatabase.ui.activity.DetailActivity
 import retrofit2.Call
 import retrofit2.Callback

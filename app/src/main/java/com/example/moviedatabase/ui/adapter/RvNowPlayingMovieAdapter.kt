@@ -1,4 +1,4 @@
-package com.example.moviedatabase.adapter
+package com.example.moviedatabase.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,9 +7,11 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemMoviesBinding
-import com.example.moviedatabase.response.NowPlayingMovieItem
+import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 
-class RvNowPlayingMovieAdapter: ListAdapter<NowPlayingMovieItem, RvNowPlayingMovieAdapter.MyViewHolder>(DIFF_CALLBACK){
+class RvNowPlayingMovieAdapter: ListAdapter<NowPlayingMovieItem, RvNowPlayingMovieAdapter.MyViewHolder>(
+    DIFF_CALLBACK
+){
     private lateinit var onItemCallback : OnItemClickCallback
 
     class MyViewHolder(val binding: ItemMoviesBinding) : RecyclerView.ViewHolder(binding.root) {

@@ -1,4 +1,4 @@
-package com.example.moviedatabase.adapter
+package com.example.moviedatabase.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,36 +7,30 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemMoviesBinding
-import com.example.moviedatabase.response.PopularMovieItem
+import com.example.moviedatabase.data.remote.response.UpComingMovieItems
 
-class RvPopularMovieAdapter : ListAdapter<PopularMovieItem, RvPopularMovieAdapter.MyViewHolder>(DIFF_CALLBACK){
+class RvUpComingMovieAdapter : ListAdapter<UpComingMovieItems, RvUpComingMovieAdapter.MyViewHolder>(
+    DIFF_CALLBACK
+) {
     private lateinit var onItemCallback : OnItemClickCallback
-
-    class MyViewHolder(val binding: ItemMoviesBinding): RecyclerView.ViewHolder(binding.root){
-        val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
-        fun bindMovie(movie : PopularMovieItem){
+    class MyViewHolder (val binding: ItemMoviesBinding): RecyclerView.ViewHolder(binding.root){
+        private val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
+        fun bindMovie(movie : UpComingMovieItems){
             binding.tvMovieTitle.text = movie.title
             Glide.with(itemView)
                 .load(IMAGE_BASE_URL + movie.posterPath)
                 .into(binding.imgItemPhoto)
         }
     }
+
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<PopularMovieItem>() {
-            override fun areItemsTheSame(
-                oldItem: PopularMovieItem,
-                newItem: PopularMovieItem,
-            ): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UpComingMovieItems>() {
+            override fun areContentsTheSame(oldItem: UpComingMovieItems, newItem: UpComingMovieItems): Boolean {
                 return oldItem == newItem
             }
-
-            override fun areContentsTheSame(
-                oldItem: PopularMovieItem,
-                newItem: PopularMovieItem,
-            ): Boolean {
+            override fun areItemsTheSame(oldItem: UpComingMovieItems, newItem: UpComingMovieItems): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
 
@@ -53,11 +47,11 @@ class RvPopularMovieAdapter : ListAdapter<PopularMovieItem, RvPopularMovieAdapte
         }
     }
 
-
-    fun setOnItemClickCallback(onItemClickCallback : OnItemClickCallback){
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
         this.onItemCallback = onItemClickCallback
     }
+
     interface OnItemClickCallback {
-        fun onItemClicked(data : PopularMovieItem)
+        fun onItemClicked(data : UpComingMovieItems)
     }
 }

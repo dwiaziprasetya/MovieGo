@@ -1,4 +1,4 @@
-package com.example.moviedatabase
+package com.example.moviedatabase.utils
 
 interface MovieItem {
     val id: Int

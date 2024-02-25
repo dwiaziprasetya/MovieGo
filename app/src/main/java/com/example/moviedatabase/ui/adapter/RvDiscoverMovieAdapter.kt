@@ -1,4 +1,4 @@
-package com.example.moviedatabase.adapter
+package com.example.moviedatabase.ui.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -8,12 +8,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemMovieListBinding
-import com.example.moviedatabase.response.DiscoverMovieResultsItem
-import com.example.moviedatabase.response.GenresItem
+import com.example.moviedatabase.data.remote.response.DiscoverMovieResultsItem
+import com.example.moviedatabase.data.remote.response.GenresItem
 import java.text.DecimalFormat
 
-class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
-    private lateinit var onItemCallback :OnitemClickCallback
+class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMovieAdapter.MyViewHolder>(
+    DIFF_CALLBACK
+) {
+    private lateinit var onItemCallback : OnitemClickCallback
     private var genreList: List<GenresItem> = emptyList()
 
     @SuppressLint("NotifyDataSetChanged")

@@ -1,7 +1,7 @@
-package com.example.moviedatabase.response
+package com.example.moviedatabase.data.remote.response
 
 import android.os.Parcelable
-import com.example.moviedatabase.MovieItem
+import com.example.moviedatabase.utils.MovieItem
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 import kotlinx.parcelize.RawValue
@@ -9,19 +9,19 @@ import kotlinx.parcelize.RawValue
 @Parcelize
 data class NowPlayingMovieResponse(
 
-	@field:SerializedName("dates")
+    @field:SerializedName("dates")
 	val dates: NowPlayingDates,
 
-	@field:SerializedName("page")
+    @field:SerializedName("page")
 	val page: Int,
 
-	@field:SerializedName("total_pages")
+    @field:SerializedName("total_pages")
 	val totalPages: Int,
 
-	@field:SerializedName("results")
+    @field:SerializedName("results")
 	val results: List<NowPlayingMovieItem>,
 
-	@field:SerializedName("total_results")
+    @field:SerializedName("total_results")
 	val totalResults: Int
 ): Parcelable
 

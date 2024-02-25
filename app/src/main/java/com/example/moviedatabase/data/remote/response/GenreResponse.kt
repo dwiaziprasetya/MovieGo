@@ -1,4 +1,4 @@
-package com.example.moviedatabase.response
+package com.example.moviedatabase.data.remote.response
 
 data class GenreResponse(
 	val genres: List<GenresItem>
