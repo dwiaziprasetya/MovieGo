@@ -169,12 +169,12 @@ class HomeFragment : Fragment() {
     private fun showImageSlider() {
         list.addAll(getListImageSlider())
         adapter = ImageSliderAdapter(list, binding.viewPager)
-        with(binding.viewPager){
-            adapter = adapter
-            offscreenPageLimit = 3
-            clipChildren = false
-            clipToPadding = false
-            getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+        with(binding){
+            viewPager.adapter = adapter
+            viewPager.offscreenPageLimit = 3
+            viewPager.clipChildren = false
+            viewPager.clipToPadding = false
+            viewPager.getChildAt(0).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
         }
 
         val transformer = CompositePageTransformer()
