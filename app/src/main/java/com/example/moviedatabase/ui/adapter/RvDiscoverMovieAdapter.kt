@@ -8,25 +8,25 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemMovieListBinding
-import com.example.moviedatabase.data.remote.response.DiscoverMovieResultsItem
-import com.example.moviedatabase.data.remote.response.GenresItem
+import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
+import com.example.moviedatabase.data.remote.response.GenreItem
 import java.text.DecimalFormat
 
-class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMovieAdapter.MyViewHolder>(
+class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieItem, RvDiscoverMovieAdapter.MyViewHolder>(
     DIFF_CALLBACK
 ) {
     private lateinit var onItemCallback : OnitemClickCallback
-    private var genreList: List<GenresItem> = emptyList()
+    private var genreList: List<GenreItem> = emptyList()
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setGenreList(genres: List<GenresItem>){
+    fun setGenreList(genres: List<GenreItem>){
         genreList = genres
         notifyDataSetChanged()
     }
 
     class MyViewHolder(val binding : ItemMovieListBinding) : RecyclerView.ViewHolder(binding.root) {
         val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
-        fun bind(movie : DiscoverMovieResultsItem){
+        fun bind(movie : DiscoverMovieItem){
             val decimalFormat = DecimalFormat("#.#")
             binding.tvMovieListName.text = movie.title
             binding.rbRatingMovie.rating = movie.movieRate().toFloat()
@@ -38,17 +38,17 @@ class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMo
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DiscoverMovieResultsItem>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<DiscoverMovieItem>() {
             override fun areItemsTheSame(
-                oldItem: DiscoverMovieResultsItem,
-                newItem: DiscoverMovieResultsItem,
+                oldItem: DiscoverMovieItem,
+                newItem: DiscoverMovieItem,
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: DiscoverMovieResultsItem,
-                newItem: DiscoverMovieResultsItem,
+                oldItem: DiscoverMovieItem,
+                newItem: DiscoverMovieItem,
             ): Boolean {
                 return oldItem == newItem
             }
@@ -93,6 +93,6 @@ class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieResultsItem, RvDiscoverMo
     }
 
     interface OnitemClickCallback {
-        fun onItemClicked(data : DiscoverMovieResultsItem)
+        fun onItemClicked(data : DiscoverMovieItem)
     }
 }

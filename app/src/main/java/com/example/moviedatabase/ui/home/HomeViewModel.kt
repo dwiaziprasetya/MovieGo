@@ -7,13 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.example.moviedatabase.data.repository.HomeRepository
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 import com.example.moviedatabase.data.remote.response.PopularMovieItem
-import com.example.moviedatabase.data.remote.response.UpComingMovieItems
+import com.example.moviedatabase.data.remote.response.UpComingMovieItem
 import kotlinx.coroutines.Dispatchers
 
 class HomeViewModel : ViewModel() {
     private val mRepository = HomeRepository()
 
-    val dataUpComingMovieItems: LiveData<List<UpComingMovieItems>> = liveData(
+    val dataUpComingMovieItem: LiveData<List<UpComingMovieItem>> = liveData(
         context = viewModelScope.coroutineContext + Dispatchers.IO
     ) {
         val data = mRepository.getUpComingMovieData()

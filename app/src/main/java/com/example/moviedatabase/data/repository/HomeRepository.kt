@@ -5,30 +5,30 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 import com.example.moviedatabase.data.remote.response.PopularMovieItem
-import com.example.moviedatabase.data.remote.response.UpComingMovieItems
+import com.example.moviedatabase.data.remote.response.UpComingMovieItem
 import com.example.moviedatabase.data.remote.retrofit.ApiConfig
 
 class HomeRepository {
     private val dataNowPlayingMovie = MutableLiveData<List<NowPlayingMovieItem>>()
     private val dataPopularMovie = MutableLiveData<List<PopularMovieItem>>()
-    private val dataUpComingMovieItems = MutableLiveData<List<UpComingMovieItems>>()
+    private val dataUpComingMovieItem = MutableLiveData<List<UpComingMovieItem>>()
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    suspend fun getUpComingMovieData() : LiveData<List<UpComingMovieItems>>{
+    suspend fun getUpComingMovieData() : LiveData<List<UpComingMovieItem>>{
         _isLoading.postValue(true)
         try {
             val response = ApiConfig.getApiService().getUpComingMovies()
             if (response.isSuccessful){
                 Log.d("UpComingMovie", "run in ${Thread.currentThread().name}")
-                dataUpComingMovieItems.postValue(response.body()?.results)
+                dataUpComingMovieItem.postValue(response.body()?.results)
             }
         } catch (e: Exception) {
             Log.d("Home Repository", "Get UpComingMovies : ${e.message}")
         } finally {
             _isLoading.postValue(false)
         }
-        return dataUpComingMovieItems
+        return dataUpComingMovieItem
     }
 
     suspend fun getNowPlayingMovieData() : LiveData<List<NowPlayingMovieItem>> {

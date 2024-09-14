@@ -7,13 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
-import com.example.moviedatabase.utils.MovieItem
-import com.example.moviedatabase.ui.adapter.RvCastMovieAdapter
-import com.example.moviedatabase.databinding.ActivityDetailBinding
 import com.example.moviedatabase.data.remote.response.CastItem
 import com.example.moviedatabase.data.remote.response.CastandCrewResponse
-import com.example.moviedatabase.data.remote.response.GenreResponse
 import com.example.moviedatabase.data.remote.retrofit.ApiConfig
+import com.example.moviedatabase.databinding.ActivityDetailBinding
+import com.example.moviedatabase.ui.adapter.RvCastMovieAdapter
+import com.example.moviedatabase.utils.MovieItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -43,7 +42,7 @@ class DetailActivity : AppCompatActivity() {
             setData(it)
             showRecycleView()
             getMovieCast(movieId)
-            getMovieGenre(movieItem.genreIds)
+//            getMovieGenre(movieItem.genreIds)
         }
 
         binding.imgBtnBack.setOnClickListener {
@@ -51,27 +50,27 @@ class DetailActivity : AppCompatActivity() {
         }
     }
 
-    private fun getMovieGenre(movieGenreIds: List<Int>){
-        val client = ApiConfig.getApiService().getMovieGenre()
-        client.enqueue(object : Callback<GenreResponse> {
-            override fun onResponse(call: Call<GenreResponse>, response: Response<GenreResponse>) {
-                if (response.isSuccessful){
-                    val responseBody = response.body()
-                    if (responseBody != null){
-                        val genres = responseBody.genres
-                        val movieGenre = genres.filter { it.id in movieGenreIds}
-                        val genreNames = movieGenre.map { it.name }
-                        binding.tvDetailMovieGenre.text = genreNames.joinToString(", ")
-                    }
-                }
-            }
-
-            override fun onFailure(call: Call<GenreResponse>, t: Throwable) {
-
-            }
-
-        })
-    }
+//    private fun getMovieGenre(movieGenreIds: List<Int>){
+//        val client = ApiConfig.getApiService().getMovieGenre()
+//        client.enqueue(object : Callback<GenreResponse> {
+//            override fun onResponse(call: Call<GenreResponse>, response: Response<GenreResponse>) {
+//                if (response.isSuccessful){
+//                    val responseBody = response.body()
+//                    if (responseBody != null){
+//                        val genres = responseBody.genres
+//                        val movieGenre = genres.filter { it.id in movieGenreIds}
+//                        val genreNames = movieGenre.map { it.name }
+//                        binding.tvDetailMovieGenre.text = genreNames.joinToString(", ")
+//                    }
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<GenreResponse>, t: Throwable) {
+//
+//            }
+//
+//        })
+//    }
 
     private fun setData(movie: MovieItem){
         val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"

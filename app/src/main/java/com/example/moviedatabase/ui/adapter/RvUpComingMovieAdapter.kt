@@ -7,15 +7,15 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemMoviesBinding
-import com.example.moviedatabase.data.remote.response.UpComingMovieItems
+import com.example.moviedatabase.data.remote.response.UpComingMovieItem
 
-class RvUpComingMovieAdapter : ListAdapter<UpComingMovieItems, RvUpComingMovieAdapter.MyViewHolder>(
+class RvUpComingMovieAdapter : ListAdapter<UpComingMovieItem, RvUpComingMovieAdapter.MyViewHolder>(
     DIFF_CALLBACK
 ) {
     private lateinit var onItemCallback : OnItemClickCallback
     class MyViewHolder (val binding: ItemMoviesBinding): RecyclerView.ViewHolder(binding.root){
         private val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
-        fun bindMovie(movie : UpComingMovieItems){
+        fun bindMovie(movie : UpComingMovieItem){
             binding.tvMovieTitle.text = movie.title
             Glide.with(itemView)
                 .load(IMAGE_BASE_URL + movie.posterPath)
@@ -24,11 +24,11 @@ class RvUpComingMovieAdapter : ListAdapter<UpComingMovieItems, RvUpComingMovieAd
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UpComingMovieItems>() {
-            override fun areContentsTheSame(oldItem: UpComingMovieItems, newItem: UpComingMovieItems): Boolean {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UpComingMovieItem>() {
+            override fun areContentsTheSame(oldItem: UpComingMovieItem, newItem: UpComingMovieItem): Boolean {
                 return oldItem == newItem
             }
-            override fun areItemsTheSame(oldItem: UpComingMovieItems, newItem: UpComingMovieItems): Boolean {
+            override fun areItemsTheSame(oldItem: UpComingMovieItem, newItem: UpComingMovieItem): Boolean {
                 return oldItem == newItem
             }
         }
@@ -52,6 +52,6 @@ class RvUpComingMovieAdapter : ListAdapter<UpComingMovieItems, RvUpComingMovieAd
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data : UpComingMovieItems)
+        fun onItemClicked(data : UpComingMovieItem)
     }
 }

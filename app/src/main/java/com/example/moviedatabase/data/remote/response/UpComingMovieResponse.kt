@@ -8,19 +8,19 @@ import kotlinx.parcelize.RawValue
 
 data class UpComingMovieResponse(
 
-    @field:SerializedName("dates")
+	@field:SerializedName("dates")
 	val dates: Dates,
 
-    @field:SerializedName("page")
+	@field:SerializedName("page")
 	val page: Int,
 
-    @field:SerializedName("total_pages")
+	@field:SerializedName("total_pages")
 	val totalPages: Int,
 
-    @field:SerializedName("results")
-	val results: List<UpComingMovieItems>,
+	@field:SerializedName("results")
+	val results: List<UpComingMovieItem>,
 
-    @field:SerializedName("total_results")
+	@field:SerializedName("total_results")
 	val totalResults: Int
 )
 
@@ -34,7 +34,7 @@ data class Dates(
 )
 
 @Parcelize
-data class UpComingMovieItems(
+data class UpComingMovieItem(
 
 	@field:SerializedName("overview")
 	override val overview: String,

@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
@@ -17,6 +19,14 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        val properties = Properties()
+        properties.load(project.rootProject.file("local.properties").inputStream())
+
+        buildConfigField("String", "BASE_URL_MOVIE_DB", "\"https://api.themoviedb.org/\"")
+        buildConfigField("String", "API_VERSION", "\"3/\"")
+        buildConfigField("String", "TOKEN_MOVIE_DB", "\"${properties.getProperty("API_KEY")}\"")
+        buildConfigField("String", "BASE_URL_IMAGE_MOVIE_DB", "\"https://image.tmdb.org/t/p/w154/\"")
     }
 
     buildTypes {
@@ -41,6 +51,7 @@ android {
         viewBinding = true
         //noinspection DataBindingWithoutKapt
         dataBinding = true
+        buildConfig = true
     }
 }
 

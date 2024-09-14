@@ -23,7 +23,7 @@ import com.example.moviedatabase.R
 import com.example.moviedatabase.data.local.model.ImageData
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 import com.example.moviedatabase.data.remote.response.PopularMovieItem
-import com.example.moviedatabase.data.remote.response.UpComingMovieItems
+import com.example.moviedatabase.data.remote.response.UpComingMovieItem
 import com.example.moviedatabase.databinding.FragmentHomeBinding
 import com.example.moviedatabase.ui.activity.DetailActivity
 import com.example.moviedatabase.ui.adapter.ImageSliderAdapter
@@ -62,7 +62,7 @@ class HomeFragment : Fragment() {
                 .observe(viewLifecycleOwner) {
                     setNowPlayingMovieData(it)
                 }
-            dataUpComingMovieItems
+            dataUpComingMovieItem
                 .observe(viewLifecycleOwner) {
                     setUpComingMovieData(it)
                 }
@@ -101,7 +101,7 @@ class HomeFragment : Fragment() {
         })
 
         adapterUpComingMovie.setOnItemClickCallback(object : RvUpComingMovieAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: UpComingMovieItems) {
+            override fun onItemClicked(data: UpComingMovieItem) {
                 val intent = Intent(requireActivity(), DetailActivity::class.java)
                 intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
                 startActivity(intent)
@@ -145,7 +145,7 @@ class HomeFragment : Fragment() {
         binding.rvPopularMovies.adapter = adapterPopularMovie
     }
 
-    private fun setUpComingMovieData(movies : List<UpComingMovieItems>){
+    private fun setUpComingMovieData(movies : List<UpComingMovieItem>){
         adapterUpComingMovie.submitList(movies)
         binding.rvUpcomingMovies.adapter = adapterUpComingMovie
     }

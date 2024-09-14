@@ -8,20 +8,20 @@ import kotlinx.parcelize.RawValue
 
 data class DiscoverMovieResponse(
 
-    @field:SerializedName("page")
+	@field:SerializedName("page")
 	val page: Int,
 
-    @field:SerializedName("total_pages")
+	@field:SerializedName("total_pages")
 	val totalPages: Int,
 
-    @field:SerializedName("results")
-	val results: List<DiscoverMovieResultsItem>,
+	@field:SerializedName("results")
+	val results: List<DiscoverMovieItem>,
 
-    @field:SerializedName("total_results")
+	@field:SerializedName("total_results")
 	val totalResults: Int
 )
 @Parcelize
-data class DiscoverMovieResultsItem(
+data class DiscoverMovieItem(
 
 	@field:SerializedName("overview")
 	override val overview: String,
