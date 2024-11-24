@@ -5,7 +5,7 @@
     android:background="?attr/colorOnPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.movie.MovieFragment">
+    tools:context=".ui.fragment.movie.MovieFragment">
 
     <com.google.android.material.appbar.AppBarLayout
         app:liftOnScrollColor="@android:color/transparent"

@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.moviedatabase.databinding.ItemMoviesBinding
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
+import com.example.moviedatabase.databinding.ItemMoviesBinding
 
 class RvNowPlayingMovieAdapter: ListAdapter<NowPlayingMovieItem, RvNowPlayingMovieAdapter.MyViewHolder>(
     DIFF_CALLBACK
@@ -51,7 +51,7 @@ class RvNowPlayingMovieAdapter: ListAdapter<NowPlayingMovieItem, RvNowPlayingMov
         val movie = getItem(position)
         holder.bind(movie)
         holder.binding.root.setOnClickListener {
-            onItemCallback.onItemClicked(movie)
+            onItemCallback.onItemClicked(movie.id)
         }
     }
 
@@ -60,6 +60,6 @@ class RvNowPlayingMovieAdapter: ListAdapter<NowPlayingMovieItem, RvNowPlayingMov
     }
 
     interface OnItemClickCallback {
-        fun onItemClicked(data : NowPlayingMovieItem)
+        fun onItemClicked(movieId : Int)
     }
 }

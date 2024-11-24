@@ -6,8 +6,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.moviedatabase.databinding.ItemMoviesBinding
 import com.example.moviedatabase.data.remote.response.CastItem
+import com.example.moviedatabase.databinding.ItemMoviesBinding
+
 class RvCastMovieAdapter : ListAdapter<CastItem, RvCastMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(val binding : ItemMoviesBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cast : CastItem){
@@ -32,7 +33,6 @@ class RvCastMovieAdapter : ListAdapter<CastItem, RvCastMovieAdapter.MyViewHolder
 
         }
     }
-
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {

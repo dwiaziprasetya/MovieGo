@@ -3,24 +3,53 @@ package com.example.moviedatabase.data.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.moviedatabase.data.remote.response.CastandCrewResponse
+import com.example.moviedatabase.data.remote.response.DetailMovieResponse
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 import com.example.moviedatabase.data.remote.response.PopularMovieItem
 import com.example.moviedatabase.data.remote.response.UpComingMovieItem
 import com.example.moviedatabase.data.remote.retrofit.ApiConfig
 
-class HomeRepository {
+class MovieDatabaseRepository {
     private val dataNowPlayingMovie = MutableLiveData<List<NowPlayingMovieItem>>()
     private val dataPopularMovie = MutableLiveData<List<PopularMovieItem>>()
     private val dataUpComingMovieItem = MutableLiveData<List<UpComingMovieItem>>()
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    suspend fun getMovieCredits(movieId : Int) : CastandCrewResponse? {
+        return try {
+            val response = ApiConfig.getApiService().getMovieCredits(movieId)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            Log.d("Home Repository", "Get Movie Credits : ${e.message}")
+            null
+        }
+    }
+
+    suspend fun getMovieDetail(movieId : Int) : DetailMovieResponse? {
+        return try {
+            val response = ApiConfig.getApiService().getMovieDetail(movieId)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                null
+            }
+        } catch (e: Exception) {
+            Log.d("Home Repository", "Get Movie Detail : ${e.message}")
+            null
+        }
+    }
+
     suspend fun getUpComingMovieData() : LiveData<List<UpComingMovieItem>>{
         _isLoading.postValue(true)
         try {
             val response = ApiConfig.getApiService().getUpComingMovies()
             if (response.isSuccessful){
-                Log.d("UpComingMovie", "run in ${Thread.currentThread().name}")
                 dataUpComingMovieItem.postValue(response.body()?.results)
             }
         } catch (e: Exception) {
@@ -36,7 +65,6 @@ class HomeRepository {
         try {
             val response = ApiConfig.getApiService().getNowPlayingMovies()
             if (response.isSuccessful){
-                Log.d("NowPlayingMovie", "run in ${Thread.currentThread().name}")
                 dataNowPlayingMovie.postValue(response.body()?.results)
             }
         } catch (e: Exception) {
@@ -52,7 +80,6 @@ class HomeRepository {
         try {
             val response = ApiConfig.getApiService().getPopularMovies()
             if (response.isSuccessful){
-                Log.d("PopularMovie", "run in ${Thread.currentThread().name}")
                 dataPopularMovie.postValue(response.body()?.results)
             }
         } catch (e: Exception) {

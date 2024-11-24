@@ -1,12 +1,10 @@
-package com.example.moviedatabase.ui.activity
+package com.example.moviedatabase.ui.activity.main
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.moviedatabase.R
 import com.example.moviedatabase.databinding.ActivityMainBinding
 

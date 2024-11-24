@@ -1,4 +1,4 @@
-package com.example.moviedatabase.ui.home
+package com.example.moviedatabase.ui.fragment.home
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -25,7 +25,7 @@ import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 import com.example.moviedatabase.data.remote.response.PopularMovieItem
 import com.example.moviedatabase.data.remote.response.UpComingMovieItem
 import com.example.moviedatabase.databinding.FragmentHomeBinding
-import com.example.moviedatabase.ui.activity.DetailActivity
+import com.example.moviedatabase.ui.activity.detail.DetailActivity
 import com.example.moviedatabase.ui.adapter.ImageSliderAdapter
 import com.example.moviedatabase.ui.adapter.RvNowPlayingMovieAdapter
 import com.example.moviedatabase.ui.adapter.RvPopularMovieAdapter
@@ -85,25 +85,27 @@ class HomeFragment : Fragment() {
         })
 
         adapterNowPlayingMovie.setOnItemClickCallback(object : RvNowPlayingMovieAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: NowPlayingMovieItem) {
+            override fun onItemClicked(movieId: Int) {
                 val intent = Intent(requireActivity(), DetailActivity::class.java)
-                intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
+                intent.putExtra(DetailActivity.MOVIE_ID, movieId)
                 startActivity(intent)
             }
         })
 
         adapterPopularMovie.setOnItemClickCallback(object : RvPopularMovieAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: PopularMovieItem) {
+            override fun onItemClicked(movieId: Int) {
                 val intent = Intent(requireActivity(), DetailActivity::class.java)
-                intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
+                intent.putExtra(DetailActivity.MOVIE_ID, movieId)
+                Log.d("HomeFragment", "Movie ID: $movieId")
                 startActivity(intent)
             }
+
         })
 
         adapterUpComingMovie.setOnItemClickCallback(object : RvUpComingMovieAdapter.OnItemClickCallback {
-            override fun onItemClicked(data: UpComingMovieItem) {
+            override fun onItemClicked(movieId: Int) {
                 val intent = Intent(requireActivity(), DetailActivity::class.java)
-                intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
+                intent.putExtra(DetailActivity.MOVIE_ID, movieId)
                 startActivity(intent)
             }
         })
@@ -191,7 +193,7 @@ class HomeFragment : Fragment() {
         val dotIndex = position % dots.size
         for (i in dots.indices) {
             if (i == dotIndex) {
-                dots[i].setTextColor(ContextCompat.getColor(requireActivity(), R.color.gold))
+                dots[i].setTextColor(ContextCompat.getColor(requireActivity(), R.color.red_netflix))
             } else {
                 dots[i].setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey))
             }
@@ -209,13 +211,26 @@ class HomeFragment : Fragment() {
         binding.dotsIndicator.removeAllViews()
         dots.clear()
         resetListSize()
-        for (i in 0 until list.size){
-            dots.add(TextView(requireActivity()))
-            dots[i].text = Html.fromHtml("&#9679", Html.FROM_HTML_MODE_LEGACY).toString()
-            dots[i].textSize = 14f
-            binding.dotsIndicator.addView(dots[i])
+        for (i in 0 until list.size) {
+            val textView = TextView(requireActivity())
+            textView.text = Html.fromHtml("&#9679", Html.FROM_HTML_MODE_LEGACY).toString()
+            textView.textSize = 14f
+            textView.setTextColor(ContextCompat.getColor(requireActivity(), R.color.grey))
+
+            val layoutParams = ViewGroup.MarginLayoutParams(
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            )
+
+            layoutParams.marginStart = 8
+            layoutParams.marginEnd = 8
+            textView.layoutParams = layoutParams
+
+            binding.dotsIndicator.addView(textView)
+            dots.add(textView)
         }
     }
+
 
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.activity.IntroductionActivity">
+    tools:context=".ui.activity.introduction.IntroductionActivity">
 
     <ImageView
         android:id="@+id/img_cover_intro"
@@ -60,8 +60,9 @@
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="50dp"
+        android:textAllCaps="false"
         android:background="@drawable/button_rounded"
-        android:fontFamily="@font/dmsans_regular"
+        android:fontFamily="@font/dmsans_bold"
         android:text="@string/btn_get_started"
         android:textColor="@color/white"
         android:textSize="20sp"

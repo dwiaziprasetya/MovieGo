@@ -1,6 +1,5 @@
-package com.example.moviedatabase.ui.movie
+package com.example.moviedatabase.ui.fragment.movie
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
 import com.example.moviedatabase.databinding.FragmentMovieBinding
-import com.example.moviedatabase.ui.activity.DetailActivity
 import com.example.moviedatabase.ui.adapter.RvDiscoverMovieAdapter
 
 class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
@@ -50,9 +48,9 @@ class MovieFragment : Fragment(), SwipeRefreshLayout.OnRefreshListener {
 
         adapter.setOnItemClickCallback(object : RvDiscoverMovieAdapter.OnitemClickCallback{
             override fun onItemClicked(data: DiscoverMovieItem) {
-                val intent = Intent(requireActivity(), DetailActivity::class.java)
-                intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
-                startActivity(intent)
+//                val intent = Intent(requireActivity(), DetailActivity::class.java)
+//                intent.putExtra(DetailActivity.EXTRA_MOVIES, data)
+//                startActivity(intent)
             }
         })
     }

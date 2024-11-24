@@ -6,28 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_theme"
-    tools:context=".ui.home.HomeFragment"
+    tools:context=".ui.fragment.home.HomeFragment"
     android:fillViewport="true"
     tools:ignore="Overdraw">
 
-    <com.google.android.material.appbar.AppBarLayout
-        app:liftOnScrollColor="@android:color/transparent"
-        android:background="?attr/colorOnPrimary"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+<!--    <com.google.android.material.appbar.AppBarLayout-->
+<!--        app:liftOnScrollColor="@android:color/transparent"-->
+<!--        android:background="?attr/colorOnPrimary"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content">-->
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:title="Movie"
-            app:navigationIcon="@drawable/hamburger_menu_svgrepo_com"
-            app:titleTextColor="@color/white"
-            app:titleCentered="true"
-            app:menu="@menu/home_top_app_bar"
-            android:fitsSystemWindows="true"
-            app:titleTextAppearance="@style/toolbar_text"/>
+<!--        <com.google.android.material.appbar.MaterialToolbar-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="50dp"-->
+<!--            app:title="Movie"-->
+<!--            app:navigationIcon="@drawable/hamburger_menu_svgrepo_com"-->
+<!--            app:titleTextColor="@color/white"-->
+<!--            app:titleCentered="true"-->
+<!--            app:menu="@menu/home_top_app_bar"-->
+<!--            android:fitsSystemWindows="true"-->
+<!--            app:titleTextAppearance="@style/toolbar_text"/>-->
 
-    </com.google.android.material.appbar.AppBarLayout>
+<!--    </com.google.android.material.appbar.AppBarLayout>-->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -39,23 +39,48 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <androidx.viewpager2.widget.ViewPager2
-                android:id="@+id/view_pager"
+            <TextView
+                android:id="@+id/tv_welcome_back"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:paddingEnd="80dp"
-                android:paddingStart="80dp"
-                app:layout_constraintBottom_toTopOf="@+id/tv_upcoming_movies"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dmsans_regular"
+                android:text="Welcome back,"
+                android:layout_margin="16dp"
+                android:textColor="@color/white"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/tv_user"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dmsans_bold"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginVertical="8dp"
+                android:text="Dwi Azi Prasetya"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toStartOf="@+id/tv_welcome_back"
+                app:layout_constraintTop_toBottomOf="@+id/tv_welcome_back"/>
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/view_pager"
+                android:layout_marginTop="24dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_user" />
 
             <LinearLayout
                 android:id="@+id/dots_indicator"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:gravity="center_vertical|center_horizontal"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -67,15 +92,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/dmsans_bold"
                 android:text="@string/upcoming_movies"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintTop_toBottomOf="@id/dots_indicator"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                tools:layout_editor_absoluteY="188dp" />
+                app:layout_constraintTop_toBottomOf="@id/dots_indicator" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_upcoming_movies"
@@ -90,7 +115,7 @@
                 android:id="@+id/pb_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:indeterminateTint="@color/gold"
+                android:indeterminateTint="@color/red_netflix"
                 app:layout_constraintBottom_toBottomOf="@+id/rv_upcoming_movies"
                 app:layout_constraintEnd_toEndOf="@+id/rv_upcoming_movies"
                 app:layout_constraintStart_toStartOf="@+id/rv_upcoming_movies"
@@ -122,7 +147,7 @@
 
             <ProgressBar
                 android:id="@+id/pb_2"
-                android:indeterminateTint="@color/gold"
+                android:indeterminateTint="@color/red_netflix"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="@+id/rv_popular_movies"
@@ -159,7 +184,7 @@
                 android:id="@+id/pb_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:indeterminateTint="@color/gold"
+                android:indeterminateTint="@color/red_netflix"
                 app:layout_constraintTop_toTopOf="@+id/rv_now_playing_movies"
                 app:layout_constraintStart_toStartOf="@+id/rv_now_playing_movies"
                 app:layout_constraintEnd_toEndOf="@+id/rv_now_playing_movies"
