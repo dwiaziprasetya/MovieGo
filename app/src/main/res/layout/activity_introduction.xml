@@ -3,26 +3,29 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/background_theme"
     android:layout_height="match_parent"
     tools:context=".ui.activity.introduction.IntroductionActivity">
 
-    <ImageView
-        android:id="@+id/img_cover_intro"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/cover"
-        android:scaleType="centerCrop"/>
 
-    <View
-        android:id="@+id/fade_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/gradient_background"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_introduction"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
 
+    <View
+        android:id="@+id/fade_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/gradient_background_2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:layout_width="290dp"

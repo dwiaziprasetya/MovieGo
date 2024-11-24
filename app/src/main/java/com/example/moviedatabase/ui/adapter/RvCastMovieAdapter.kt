@@ -8,10 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.BuildConfig
 import com.example.moviedatabase.data.remote.response.CastItem
-import com.example.moviedatabase.databinding.ItemMoviesBinding
+import com.example.moviedatabase.databinding.ItemMoviesCastBinding
 
 class RvCastMovieAdapter : ListAdapter<CastItem, RvCastMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
-    class MyViewHolder(val binding : ItemMoviesBinding) : RecyclerView.ViewHolder(binding.root) {
+    class MyViewHolder(val binding : ItemMoviesCastBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cast : CastItem){
             binding.tvMovieTitle.setText(cast.name)
             if (!cast.profilePath.isNullOrBlank()){
@@ -37,7 +37,7 @@ class RvCastMovieAdapter : ListAdapter<CastItem, RvCastMovieAdapter.MyViewHolder
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemMoviesBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemMoviesCastBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
