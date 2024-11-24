@@ -24,18 +24,10 @@ interface ApiService {
         @Path("movie_id") movieId : Int
     ): Response<DetailMovieResponse>
 
-//    @GET("/3/discover/movie")
-//    suspend fun getDiscoverMovies(
-//        @QueryMap parameters : HashMap<String,String>
-//    ): Call<DiscoverMovieResponse>
-
     @GET("/3/movie/{movie_id}/credits")
     suspend fun getMovieCredits(
         @Path("movie_id") movieId : Int
     ) : Response<CastandCrewResponse>
-
-//    @GET("/3/genre/movie/list")
-//    suspend fun getMovieGenre() : Response<GenreResponse>
 }
 
 
