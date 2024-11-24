@@ -7,9 +7,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.moviedatabase.databinding.ItemMovieListBinding
+import com.example.moviedatabase.BuildConfig
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
 import com.example.moviedatabase.data.remote.response.GenreItem
+import com.example.moviedatabase.databinding.ItemMovieListBinding
 import java.text.DecimalFormat
 
 class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieItem, RvDiscoverMovieAdapter.MyViewHolder>(
@@ -25,13 +26,13 @@ class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieItem, RvDiscoverMovieAdap
     }
 
     class MyViewHolder(val binding : ItemMovieListBinding) : RecyclerView.ViewHolder(binding.root) {
-        val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
+        val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
         fun bind(movie : DiscoverMovieItem){
             val decimalFormat = DecimalFormat("#.#")
             binding.tvMovieListName.text = movie.title
             binding.rbRatingMovie.rating = movie.movieRate().toFloat()
             Glide.with(itemView)
-                .load(IMAGE_BASE_URL + movie.posterPath)
+                .load(imageBaseUrl + movie.posterPath)
                 .into(binding.imgMovieListPhoto)
             binding.tvRatingMovie.text = decimalFormat.format(movie.movieRate())
         }

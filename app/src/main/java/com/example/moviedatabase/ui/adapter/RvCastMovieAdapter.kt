@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.moviedatabase.BuildConfig
 import com.example.moviedatabase.data.remote.response.CastItem
 import com.example.moviedatabase.databinding.ItemMoviesBinding
 
@@ -15,7 +16,7 @@ class RvCastMovieAdapter : ListAdapter<CastItem, RvCastMovieAdapter.MyViewHolder
             binding.tvMovieTitle.setText(cast.name)
             if (!cast.profilePath.isNullOrBlank()){
                 Glide.with(itemView)
-                    .load("https://image.tmdb.org/t/p/w500/" + cast.profilePath)
+                    .load(BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500 + cast.profilePath)
                     .into(binding.imgItemPhoto)
             }
         }

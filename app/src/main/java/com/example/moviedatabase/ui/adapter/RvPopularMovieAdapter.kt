@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.moviedatabase.BuildConfig
 import com.example.moviedatabase.data.remote.response.PopularMovieItem
 import com.example.moviedatabase.databinding.ItemMoviesBinding
 
@@ -15,11 +16,11 @@ class RvPopularMovieAdapter : ListAdapter<PopularMovieItem, RvPopularMovieAdapte
     private lateinit var onItemCallback : OnItemClickCallback
 
     class MyViewHolder(val binding: ItemMoviesBinding): RecyclerView.ViewHolder(binding.root){
-        val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w500/"
+        private val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
         fun bindMovie(movie : PopularMovieItem){
             binding.tvMovieTitle.text = movie.title
             Glide.with(itemView)
-                .load(IMAGE_BASE_URL + movie.posterPath)
+                .load(imageBaseUrl + movie.posterPath)
                 .into(binding.imgItemPhoto)
         }
     }

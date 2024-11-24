@@ -8,12 +8,14 @@ import androidx.core.view.WindowCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.moviedatabase.BuildConfig
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
 import com.example.moviedatabase.data.repository.MovieDatabaseRepository
 import com.example.moviedatabase.databinding.ActivityDetailBinding
 import com.example.moviedatabase.ui.adapter.RvCastMovieAdapter
 import com.example.moviedatabase.utils.ViewModelFactory
 
+@Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity() {
 
     companion object {
@@ -78,7 +80,7 @@ class DetailActivity : AppCompatActivity() {
 
     @SuppressLint("SetTextI18n")
     private fun populateUI(detail: DetailMovieResponse) {
-        val IMAGE_BASE_URL = "https://image.tmdb.org/t/p/original/"
+        val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_ORIGINAL
         binding.tvDetailMovieName.text = detail.title
         binding.ratingBar.rating = (detail.voteAverage / 2).toFloat()
         binding.tvDetailMovieGenre.text = "${detail.releaseDate.substring(0, 4)} | ${detail.genres.joinToString(", ") { it.name }} | ${detail.runtime} minutes"
@@ -87,7 +89,7 @@ class DetailActivity : AppCompatActivity() {
         binding.rvCastMovie.hasFixedSize()
         binding.rvCastMovie.adapter = adapter
         Glide.with(baseContext)
-            .load(IMAGE_BASE_URL + detail.backdropPath)
+            .load(imageBaseUrl + detail.backdropPath)
             .fitCenter()
             .into(binding.imgDetailMoviePhoto)
     }

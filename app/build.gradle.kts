@@ -23,6 +23,8 @@ android {
         val properties = Properties()
         properties.load(project.rootProject.file("local.properties").inputStream())
 
+        buildConfigField("String", "BASE_IMAGE_URL_MOVIE_DB_ORIGINAL", "\"https://image.tmdb.org/t/p/original/\"")
+        buildConfigField("String", "BASE_IMAGE_URL_MOVIE_DB_W500", "\"https://image.tmdb.org/t/p/w500/\"")
         buildConfigField("String", "BASE_URL_MOVIE_DB", "\"https://api.themoviedb.org/\"")
         buildConfigField("String", "API_VERSION", "\"3/\"")
         buildConfigField("String", "TOKEN_MOVIE_DB", "\"${properties.getProperty("API_KEY")}\"")
