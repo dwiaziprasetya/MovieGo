@@ -31,7 +31,7 @@ class DetailViewModel(
         getMovieCredits(movieId)
     }
 
-    fun getMovieCredits(movieId: Int) {
+    private fun getMovieCredits(movieId: Int) {
         viewModelScope.launch {
             _isSetting.value = false
             _isLoading.value = true
@@ -47,7 +47,7 @@ class DetailViewModel(
         }
     }
 
-    fun getMovieDetail(movieId: Int) {
+    private fun getMovieDetail(movieId: Int) {
         viewModelScope.launch {
             _isSetting.value = false
             _isLoading.value = true
