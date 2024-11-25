@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviedatabase.data.remote.response.CastandCrewResponse
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
-import com.example.moviedatabase.data.repository.MovieDatabaseRepository
+import com.example.moviedatabase.repository.MovieDatabaseRepository
 import kotlinx.coroutines.launch
 
 class DetailViewModel(

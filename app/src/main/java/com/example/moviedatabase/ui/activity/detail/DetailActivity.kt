@@ -3,14 +3,13 @@ package com.example.moviedatabase.ui.activity.detail
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.BuildConfig
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
-import com.example.moviedatabase.data.repository.MovieDatabaseRepository
 import com.example.moviedatabase.databinding.ActivityDetailBinding
 import com.example.moviedatabase.ui.adapter.RvCastMovieAdapter
 import com.example.moviedatabase.utils.ViewModelFactory
@@ -24,24 +23,20 @@ class DetailActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityDetailBinding
     private var adapter = RvCastMovieAdapter()
-    private lateinit var viewModel : DetailViewModel
+    private lateinit var factory: ViewModelFactory
+    private val viewModel by viewModels<DetailViewModel> {factory}
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        WindowCompat
-            .setDecorFitsSystemWindows(
-                window,
-                false)
+        WindowCompat.setDecorFitsSystemWindows(window,false)
 
         val movieId = intent.getIntExtra(MOVIE_ID, -1)
 
-        val repository = MovieDatabaseRepository()
-        val factory = ViewModelFactory(repository, movieId)
+        factory = ViewModelFactory.getInstance(movieId)
 
-        viewModel = ViewModelProvider(this, factory)[DetailViewModel::class.java]
 
         binding.imgBtnBack.setOnClickListener {
             onBackPressed()

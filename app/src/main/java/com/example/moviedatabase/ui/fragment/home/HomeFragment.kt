@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
@@ -30,6 +30,7 @@ import com.example.moviedatabase.ui.adapter.ImageSliderAdapter
 import com.example.moviedatabase.ui.adapter.RvNowPlayingMovieAdapter
 import com.example.moviedatabase.ui.adapter.RvPopularMovieAdapter
 import com.example.moviedatabase.ui.adapter.RvUpComingMovieAdapter
+import com.example.moviedatabase.utils.ViewModelFactory
 import kotlin.math.abs
 
 class HomeFragment : Fragment() {
@@ -44,6 +45,9 @@ class HomeFragment : Fragment() {
     private var adapterPopularMovie = RvPopularMovieAdapter()
     private var adapterNowPlayingMovie = RvNowPlayingMovieAdapter()
 
+    private lateinit var factory: ViewModelFactory
+    private val viewModel by viewModels<HomeViewModel> { factory }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -51,27 +55,22 @@ class HomeFragment : Fragment() {
         handler = Handler(Looper.getMainLooper())
         handler.post { binding.viewPager.currentItem = 2 }
         runnable = Runnable { binding.viewPager.currentItem++ }
-        val homeViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory())[HomeViewModel::class.java]
 
-        with(homeViewModel){
-            dataPopularMovieItem
-                .observe(viewLifecycleOwner) {
-                    setPopularMovieData(it)
-                }
-            dataNowPlayingMovieItem
-                .observe(viewLifecycleOwner) {
-                    setNowPlayingMovieData(it)
-                }
-            dataUpComingMovieItem
-                .observe(viewLifecycleOwner) {
-                    setUpComingMovieData(it)
-                }
-            isLoading
-                .observe(
-                    viewLifecycleOwner
-                ) {
-                    showLoading(it)
-                }
+        factory = ViewModelFactory.getInstance()
+
+        with(viewModel) {
+            dataUpComingMovieItem.observe(requireActivity()) {
+                setUpComingMovieData(it)
+            }
+            dataPopularMovieItem.observe(requireActivity()) {
+                setPopularMovieData(it)
+            }
+            dataNowPlayingMovieItem.observe(requireActivity()) {
+                setNowPlayingMovieData(it)
+            }
+            isLoading.observe(requireActivity()) {
+                showLoading(it)
+            }
         }
 
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
