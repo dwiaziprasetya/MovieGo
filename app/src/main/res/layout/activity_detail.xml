@@ -144,15 +144,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_movie_cast" />
 
-            <!--        <ProgressBar-->
-            <!--            android:id="@+id/pb_caster"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            app:layout_constraintStart_toStartOf="@id/rv_cast_movie"-->
-            <!--            app:layout_constraintTop_toTopOf="@id/rv_cast_movie"-->
-            <!--            app:layout_constraintEnd_toEndOf="@id/rv_cast_movie"-->
-            <!--            app:layout_constraintBottom_toBottomOf="@id/rv_cast_movie"/>-->
-
             <ImageButton
                 android:id="@+id/img_btn_back"
                 android:layout_width="40dp"

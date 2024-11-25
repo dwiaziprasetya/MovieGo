@@ -78,7 +78,9 @@ class DetailActivity : AppCompatActivity() {
         val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_ORIGINAL
         binding.tvDetailMovieName.text = detail.title
         binding.ratingBar.rating = (detail.voteAverage / 2).toFloat()
-        binding.tvDetailMovieGenre.text = "${detail.releaseDate.substring(0, 4)} | ${detail.genres.joinToString(", ") { it.name }} | ${detail.runtime} minutes"
+
+        val formattedRuntime = formatRuntime(detail.runtime)
+        binding.tvDetailMovieGenre.text = "${detail.releaseDate.substring(0, 4)} | ${detail.genres.joinToString(", ") { it.name }} | $formattedRuntime"
 
         binding.tvDetailMovieOverviewData.text = detail.overview
 
@@ -89,5 +91,11 @@ class DetailActivity : AppCompatActivity() {
             .load(imageBaseUrl + detail.backdropPath)
             .fitCenter()
             .into(binding.imgDetailMoviePhoto)
+    }
+
+    private fun formatRuntime(runtime: Int): String {
+        val hours = runtime / 60
+        val minutes = runtime % 60
+        return "${hours}h ${minutes}m"
     }
 }
