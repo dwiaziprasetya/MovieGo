@@ -64,7 +64,7 @@
                 android:text="@string/movie_genre"
                 android:textColor="#ACACAC"
                 android:minLines="1"
-                android:textSize="14sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/ratingBar"
                 app:layout_constraintEnd_toEndOf="@id/tv_detail_movie_name"
                 app:layout_constraintStart_toStartOf="@id/tv_detail_movie_name" />

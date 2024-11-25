@@ -10,7 +10,6 @@
     <string name="tv_intro_2">Watch anywhere, Explore Limitlessly.</string>
     <string name="tv_intro_1">Explore a World of Content</string>
     <string name="searchbar_hint">Masukan kata</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="upcoming_movies">Upcoming Movies</string>
     <string name="popular_movies">Popular Movies</string>
@@ -18,12 +17,14 @@
     <string name="now_playing">Now Playing</string>
     <string name="profile">Profile</string>
     <string name="movie_genre">Movie Genre</string>
-    <string name="movie_release">2019–02-20</string>
+    <string name="movie_release">2019–02–20</string>
     <string name="movie_synopsis">Synopsis</string>
     <string name="movie_overview_template">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab, assumenda dicta doloremque earum eligendi error est expedita ipsum iste non quos, reiciendis repellat sapiente sed sunt! Aperiam est harum id.</string>
     <string name="movie_cast">Cast</string>
+    <string name="movie_cast_character">Character</string>
     <string name="movie_rating_sample">3.5</string>
     <string name="movie_favorite_template">You don\'t have a favorite movie yet</string>
+    <string name="see_all">See all</string>
 
     <!-- Resource Image Slider -->
     <integer-array name="image_slider">

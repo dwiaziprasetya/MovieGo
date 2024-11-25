@@ -13,7 +13,8 @@ import com.example.moviedatabase.databinding.ItemMoviesCastBinding
 class RvCastMovieAdapter : ListAdapter<CastItem, RvCastMovieAdapter.MyViewHolder>(DIFF_CALLBACK) {
     class MyViewHolder(val binding : ItemMoviesCastBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(cast : CastItem){
-            binding.tvMovieTitle.setText(cast.name)
+            binding.tvMovieCast.text = cast.name
+            binding.tvMovieCastCharacter.text = cast.character.substringBefore(" /")
             if (!cast.profilePath.isNullOrBlank()){
                 Glide.with(itemView)
                     .load(BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500 + cast.profilePath)

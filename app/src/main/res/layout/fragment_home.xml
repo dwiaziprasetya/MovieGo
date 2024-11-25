@@ -10,25 +10,6 @@
     android:fillViewport="true"
     tools:ignore="Overdraw">
 
-<!--    <com.google.android.material.appbar.AppBarLayout-->
-<!--        app:liftOnScrollColor="@android:color/transparent"-->
-<!--        android:background="?attr/colorOnPrimary"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content">-->
-
-<!--        <com.google.android.material.appbar.MaterialToolbar-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            app:title="Movie"-->
-<!--            app:navigationIcon="@drawable/hamburger_menu_svgrepo_com"-->
-<!--            app:titleTextColor="@color/white"-->
-<!--            app:titleCentered="true"-->
-<!--            app:menu="@menu/home_top_app_bar"-->
-<!--            android:fitsSystemWindows="true"-->
-<!--            app:titleTextAppearance="@style/toolbar_text"/>-->
-
-<!--    </com.google.android.material.appbar.AppBarLayout>-->
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -89,7 +70,7 @@
 
             <TextView
                 android:id="@+id/tv_upcoming_movies"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
@@ -98,9 +79,24 @@
                 android:text="@string/upcoming_movies"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/dots_indicator" />
+                app:layout_constraintTop_toBottomOf="@id/dots_indicator"/>
+
+            <TextView
+                android:id="@+id/tv_movie_upcoming_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="@font/dmsans_regular"
+                android:text="@string/see_all"
+                android:layout_marginEnd="8dp"
+                android:textColor="@color/red_netflix"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_upcoming_movies"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_upcoming_movies"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_upcoming_movies"
@@ -123,7 +119,7 @@
 
             <TextView
                 android:id="@+id/tv_popular_movies"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
@@ -132,9 +128,22 @@
                 android:text="@string/popular_movies"
                 android:textColor="@color/white"
                 android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rv_upcoming_movies"/>
+
+            <TextView
+                android:id="@+id/tv_movie_popular_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/dmsans_regular"
+                android:text="@string/see_all"
+                android:textColor="@color/red_netflix"
+                app:layout_constraintBottom_toBottomOf="@id/tv_popular_movies"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_popular_movies" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_popular_movies"
@@ -169,6 +178,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rv_popular_movies"/>
+
+            <TextView
+                android:id="@+id/tv_movie_now_playing_see_all"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/dmsans_regular"
+                android:text="@string/see_all"
+                android:textColor="@color/red_netflix"
+                app:layout_constraintBottom_toBottomOf="@id/tv_now_playing_movies"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/tv_now_playing_movies" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_now_playing_movies"

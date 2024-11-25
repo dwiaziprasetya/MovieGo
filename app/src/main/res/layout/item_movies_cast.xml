@@ -20,19 +20,32 @@
         tools:src="@tools:sample/avatars" />
 
     <TextView
-        android:id="@+id/tv_movie_title"
+        android:id="@+id/tv_movie_cast"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:lines="2"
+        android:ellipsize="end"
         android:fontFamily="@font/dmsans_regular"
-        android:maxLines="2"
-        android:text="@string/title_movie"
-        android:paddingBottom="5dp"
+        android:maxLines="1"
+        android:text="@string/movie_cast"
         android:textAlignment="textStart"
         android:textColor="@color/white"
         card_view:layout_constraintEnd_toEndOf="@+id/img_item_photo"
         card_view:layout_constraintStart_toStartOf="@+id/img_item_photo"
         card_view:layout_constraintTop_toBottomOf="@+id/img_item_photo" />
+
+    <TextView
+        android:id="@+id/tv_movie_cast_character"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/dmsans_regular"
+        android:paddingBottom="5dp"
+        android:text="@string/movie_cast_character"
+        android:textColor="#ACACAC"
+        android:maxLines="1"
+        android:ellipsize="end"
+        card_view:layout_constraintEnd_toEndOf="@+id/tv_movie_cast"
+        card_view:layout_constraintStart_toStartOf="@+id/tv_movie_cast"
+        card_view:layout_constraintTop_toBottomOf="@+id/tv_movie_cast"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
