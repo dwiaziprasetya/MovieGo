@@ -100,9 +100,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_detail_movie_photo"/>
 
-            <TextView
+            <com.colormoon.readmoretextview.ReadMoreTextView
                 android:id="@+id/tv_detail_movie_overview_data"
                 android:layout_width="match_parent"
+                app:trimLines="3"
+                app:colorClickableText="@color/red_netflix"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
@@ -170,7 +172,7 @@
 
     <ProgressBar
         android:id="@+id/pb"
-        android:indeterminateTint="@color/gold"
+        android:indeterminateTint="@color/red_netflix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>

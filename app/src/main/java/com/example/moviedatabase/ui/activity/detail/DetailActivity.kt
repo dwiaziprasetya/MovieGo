@@ -79,7 +79,9 @@ class DetailActivity : AppCompatActivity() {
         binding.tvDetailMovieName.text = detail.title
         binding.ratingBar.rating = (detail.voteAverage / 2).toFloat()
         binding.tvDetailMovieGenre.text = "${detail.releaseDate.substring(0, 4)} | ${detail.genres.joinToString(", ") { it.name }} | ${detail.runtime} minutes"
+
         binding.tvDetailMovieOverviewData.text = detail.overview
+
         binding.rvCastMovie.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvCastMovie.hasFixedSize()
         binding.rvCastMovie.adapter = adapter
