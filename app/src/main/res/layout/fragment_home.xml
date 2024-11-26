@@ -22,31 +22,40 @@
 
             <TextView
                 android:id="@+id/tv_welcome_back"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/dmsans_regular"
-                android:text="Welcome back,"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"
+                android:fontFamily="@font/dmsans_regular"
+                android:text="Welcome back,"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="1.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_user"
-                android:layout_width="match_parent"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/dmsans_bold"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"
-                android:text="Dwi Azi Prasetya"
+                android:fontFamily="@font/dmsans_bold"
+                android:text="Andrew Garfield"
                 android:textColor="@color/white"
                 android:textSize="20sp"
-                app:layout_constraintStart_toStartOf="@+id/tv_welcome_back"
-                app:layout_constraintTop_toBottomOf="@+id/tv_welcome_back"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_welcome_back" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/user"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_user"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_welcome_back" />
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager"
@@ -73,7 +82,7 @@
                 android:id="@+id/tv_upcoming_movies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/dmsans_bold"
@@ -90,7 +99,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/dmsans_regular"
                 android:text="@string/see_all"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:textColor="@color/red_netflix"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_upcoming_movies"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -104,6 +113,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_upcoming_movies" />
@@ -122,7 +132,7 @@
                 android:id="@+id/tv_popular_movies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/dmsans_bold"
@@ -136,7 +146,7 @@
                 android:id="@+id/tv_movie_popular_see_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/dmsans_regular"
                 android:text="@string/see_all"
@@ -151,6 +161,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="210dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_popular_movies" />
@@ -169,7 +180,7 @@
                 android:id="@+id/tv_now_playing_movies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:fontFamily="@font/dmsans_bold"
@@ -184,7 +195,7 @@
                 android:id="@+id/tv_movie_now_playing_see_all"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="16dp"
                 android:ellipsize="end"
                 android:fontFamily="@font/dmsans_regular"
                 android:text="@string/see_all"
@@ -197,6 +208,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_now_playing_movies"
                 android:layout_width="match_parent"
+                android:layout_marginStart="8dp"
                 android:layout_height="210dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
