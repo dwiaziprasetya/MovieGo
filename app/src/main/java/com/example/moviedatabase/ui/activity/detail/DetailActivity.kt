@@ -33,6 +33,8 @@ class DetailActivity : AppCompatActivity() {
 
         WindowCompat.setDecorFitsSystemWindows(window,false)
 
+        handleWindowInsets()
+
         val movieId = intent.getIntExtra(MOVIE_ID, -1)
 
         factory = ViewModelFactory.getInstance(movieId)
@@ -43,6 +45,19 @@ class DetailActivity : AppCompatActivity() {
         }
 
         setUpData()
+    }
+
+    private fun handleWindowInsets() {
+        binding.root.setOnApplyWindowInsetsListener { view, insets ->
+            val navigationBarHeight = insets.systemGestureInsets.bottom
+            binding.detailActivity.setPadding(
+                view.paddingLeft,
+                0,
+                view.paddingRight,
+                navigationBarHeight
+            )
+            insets
+        }
     }
 
     private fun setUpData() {
@@ -67,7 +82,9 @@ class DetailActivity : AppCompatActivity() {
         viewModel.isSetting.observe(this) { isSetting ->
             if (isSetting) {
                 binding.cnsDetail.visibility = View.VISIBLE
+                binding.btnWatchTrailer.visibility = View.VISIBLE
             } else {
+                binding.btnWatchTrailer.visibility = View.GONE
                 binding.cnsDetail.visibility = View.GONE
             }
         }
@@ -78,9 +95,7 @@ class DetailActivity : AppCompatActivity() {
         val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_ORIGINAL
         binding.tvDetailMovieName.text = detail.title
         binding.ratingBar.rating = (detail.voteAverage / 2).toFloat()
-
-        val formattedRuntime = formatRuntime(detail.runtime)
-        binding.tvDetailMovieGenre.text = "${detail.releaseDate.substring(0, 4)} | ${detail.genres.joinToString(", ") { it.name }} | $formattedRuntime"
+        binding.tvDetailMovieGenre.text = "${detail.releaseDate.substring(0, 4)} | ${detail.genres.joinToString(", ") { it.name }} | ${formatRuntime(detail.runtime)}"
 
         binding.tvDetailMovieOverviewData.text = detail.overview
 
@@ -96,6 +111,6 @@ class DetailActivity : AppCompatActivity() {
     private fun formatRuntime(runtime: Int): String {
         val hours = runtime / 60
         val minutes = runtime % 60
-        return "${hours}h ${minutes}m"
+        return "$hours h $minutes m"
     }
 }

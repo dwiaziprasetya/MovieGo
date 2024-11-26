@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/detail_activity"
     android:layout_height="match_parent"
     android:background="@color/background_theme"
-    tools:context=".ui.activity.detail.DetailActivity"
-    android:fillViewport="true">
-    
+    tools:context=".ui.activity.detail.DetailActivity">
+
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsv_detail"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         android:fillViewport="true"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        app:layout_constraintBottom_toTopOf="@+id/ll_btn_watch_trailer"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cns_detail"
             android:layout_width="match_parent"
-            android:visibility="invisible"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:visibility="invisible">
 
             <ImageView
                 android:id="@+id/img_detail_movie_photo"
@@ -28,16 +34,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars"/>
+                tools:src="@tools:sample/avatars" />
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:background="@drawable/gradient_background"
-                app:layout_constraintTop_toTopOf="@id/img_detail_movie_photo"
-                app:layout_constraintStart_toStartOf="@id/img_detail_movie_photo"
+                app:layout_constraintBottom_toBottomOf="@id/img_detail_movie_photo"
                 app:layout_constraintEnd_toEndOf="@id/img_detail_movie_photo"
-                app:layout_constraintBottom_toBottomOf="@id/img_detail_movie_photo"/>
+                app:layout_constraintStart_toStartOf="@id/img_detail_movie_photo"
+                app:layout_constraintTop_toTopOf="@id/img_detail_movie_photo" />
 
             <TextView
                 android:id="@+id/tv_detail_movie_name"
@@ -61,9 +67,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="6dp"
                 android:fontFamily="@font/dmsans_regular"
+                android:minLines="1"
                 android:text="@string/movie_genre"
                 android:textColor="#ACACAC"
-                android:minLines="1"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/ratingBar"
                 app:layout_constraintEnd_toEndOf="@id/tv_detail_movie_name"
@@ -75,15 +81,15 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:progressTint="#FFC100"
-                android:rating="2.5"
                 android:progressBackgroundTint="@color/white"
-                android:secondaryProgressTintMode="src_atop"
-                android:secondaryProgressTint="@android:color/transparent"
+                android:progressTint="#FFC100"
                 android:progressTintMode="src_atop"
+                android:rating="2.5"
+                android:secondaryProgressTint="@android:color/transparent"
+                android:secondaryProgressTintMode="src_atop"
                 app:layout_constraintBottom_toBottomOf="@id/img_detail_movie_photo"
                 app:layout_constraintEnd_toEndOf="@id/tv_detail_movie_genre"
-                app:layout_constraintStart_toStartOf="@id/tv_detail_movie_genre"/>
+                app:layout_constraintStart_toStartOf="@id/tv_detail_movie_genre" />
 
             <TextView
                 android:id="@id/tv_detail_movie_overview"
@@ -98,24 +104,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/img_detail_movie_photo"/>
+                app:layout_constraintTop_toBottomOf="@id/img_detail_movie_photo" />
 
             <com.colormoon.readmoretextview.ReadMoreTextView
                 android:id="@+id/tv_detail_movie_overview_data"
                 android:layout_width="match_parent"
-                app:trimLines="3"
-                app:colorClickableText="@color/red_netflix"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:textSize="16sp"
                 android:layout_marginEnd="16dp"
                 android:justificationMode="inter_word"
                 android:text="@string/movie_overview_template"
                 android:textColor="#ACACAC"
+                android:textSize="16sp"
+                app:colorClickableText="@color/red_netflix"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_detail_movie_overview"/>
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_movie_overview"
+                app:trimLines="3" />
 
             <TextView
                 android:id="@+id/tv_movie_cast"
@@ -163,9 +169,36 @@
 
     <ProgressBar
         android:id="@+id/pb"
-        android:indeterminateTint="@color/red_netflix"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
+        android:indeterminateTint="@color/red_netflix"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <LinearLayout
+        android:id="@+id/ll_btn_watch_trailer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_theme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:visibility="invisible"
+            android:id="@+id/btn_watch_trailer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/button_rounded"
+            android:fontFamily="@font/dmsans_bold"
+            android:text="@string/watch_trailer"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
