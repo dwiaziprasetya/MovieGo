@@ -27,7 +27,7 @@
         <activity
             android:name=".ui.activity.introduction.IntroductionActivity"
             android:exported="true"
-            android:theme="@style/Theme.TransparentStatusBar"
+            android:theme="@style/Theme.MovieDatabase.SplashScreen"
             android:label="@string/app_name"
             tools:ignore="RedundantLabel">
             <intent-filter>
