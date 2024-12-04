@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/item_movies"
+    android:background="@color/background_theme"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/img_item_photo"
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_margin="8dp"
+        android:layout_marginTop="16dp"
+        android:scaleType="centerCrop"
+        card_view:layout_constraintEnd_toEndOf="parent"
+        card_view:layout_constraintStart_toStartOf="parent"
+        card_view:layout_constraintTop_toTopOf="parent"
+        card_view:riv_corner_radius="10dp"
+        tools:src="@drawable/backdrop_template" />
+
+    <View
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="#75000000"
+        card_view:layout_constraintBottom_toBottomOf="@+id/img_item_photo"
+        card_view:layout_constraintEnd_toEndOf="@+id/img_item_photo"
+        card_view:layout_constraintStart_toStartOf="@+id/img_item_photo"/>
+
+    <TextView
+        android:id="@+id/tv_movie_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/dmsans_regular"
+        android:maxLines="1"
+        android:text="@string/title_movie"
+        android:textAlignment="textStart"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        card_view:layout_constraintBottom_toTopOf="@+id/tv_movie_genre"
+        card_view:layout_constraintEnd_toEndOf="@id/img_item_photo"
+        card_view:layout_constraintHorizontal_bias="0.0"
+        card_view:layout_constraintStart_toStartOf="@+id/img_item_photo"/>
+
+    <TextView
+        android:id="@+id/tv_movie_genre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:fontFamily="@font/dmsans_regular"
+        android:maxLines="1"
+        android:paddingBottom="5dp"
+        android:text="1h 28 m"
+        android:textAlignment="textStart"
+        android:textColor="#ACACAC"
+        android:textSize="14sp"
+        card_view:layout_constraintBottom_toBottomOf="@id/img_item_photo"
+        card_view:layout_constraintEnd_toEndOf="@+id/tv_movie_title"
+        card_view:layout_constraintHorizontal_bias="0.0"
+        card_view:layout_constraintStart_toStartOf="@id/tv_movie_title" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
