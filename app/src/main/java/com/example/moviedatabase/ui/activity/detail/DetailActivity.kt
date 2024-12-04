@@ -119,6 +119,7 @@ class DetailActivity : AppCompatActivity() {
         binding.rvCastMovie.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_up))
         binding.btnWatchTrailer.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_up))
         binding.imgBtnBack.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_up))
+        binding.ratingBar.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_up))
     }
 
     private fun formatRuntime(runtime: Int): String {

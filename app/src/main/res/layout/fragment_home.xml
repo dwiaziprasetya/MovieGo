@@ -27,7 +27,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"
                 android:fontFamily="@font/dmsans_regular"
-                android:text="Welcome back,"
+                android:text="Welcome"
                 android:textColor="@color/white"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -37,12 +37,12 @@
 
             <TextView
                 android:id="@+id/tv_user"
-                android:layout_width="200dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginVertical="8dp"
                 android:fontFamily="@font/dmsans_bold"
-                android:text="Andrew Garfield"
+                android:text="Discover Your Next Favorite"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -52,7 +52,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/user"
+                android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_user"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/tv_welcome_back" />

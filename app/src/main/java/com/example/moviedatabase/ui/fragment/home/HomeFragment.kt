@@ -1,6 +1,5 @@
 package com.example.moviedatabase.ui.fragment.home
 
-import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
@@ -35,13 +34,10 @@ import com.example.moviedatabase.utils.ViewModelFactory
 import kotlin.math.abs
 
 class HomeFragment : Fragment() {
+
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
     private lateinit var adapter : ImageSliderAdapter
-
-    private lateinit var animator: ValueAnimator
-    private val animationDuration = 4000
-
     private val list = ArrayList<ImageData>()
     private lateinit var dots : ArrayList<TextView>
     private lateinit var handler: Handler
