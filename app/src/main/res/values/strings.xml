@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Movie Database</string>
+    <string name="app_name">MovieGo</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_movie">Movie</string>

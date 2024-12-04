@@ -20,7 +20,6 @@ class IntroductionActivity : AppCompatActivity() {
 
     private lateinit var adapter: ImageGridAdapter
     private lateinit var itemList: ArrayList<Int>
-
     private lateinit var binding : ActivityIntroductionBinding
 
     @SuppressLint("ClickableViewAccessibility")
@@ -34,7 +33,6 @@ class IntroductionActivity : AppCompatActivity() {
         )
 
         super.onCreate(savedInstanceState)
-
 
         actionBar?.hide()
 

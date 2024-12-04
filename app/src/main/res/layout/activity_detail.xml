@@ -65,6 +65,8 @@
                 android:id="@+id/tv_detail_movie_genre"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
                 android:layout_marginBottom="6dp"
                 android:fontFamily="@font/dmsans_regular"
                 android:minLines="1"
@@ -72,8 +74,8 @@
                 android:textColor="#ACACAC"
                 android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@+id/ratingBar"
-                app:layout_constraintEnd_toEndOf="@id/tv_detail_movie_name"
-                app:layout_constraintStart_toStartOf="@id/tv_detail_movie_name" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <RatingBar
                 android:id="@+id/ratingBar"

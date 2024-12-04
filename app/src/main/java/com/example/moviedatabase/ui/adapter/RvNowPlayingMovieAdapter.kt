@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.BuildConfig
+import com.example.moviedatabase.R
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 import com.example.moviedatabase.databinding.ItemMoviesBinding
 
@@ -54,6 +55,8 @@ class RvNowPlayingMovieAdapter: ListAdapter<NowPlayingMovieItem, RvNowPlayingMov
         holder.binding.root.setOnClickListener {
             onItemCallback.onItemClicked(movie.id)
         }
+
+        holder.binding.itemMovies.startAnimation(android.view.animation.AnimationUtils.loadAnimation(holder.binding.itemMovies.context, R.anim.scale_up))
     }
 
     fun setOnItemClickCallback(onItemClickCallback : OnItemClickCallback){

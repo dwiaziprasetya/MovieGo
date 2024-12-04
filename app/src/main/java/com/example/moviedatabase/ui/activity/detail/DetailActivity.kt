@@ -3,12 +3,14 @@ package com.example.moviedatabase.ui.activity.detail
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.BuildConfig
+import com.example.moviedatabase.R
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
 import com.example.moviedatabase.databinding.ActivityDetailBinding
 import com.example.moviedatabase.ui.adapter.RvCastMovieAdapter
@@ -76,6 +78,7 @@ class DetailActivity : AppCompatActivity() {
                 binding.pb.visibility = View.VISIBLE
             } else {
                 binding.pb.visibility = View.GONE
+                setUpAnimation()
             }
         }
 
@@ -95,7 +98,7 @@ class DetailActivity : AppCompatActivity() {
         val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_ORIGINAL
         binding.tvDetailMovieName.text = detail.title
         binding.ratingBar.rating = (detail.voteAverage / 2).toFloat()
-        binding.tvDetailMovieGenre.text = "${detail.releaseDate.substring(0, 4)} | ${detail.genres.joinToString(", ") { it.name }} | ${formatRuntime(detail.runtime)}"
+        binding.tvDetailMovieGenre.text = "${detail.releaseDate.substring(0, 4)} | ${detail.genres.take(2).joinToString(", ") { it.name }} | ${formatRuntime(detail.runtime)}"
 
         binding.tvDetailMovieOverviewData.text = detail.overview
 
@@ -106,6 +109,16 @@ class DetailActivity : AppCompatActivity() {
             .load(imageBaseUrl + detail.backdropPath)
             .fitCenter()
             .into(binding.imgDetailMoviePhoto)
+    }
+
+    private fun setUpAnimation(){
+        binding.tvDetailMovieName.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_up))
+        binding.tvDetailMovieGenre.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_up))
+        binding.tvDetailMovieOverview.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_up))
+        binding.tvDetailMovieOverviewData.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_up))
+        binding.rvCastMovie.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_up))
+        binding.btnWatchTrailer.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_up))
+        binding.imgBtnBack.startAnimation(AnimationUtils.loadAnimation(this, R.anim.scale_up))
     }
 
     private fun formatRuntime(runtime: Int): String {
