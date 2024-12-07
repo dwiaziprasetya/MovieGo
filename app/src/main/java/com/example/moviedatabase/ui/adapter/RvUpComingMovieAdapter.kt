@@ -10,6 +10,7 @@ import com.example.moviedatabase.BuildConfig
 import com.example.moviedatabase.R
 import com.example.moviedatabase.data.remote.response.UpComingMovieItem
 import com.example.moviedatabase.databinding.ItemMoviesUpComingBinding
+import com.example.moviedatabase.utils.MovieUtils
 
 class RvUpComingMovieAdapter : ListAdapter<UpComingMovieItem, RvUpComingMovieAdapter.MyViewHolder>(
     DIFF_CALLBACK
@@ -18,8 +19,9 @@ class RvUpComingMovieAdapter : ListAdapter<UpComingMovieItem, RvUpComingMovieAda
     class MyViewHolder(val binding: ItemMoviesUpComingBinding): RecyclerView.ViewHolder(binding.root){
         private val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
         fun bindMovie(movie : UpComingMovieItem){
+            val genreNames = MovieUtils.getGenreNames(movie.genreIds)
             binding.tvMovieTitle.text = movie.title
-//            binding.tvMovieGenre.text = movie.releaseDate
+            binding.tvMovieGenre.text = genreNames
             Glide.with(itemView)
                 .load(imageBaseUrl + movie.backdropPath)
                 .into(binding.imgItemPhoto)

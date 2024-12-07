@@ -231,7 +231,6 @@ class HomeFragment : Fragment() {
         }
     }
 
-
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
             binding.pb1.visibility = View.VISIBLE
