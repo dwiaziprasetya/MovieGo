@@ -26,6 +26,7 @@
     <string name="movie_favorite_template">You don\'t have a favorite movie yet</string>
     <string name="see_all">See all</string>
     <string name="watch_trailer">Watch Trailer</string>
+    <string name="movie_send">Send</string>
 
     <!-- Resource Image Slider -->
     <integer-array name="image_slider">
