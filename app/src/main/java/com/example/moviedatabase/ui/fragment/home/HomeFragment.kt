@@ -57,7 +57,7 @@ class HomeFragment : Fragment() {
         handler.post { binding.viewPager.currentItem = 2 }
         runnable = Runnable { binding.viewPager.currentItem++ }
 
-        factory = ViewModelFactory.getInstance()
+        factory = ViewModelFactory.getInstance(requireActivity())
 
         with(viewModel) {
             dataUpComingMovieItem.observe(requireActivity()) {

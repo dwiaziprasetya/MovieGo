@@ -1,5 +1,6 @@
 package com.example.moviedatabase.utils
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviedatabase.di.Injection
@@ -23,7 +24,8 @@ class ViewModelFactory(
 
     companion object {
         fun getInstance(
+            context: Context,
             movieId: Int = -1,
-        ) = ViewModelFactory(Injection.provideRepository(), movieId)
+        ) = ViewModelFactory(Injection.provideRepository(context), movieId)
     }
 }

@@ -4,7 +4,7 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_movie">Movie</string>
     <style name="genre_movie">Genre</style>
-    <string name="title_favorite">Favorite</string>
+    <string name="title_favorite">Favourite</string>
     <string name="title_notifications">Notifications</string>
     <string name="btn_get_started">Get Started</string>
     <string name="tv_intro_2">Watch anywhere, Explore Limitlessly.</string>

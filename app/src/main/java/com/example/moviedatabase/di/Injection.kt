@@ -1,11 +1,14 @@
 package com.example.moviedatabase.di
 
+import android.content.Context
+import com.example.moviedatabase.data.local.database.MovieGoRoomDatabase
 import com.example.moviedatabase.data.remote.retrofit.ApiConfig
 import com.example.moviedatabase.repository.MovieDatabaseRepository
 
 object Injection {
-    fun provideRepository(): MovieDatabaseRepository {
+    fun provideRepository(context: Context): MovieDatabaseRepository {
         val apiService = ApiConfig.getApiService()
-        return MovieDatabaseRepository.getInstance(apiService)
+        val favouriteDatabase = MovieGoRoomDatabase.getDatabase(context).favouriteDao()
+        return MovieDatabaseRepository.getInstance(apiService, favouriteDatabase)
     }
 }

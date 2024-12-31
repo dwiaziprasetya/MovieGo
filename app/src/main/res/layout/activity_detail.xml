@@ -24,7 +24,7 @@
             android:id="@+id/cns_detail"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <ImageView
                 android:id="@+id/img_detail_movie_photo"
@@ -126,6 +126,7 @@
                 app:trimLines="3" />
 
             <LinearLayout
+                android:clickable="true"
                 android:id="@+id/ll_bottom_buttons"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -138,8 +139,8 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_detail_movie_overview_data"
                 app:layout_constraintTop_toBottomOf="@+id/tv_detail_movie_overview_data">
 
-                <!-- Button 1 -->
                 <LinearLayout
+                    android:id="@+id/btn_favourite"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -163,9 +164,10 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Button 2 -->
                 <LinearLayout
+                    android:id="@+id/btn_send"
                     android:layout_width="0dp"
+                    android:clickable="true"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
@@ -188,7 +190,6 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-                <!-- Button 3 -->
 
             </LinearLayout>
 

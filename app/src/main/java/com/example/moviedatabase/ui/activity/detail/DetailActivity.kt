@@ -39,7 +39,7 @@ class DetailActivity : AppCompatActivity() {
 
         val movieId = intent.getIntExtra(MOVIE_ID, -1)
 
-        factory = ViewModelFactory.getInstance(movieId)
+        factory = ViewModelFactory.getInstance(this, movieId)
 
 
         binding.imgBtnBack.setOnClickListener {
