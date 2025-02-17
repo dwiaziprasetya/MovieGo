@@ -10,19 +10,19 @@
     <item
         android:id="@+id/navigation_movie"
         android:enabled="true"
-        android:icon="@drawable/icon_movie_checked"
+        android:icon="@drawable/icon_discover_checked"
         android:title="@string/title_movie"/>
+
+    <item
+        android:id="@+id/navigation_search"
+        android:enabled="true"
+        android:icon="@drawable/icon_search_checked"
+        android:title=""/>
 
     <item
         android:id="@+id/navigation_favorite"
         android:enabled="true"
         android:icon="@drawable/icon_favourite_checked"
         android:title="@string/title_favorite"/>
-
-<!--    <item-->
-<!--        android:id="@+id/navigation_search"-->
-<!--        android:enabled="true"-->
-<!--        android:icon="@drawable/icon_search_checked"-->
-<!--        android:title=""/>-->
 
 </menu>
