@@ -2,6 +2,7 @@ package com.example.moviedatabase.data.remote.retrofit
 
 import com.example.moviedatabase.data.remote.response.CastandCrewResponse
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
+import com.example.moviedatabase.data.remote.response.DiscoverMovieResponse
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieResponse
 import com.example.moviedatabase.data.remote.response.PopularMovieResponse
 import com.example.moviedatabase.data.remote.response.UpComingMovieResponse
@@ -9,6 +10,8 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
+    suspend fun getDiscoverMovies(): DiscoverMovieResponse
+
     @GET("/3/movie/upcoming")
     suspend fun getUpComingMovies(): UpComingMovieResponse
 

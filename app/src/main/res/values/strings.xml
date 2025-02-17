@@ -31,10 +31,10 @@
     <!-- Resource Image Slider -->
     <integer-array name="image_slider">
         <item>@drawable/image_slider_godzilla</item>
-        <item>@drawable/image_slider_morbius</item>
-        <item>@drawable/image_slider_a_quiet_place_part_2</item>
         <item>@drawable/image_slider_openheimer</item>
+        <item>@drawable/image_slider_a_quiet_place_part_2</item>
         <item>@drawable/image_slider_jurrasic_world_3</item>
+        <item>@drawable/image_slider_avatar</item>
     </integer-array>
 
 </resources>

@@ -7,10 +7,10 @@
     android:layout_height="match_parent"
     tools:context=".ui.activity.introduction.IntroductionActivity">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_introduction"
         android:layout_width="0dp"
+        tools:listitem="@layout/item_movies_grid"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
