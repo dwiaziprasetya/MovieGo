@@ -5,26 +5,23 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.moviedatabase.BuildConfig
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
-import com.example.moviedatabase.databinding.ItemMovieListBinding
-import java.text.DecimalFormat
+import com.example.moviedatabase.databinding.ItemMovies2Binding
 
 class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieItem, RvDiscoverMovieAdapter.MyViewHolder>(
     DIFF_CALLBACK
 ) {
-    private lateinit var onItemCallback : OnitemClickCallback
+//    private lateinit var onItemCallback : OnitemClickCallback
 
-    class MyViewHolder(val binding : ItemMovieListBinding) : RecyclerView.ViewHolder(binding.root) {
-        val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
+    class MyViewHolder(val binding : ItemMovies2Binding) : RecyclerView.ViewHolder(binding.root) {
+        private val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
         fun bind(movie : DiscoverMovieItem){
-            val decimalFormat = DecimalFormat("#.#")
-            binding.tvMovieListName.text = movie.title
-//            binding.rbRatingMovie.rating = movie.movieRate().toFloat()
-//            Glide.with(itemView)
-//                .load(imageBaseUrl + movie.posterPath)
-//                .into(binding.imgMovieListPhoto)
-//            binding.tvRatingMovie.text = decimalFormat.format(movie.movieRate())
+//            binding.tvMovieTitle.text = movie.title
+            Glide.with(itemView)
+                .load(imageBaseUrl + movie.posterPath)
+                .into(binding.imgItemPhoto)
         }
     }
 
@@ -48,46 +45,24 @@ class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieItem, RvDiscoverMovieAdap
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemMovieListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemMovies2Binding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MyViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        TODO("Not yet implemented")
-    }
-
-//    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-//        val movie = getItem(position)
-//        holder.bind(movie)
-//        val genreNames = getGenreNames(movie.genreIds)
-//        holder.binding.tvMovieGenre.text = genreNames
+        val movie = getItem(position)
+        holder.bind(movie)
 //        holder.binding.root.setOnClickListener {
 //            onItemCallback.onItemClicked(movie)
 //        }
-//    }
-
-//    private fun getGenreNames(genreIds: List<Int>) : String {
-//        val genreNames = mutableListOf<String>()
-//        for (genreId in genreIds) {
-//            val genre = genreList.find { it.id == genreId }
-//            genre?.let {
-//                genreNames.add(it.name)
-//            }
-//        }
-//        return genreNames.joinToString(", ")
-//    }
-
-//    @SuppressLint("NotifyDataSetChanged")
-//    fun clear(){
-//        movie.clear()
-//        notifyDataSetChanged()
-//    }
-
-    fun setOnItemClickCallback(onItemClickCallback: OnitemClickCallback){
-        this.onItemCallback = onItemClickCallback
     }
 
-    interface OnitemClickCallback {
-        fun onItemClicked(data : DiscoverMovieItem)
-    }
+
+//    fun setOnItemClickCallback(onItemClickCallback: OnitemClickCallback){
+//        this.onItemCallback = onItemClickCallback
+//    }
+//
+//    interface OnitemClickCallback {
+//        fun onItemClicked(data : DiscoverMovieItem)
+//    }
 }

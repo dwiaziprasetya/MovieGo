@@ -4,6 +4,7 @@ import com.example.moviedatabase.data.local.dao.FavouriteDao
 import com.example.moviedatabase.data.local.entity.Favourite
 import com.example.moviedatabase.data.remote.response.CastandCrewResponse
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
+import com.example.moviedatabase.data.remote.response.DiscoverMovieResponse
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieResponse
 import com.example.moviedatabase.data.remote.response.PopularMovieResponse
 import com.example.moviedatabase.data.remote.response.UpComingMovieResponse
@@ -31,6 +32,10 @@ class MovieDatabaseRepository(
 
     suspend fun getNowPlayingMovieData() : NowPlayingMovieResponse {
         return apiService.getNowPlayingMovies()
+    }
+
+    suspend fun getDiscoverMovieData() : DiscoverMovieResponse {
+        return apiService.getDiscoverMovies()
     }
 
     suspend fun addToFavourite(favourite: Favourite) {

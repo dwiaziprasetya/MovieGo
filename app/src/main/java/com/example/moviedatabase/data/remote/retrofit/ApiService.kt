@@ -10,6 +10,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ApiService {
+    @GET("/3/discover/movie")
     suspend fun getDiscoverMovies(): DiscoverMovieResponse
 
     @GET("/3/movie/upcoming")
