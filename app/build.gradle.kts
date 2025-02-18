@@ -60,6 +60,9 @@ android {
 }
 
 dependencies {
+
+    implementation("androidx.paging:paging-runtime-ktx:3.3.6")
+
     implementation("com.github.colourmoon:readmore-textview:v1.0.2")
 
     implementation("androidx.core:core-splashscreen:1.0.1")
