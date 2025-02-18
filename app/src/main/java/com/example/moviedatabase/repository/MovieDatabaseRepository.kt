@@ -1,10 +1,16 @@
 package com.example.moviedatabase.repository
 
+import androidx.lifecycle.LiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.liveData
+import com.example.moviedatabase.data.MoviePagingSource
 import com.example.moviedatabase.data.local.dao.FavouriteDao
 import com.example.moviedatabase.data.local.entity.Favourite
 import com.example.moviedatabase.data.remote.response.CastandCrewResponse
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
-import com.example.moviedatabase.data.remote.response.DiscoverMovieResponse
+import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieResponse
 import com.example.moviedatabase.data.remote.response.PopularMovieResponse
 import com.example.moviedatabase.data.remote.response.UpComingMovieResponse
@@ -34,9 +40,20 @@ class MovieDatabaseRepository(
         return apiService.getNowPlayingMovies()
     }
 
-    suspend fun getDiscoverMovieData() : DiscoverMovieResponse {
-        return apiService.getDiscoverMovies()
+    fun getDiscoverMovieDataPaging(): LiveData<PagingData<DiscoverMovieItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            pagingSourceFactory = {
+                MoviePagingSource(apiService)
+            }
+        ).liveData
     }
+
+//    suspend fun getDiscoverMovieData() : DiscoverMovieResponse {
+//        return apiService.getDiscoverMovies()
+//    }
 
     suspend fun addToFavourite(favourite: Favourite) {
         favouriteDao.insert(favourite)

@@ -14,13 +14,16 @@ class MoviePagingSource(
     }
 
     override fun getRefreshKey(state: PagingState<Int, DiscoverMovieItem>): Int? {
-        TODO("Not yet implemented")
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
     }
 
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, DiscoverMovieItem> {
         return try {
             val position = params.key ?: INITIAL_PAGE
-            val responseData = apiService.getDiscoverMovie(position)
+            val responseData = apiService.getDiscoverMovies(position)
 
             LoadResult.Page(
                 data = responseData.results,

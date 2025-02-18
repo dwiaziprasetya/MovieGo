@@ -8,10 +8,14 @@ import com.example.moviedatabase.data.remote.response.PopularMovieResponse
 import com.example.moviedatabase.data.remote.response.UpComingMovieResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
+import retrofit2.http.Query
 
 interface ApiService {
     @GET("/3/discover/movie")
-    suspend fun getDiscoverMovies(): DiscoverMovieResponse
+    suspend fun getDiscoverMovies(
+        @Query("page") page: Int = 1,
+        @Query("size") size: Int = 5
+    ): DiscoverMovieResponse
 
     @GET("/3/movie/upcoming")
     suspend fun getUpComingMovies(): UpComingMovieResponse

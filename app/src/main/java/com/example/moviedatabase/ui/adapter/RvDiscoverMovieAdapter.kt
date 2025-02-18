@@ -2,15 +2,15 @@ package com.example.moviedatabase.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.BuildConfig
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
 import com.example.moviedatabase.databinding.ItemMovies2Binding
 
-class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieItem, RvDiscoverMovieAdapter.MyViewHolder>(
+class RvDiscoverMovieAdapter: PagingDataAdapter<DiscoverMovieItem, RvDiscoverMovieAdapter.MyViewHolder>(
     DIFF_CALLBACK
 ) {
 //    private lateinit var onItemCallback : OnitemClickCallback
@@ -51,7 +51,7 @@ class RvDiscoverMovieAdapter: ListAdapter<DiscoverMovieItem, RvDiscoverMovieAdap
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val movie = getItem(position)
-        holder.bind(movie)
+        holder.bind(movie!!)
 //        holder.binding.root.setOnClickListener {
 //            onItemCallback.onItemClicked(movie)
 //        }
