@@ -51,10 +51,6 @@ class MovieDatabaseRepository(
         ).liveData
     }
 
-//    suspend fun getDiscoverMovieData() : DiscoverMovieResponse {
-//        return apiService.getDiscoverMovies()
-//    }
-
     suspend fun addToFavourite(favourite: Favourite) {
         favouriteDao.insert(favourite)
     }

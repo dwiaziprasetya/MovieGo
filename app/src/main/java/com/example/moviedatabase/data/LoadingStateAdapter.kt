@@ -1,7 +1,7 @@
 package com.example.moviedatabase.data
 
 import android.view.ViewGroup
-import androidx.core.view.isInvisible
+import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -16,8 +16,8 @@ class LoadingStateAdapter : LoadStateAdapter<LoadingStateAdapter.LoadingStateVie
                 binding.errorMsg.text = loadState.error.localizedMessage
             }
 
-            binding.progressBar.isInvisible = loadState is LoadState.Loading
-            binding.errorMsg.isInvisible = loadState is LoadState.Loading
+            binding.progressBar.isVisible = loadState is LoadState.Loading
+            binding.errorMsg.isVisible = loadState is LoadState.Error
         }
     }
 
@@ -34,6 +34,7 @@ class LoadingStateAdapter : LoadStateAdapter<LoadingStateAdapter.LoadingStateVie
             parent,
             false
         )
+
         return LoadingStateViewHolder(binding)
     }
 }
