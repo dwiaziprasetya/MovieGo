@@ -1,5 +1,6 @@
 package com.example.moviedatabase.ui.fragment.movie
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moviedatabase.data.LoadingStateAdapter
 import com.example.moviedatabase.databinding.FragmentMovieBinding
+import com.example.moviedatabase.ui.activity.detail.DetailActivity
 import com.example.moviedatabase.ui.adapter.RvDiscoverMovieAdapter
 import com.example.moviedatabase.utils.ViewModelFactory
 
@@ -21,11 +23,21 @@ class MovieFragment : Fragment() {
 
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<MovieViewModel> { factory }
+    private val adapter = RvDiscoverMovieAdapter()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         factory = ViewModelFactory.getInstance(requireActivity())
+
+        adapter.setOnItemClickCallback(object : RvDiscoverMovieAdapter.OnitemClickCallback {
+            override fun onItemClicked(movieId: Int) {
+                val intent = Intent(requireActivity(), DetailActivity::class.java)
+                intent.putExtra(DetailActivity.MOVIE_ID, movieId)
+                startActivity(intent)
+            }
+        })
 
         showRecyclerViewDiscoverMovie()
     }
@@ -55,7 +67,6 @@ class MovieFragment : Fragment() {
 
         binding.rvDiscoverMovies.layoutManager = gridLayoutManager
 
-        val adapter = RvDiscoverMovieAdapter()
         binding.rvDiscoverMovies.adapter = adapter.withLoadStateFooter(
             footer = LoadingStateAdapter()
         )

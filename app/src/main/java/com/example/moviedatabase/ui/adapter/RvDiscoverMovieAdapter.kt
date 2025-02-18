@@ -13,7 +13,7 @@ import com.example.moviedatabase.databinding.ItemMovies2Binding
 class RvDiscoverMovieAdapter: PagingDataAdapter<DiscoverMovieItem, RvDiscoverMovieAdapter.MyViewHolder>(
     DIFF_CALLBACK
 ) {
-//    private lateinit var onItemCallback : OnitemClickCallback
+    private lateinit var onItemCallback : OnitemClickCallback
 
     class MyViewHolder(val binding : ItemMovies2Binding) : RecyclerView.ViewHolder(binding.root) {
         private val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
@@ -52,17 +52,17 @@ class RvDiscoverMovieAdapter: PagingDataAdapter<DiscoverMovieItem, RvDiscoverMov
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val movie = getItem(position)
         holder.bind(movie!!)
-//        holder.binding.root.setOnClickListener {
-//            onItemCallback.onItemClicked(movie)
-//        }
+        holder.binding.root.setOnClickListener {
+            onItemCallback.onItemClicked(movie.id)
+        }
     }
 
 
-//    fun setOnItemClickCallback(onItemClickCallback: OnitemClickCallback){
-//        this.onItemCallback = onItemClickCallback
-//    }
-//
-//    interface OnitemClickCallback {
-//        fun onItemClicked(data : DiscoverMovieItem)
-//    }
+    fun setOnItemClickCallback(onItemClickCallback: OnitemClickCallback){
+        this.onItemCallback = onItemClickCallback
+    }
+
+    interface OnitemClickCallback {
+        fun onItemClicked(movieId: Int)
+    }
 }
