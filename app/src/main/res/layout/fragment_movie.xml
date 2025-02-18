@@ -32,19 +32,10 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_discover_movies"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminateTint="@color/red_netflix"
-            app:layout_constraintTop_toBottomOf="@id/rv_discover_movies"
-            app:layout_constraintStart_toStartOf="@id/rv_discover_movies"
-            app:layout_constraintEnd_toEndOf="@id/rv_discover_movies"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
