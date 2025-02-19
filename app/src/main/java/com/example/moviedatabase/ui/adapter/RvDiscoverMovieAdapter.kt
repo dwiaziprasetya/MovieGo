@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.BuildConfig
+import com.example.moviedatabase.R
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
 import com.example.moviedatabase.databinding.ItemMovies2Binding
 
@@ -55,6 +56,8 @@ class RvDiscoverMovieAdapter: PagingDataAdapter<DiscoverMovieItem, RvDiscoverMov
         holder.binding.root.setOnClickListener {
             onItemCallback.onItemClicked(movie.id)
         }
+
+        holder.binding.itemMovies.startAnimation(android.view.animation.AnimationUtils.loadAnimation(holder.binding.itemMovies.context, R.anim.scale_up))
     }
 
 
