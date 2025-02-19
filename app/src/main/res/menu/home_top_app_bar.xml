@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/notification_menu"
-        android:icon="@drawable/notification_svgrepo_com"
+        android:icon="@drawable/logo"
         app:showAsAction="ifRoom"
         android:title="@string/title_notifications" />
 </menu>

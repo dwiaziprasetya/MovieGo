@@ -55,7 +55,7 @@
                 android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_user"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_welcome_back" />
+                app:layout_constraintTop_toTopOf="@+id/tv_welcome_back"/>
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/view_pager"
