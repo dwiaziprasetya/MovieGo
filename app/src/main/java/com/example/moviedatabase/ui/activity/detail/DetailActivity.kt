@@ -107,6 +107,7 @@ class DetailActivity : AppCompatActivity() {
         binding.rvCastMovie.adapter = adapter
         Glide.with(baseContext)
             .load(imageBaseUrl + detail.backdropPath)
+            .override(800, 450)
             .fitCenter()
             .into(binding.imgDetailMoviePhoto)
     }
