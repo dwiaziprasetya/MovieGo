@@ -13,29 +13,4 @@ class MovieViewModel(
 ): ViewModel() {
     val movie: LiveData<PagingData<DiscoverMovieItem>> =
         repository.getDiscoverMovieDataPaging().cachedIn(viewModelScope)
-
-
-//    private val _dataDiscoverMovieItem = MutableLiveData<List<DiscoverMovieItem>>()
-//    val dataDiscoverMovieItem: MutableLiveData<List<DiscoverMovieItem>> = _dataDiscoverMovieItem
-//
-//    private val _isLoading = MutableLiveData<Boolean>()
-//    val isLoading: MutableLiveData<Boolean> = _isLoading
-//
-//    init {
-//        getDiscoverMovieData()
-//    }
-//
-//    private fun getDiscoverMovieData() {
-//        viewModelScope.launch {
-//            _isLoading.value = true
-//            try {
-//                val response = repository.getDiscoverMovieData()
-//                _dataDiscoverMovieItem.value = response.results
-//            } catch (e: Exception) {
-//                e.printStackTrace()
-//            } finally {
-//                _isLoading.value = false
-//            }
-//        }
-//    }
 }
