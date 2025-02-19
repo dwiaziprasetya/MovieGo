@@ -46,6 +46,14 @@ class DetailActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        binding.btnFavourite.setOnClickListener {
+            viewModel.addToFavorite(
+                movieId = movieId,
+                movieName = binding.tvDetailMovieName.text.toString(),
+                moviePhoto = binding.imgDetailMoviePhoto.toString()
+            )
+        }
+
         setUpData()
     }
 

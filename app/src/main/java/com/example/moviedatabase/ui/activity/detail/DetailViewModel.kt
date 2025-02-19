@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.moviedatabase.data.local.entity.Favourite
 import com.example.moviedatabase.data.remote.response.CastandCrewResponse
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
 import com.example.moviedatabase.repository.MovieDatabaseRepository
@@ -60,6 +61,21 @@ class DetailViewModel(
             } finally {
                 _isLoading.value = false
             }
+        }
+    }
+
+    fun addToFavorite(
+        movieId: Int,
+        movieName: String,
+        moviePhoto: String
+    ) {
+        viewModelScope.launch {
+            val movie = Favourite(
+                movieId = movieId,
+                movieName = movieName,
+                moviePhoto = moviePhoto
+            )
+            repository.addToFavourite(movie)
         }
     }
 }
