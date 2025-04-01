@@ -67,6 +67,8 @@ dependencies {
 
     implementation("androidx.core:core-splashscreen:1.0.1")
 
+    implementation("com.facebook.shimmer:shimmer:0.1.0@aar")
+
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
