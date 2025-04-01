@@ -81,6 +81,4 @@ class MovieFragment : Fragment() {
             binding.rvDiscoverMovies.isVisible = !isLoading
         }
     }
-
-
 }

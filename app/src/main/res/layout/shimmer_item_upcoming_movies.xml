@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shimmer_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="16dp"
+    app:shimmer_auto_start="true"
+    app:shimmer_duration="1000"
+    app:shimmer_repeat_count="infinite"
+    app:shimmer_intensity="0.8"
+    app:shimmer_direction="left_to_right">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="200dp"
+        android:layout_height="120dp"
+        android:layout_margin="8dp"
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="@color/grey"/>
+
+</com.facebook.shimmer.ShimmerFrameLayout>
