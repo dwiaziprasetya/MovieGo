@@ -14,6 +14,7 @@ import com.example.moviedatabase.data.LoadingStateAdapter
 import com.example.moviedatabase.databinding.FragmentMovieBinding
 import com.example.moviedatabase.ui.activity.detail.DetailActivity
 import com.example.moviedatabase.ui.adapter.RvDiscoverMovieAdapter
+import com.example.moviedatabase.ui.adapter.ShimmerAdapter
 import com.example.moviedatabase.utils.ViewModelFactory
 
 class MovieFragment : Fragment() {
@@ -24,6 +25,7 @@ class MovieFragment : Fragment() {
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<MovieViewModel> { factory }
     private val adapter = RvDiscoverMovieAdapter()
+    private lateinit var shimmerAdapter: ShimmerAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,6 +42,7 @@ class MovieFragment : Fragment() {
         })
 
         showRecyclerViewDiscoverMovie()
+        setupShimmer()
     }
 
     override fun onCreateView(
@@ -77,8 +80,27 @@ class MovieFragment : Fragment() {
 
         adapter.addLoadStateListener { loadState ->
             val isLoading = loadState.refresh is LoadState.Loading
-            binding.progressBar.isVisible = isLoading
+            binding.shimmerLoading.isVisible = isLoading
             binding.rvDiscoverMovies.isVisible = !isLoading
         }
+    }
+
+    private fun setupShimmer() {
+        shimmerAdapter = ShimmerAdapter()
+
+        binding.rvShimmerGrid.shimmerRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.rvShimmerGrid.shimmerRecyclerView.adapter = shimmerAdapter
+
+        binding.shimmerLoading.startShimmer()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        binding.shimmerLoading.startShimmer()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.shimmerLoading.stopShimmer()
     }
 }

@@ -19,7 +19,6 @@ class RvDiscoverMovieAdapter: PagingDataAdapter<DiscoverMovieItem, RvDiscoverMov
     class MyViewHolder(val binding : ItemMovies2Binding) : RecyclerView.ViewHolder(binding.root) {
         private val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
         fun bind(movie : DiscoverMovieItem){
-//            binding.tvMovieTitle.text = movie.title
             Glide.with(itemView)
                 .load(imageBaseUrl + movie.posterPath)
                 .into(binding.imgItemPhoto)

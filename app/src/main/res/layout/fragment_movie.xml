@@ -53,17 +53,24 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_discover_movies"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"/>
+        
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:visibility="invisible"
+            android:id="@+id/shimmer_loading"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:shimmer_intensity="0.3"
+            app:shimmer_auto_start="true"
+            app:shimmer_duration="800"
+            app:shimmer_direction="left_to_right">
 
-        <ProgressBar
-            android:id="@+id/progressBar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:indeterminateTint="@color/red_netflix"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/rv_discover_movies"
-            app:layout_constraintTop_toTopOf="@+id/rv_discover_movies" />
+            <include
+                layout="@layout/shimmer_layout_grid"
+                android:id="@+id/rv_shimmer_grid"/>
+
+        </com.facebook.shimmer.ShimmerFrameLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

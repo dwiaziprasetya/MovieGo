@@ -67,7 +67,7 @@ dependencies {
 
     implementation("androidx.core:core-splashscreen:1.0.1")
 
-    implementation("com.facebook.shimmer:shimmer:0.1.0@aar")
+    implementation("com.facebook.shimmer:shimmer:0.5.0")
 
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
