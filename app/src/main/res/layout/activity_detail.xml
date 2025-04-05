@@ -269,22 +269,23 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/img_detail_movie_photo" />
 
-            <com.colormoon.readmoretextview.ReadMoreTextView
+            <TextView
                 android:id="@+id/tv_detail_movie_overview_data"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:clickable="true"
                 android:layout_marginEnd="16dp"
-                android:text="@string/movie_overview_template"
                 android:justificationMode="inter_word"
+                android:text="@string/movie_overview_template"
                 android:textColor="#ACACAC"
                 android:textSize="16sp"
                 app:colorClickableText="@color/red_netflix"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/ll_bottom_buttons"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_detail_movie_overview"
-                app:trimLines="2" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_detail_movie_overview"/>
 
             <LinearLayout
                 android:clickable="true"
