@@ -30,6 +30,8 @@ import com.example.moviedatabase.ui.adapter.ImageSliderAdapter
 import com.example.moviedatabase.ui.adapter.RvNowPlayingMovieAdapter
 import com.example.moviedatabase.ui.adapter.RvPopularMovieAdapter
 import com.example.moviedatabase.ui.adapter.RvUpComingMovieAdapter
+import com.example.moviedatabase.ui.adapter.ShimmerItemMoviePopularAdapter
+import com.example.moviedatabase.ui.adapter.ShimmerItemUpComingMovieAdapter
 import com.example.moviedatabase.utils.ViewModelFactory
 import kotlin.math.abs
 
@@ -45,6 +47,9 @@ class HomeFragment : Fragment() {
     private var adapterUpComingMovie = RvUpComingMovieAdapter()
     private var adapterPopularMovie = RvPopularMovieAdapter()
     private var adapterNowPlayingMovie = RvNowPlayingMovieAdapter()
+
+    private lateinit var shimmerAdapter: ShimmerItemMoviePopularAdapter
+    private lateinit var shimmerAdapter2: ShimmerItemUpComingMovieAdapter
 
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<HomeViewModel> { factory }
@@ -115,6 +120,7 @@ class HomeFragment : Fragment() {
         showRecyclerViewUpComingMovie()
         showRecyclerViewPopularMovie()
         showRecyclerViewNowPlayingMovie()
+        setupShimmer()
     }
 
     override fun onCreateView(
@@ -126,6 +132,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
+
 
     private fun showRecyclerViewUpComingMovie() {
         binding.rvUpcomingMovies.layoutManager = LinearLayoutManager(requireActivity(),LinearLayoutManager.HORIZONTAL,false)
@@ -231,15 +238,49 @@ class HomeFragment : Fragment() {
         }
     }
 
+    private fun setupShimmer() {
+        shimmerAdapter2 = ShimmerItemUpComingMovieAdapter()
+        shimmerAdapter = ShimmerItemMoviePopularAdapter()
+
+        binding.rvShimmerLoading0.layoutManager = LinearLayoutManager(
+            requireActivity(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+
+        binding.rvShimmerLoading0.adapter = shimmerAdapter2
+        binding.shimmerLoadingUp.startShimmer()
+
+        binding.rvShimmerLoading1.layoutManager = LinearLayoutManager(
+            requireActivity(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        binding.rvShimmerLoading1.adapter = shimmerAdapter
+
+
+        binding.shimmerLoadingPop.startShimmer()
+
+        binding.rvShimmerLoading2.layoutManager = LinearLayoutManager(
+            requireActivity(),
+            LinearLayoutManager.HORIZONTAL,
+            false
+        )
+        binding.rvShimmerLoading2.adapter = shimmerAdapter
+
+
+        binding.shimmerLoadingNow.startShimmer()
+    }
+
     private fun showLoading(isLoading: Boolean) {
         if (isLoading) {
-            binding.pb1.visibility = View.VISIBLE
-            binding.pb2.visibility = View.VISIBLE
-            binding.pb3.visibility = View.VISIBLE
+            binding.shimmerLoadingUp.visibility = View.VISIBLE
+            binding.shimmerLoadingPop.visibility = View.VISIBLE
+            binding.shimmerLoadingNow.visibility = View.VISIBLE
         } else {
-            binding.pb1.visibility = View.GONE
-            binding.pb2.visibility = View.GONE
-            binding.pb3.visibility = View.GONE
+            binding.shimmerLoadingUp.visibility = View.GONE
+            binding.shimmerLoadingPop.visibility = View.GONE
+            binding.shimmerLoadingNow.visibility = View.GONE
         }
     }
 

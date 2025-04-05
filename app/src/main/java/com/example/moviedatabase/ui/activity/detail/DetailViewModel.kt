@@ -24,9 +24,6 @@ class DetailViewModel(
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _isSetting = MutableLiveData<Boolean>()
-    val isSetting: LiveData<Boolean> = _isSetting
-
     init {
         getMovieDetail(movieId)
         getMovieCredits(movieId)
@@ -34,12 +31,10 @@ class DetailViewModel(
 
     private fun getMovieCredits(movieId: Int) {
         viewModelScope.launch {
-            _isSetting.value = false
             _isLoading.value = true
             try {
                 val response = repository.getMovieCredits(movieId)
                 _movieCredits.value = response
-                _isSetting.value = true
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {
@@ -50,12 +45,10 @@ class DetailViewModel(
 
     private fun getMovieDetail(movieId: Int) {
         viewModelScope.launch {
-            _isSetting.value = false
             _isLoading.value = true
             try {
                 val response = repository.getMovieDetail(movieId)
                 _movieDetail.value = response
-                _isSetting.value = true
             } catch (e: Exception) {
                 e.printStackTrace()
             } finally {

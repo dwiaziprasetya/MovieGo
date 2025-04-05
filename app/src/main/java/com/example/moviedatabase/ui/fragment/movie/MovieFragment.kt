@@ -10,11 +10,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.moviedatabase.R
 import com.example.moviedatabase.data.LoadingStateAdapter
 import com.example.moviedatabase.databinding.FragmentMovieBinding
 import com.example.moviedatabase.ui.activity.detail.DetailActivity
 import com.example.moviedatabase.ui.adapter.RvDiscoverMovieAdapter
-import com.example.moviedatabase.ui.adapter.ShimmerAdapter
+import com.example.moviedatabase.ui.adapter.ShimmerItemMovieAdapter
 import com.example.moviedatabase.utils.ViewModelFactory
 
 class MovieFragment : Fragment() {
@@ -25,7 +26,7 @@ class MovieFragment : Fragment() {
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<MovieViewModel> { factory }
     private val adapter = RvDiscoverMovieAdapter()
-    private lateinit var shimmerAdapter: ShimmerAdapter
+    private lateinit var shimmerAdapter: ShimmerItemMovieAdapter
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -43,7 +44,16 @@ class MovieFragment : Fragment() {
 
         showRecyclerViewDiscoverMovie()
         setupShimmer()
-    }
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            adapter.refresh()
+        }
+
+        binding.swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.background_theme)
+
+        binding.swipeRefreshLayout.setColorSchemeResources(
+            R.color.red_netflix,
+        ) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -82,11 +92,12 @@ class MovieFragment : Fragment() {
             val isLoading = loadState.refresh is LoadState.Loading
             binding.shimmerLoading.isVisible = isLoading
             binding.rvDiscoverMovies.isVisible = !isLoading
+            binding.swipeRefreshLayout.isRefreshing = false
         }
     }
 
     private fun setupShimmer() {
-        shimmerAdapter = ShimmerAdapter()
+        shimmerAdapter = ShimmerItemMovieAdapter()
 
         binding.rvShimmerGrid.shimmerRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         binding.rvShimmerGrid.shimmerRecyclerView.adapter = shimmerAdapter

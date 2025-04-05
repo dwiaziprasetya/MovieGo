@@ -11,6 +11,7 @@
     tools:ignore="Overdraw">
 
     <androidx.core.widget.NestedScrollView
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true"
@@ -108,7 +109,6 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="1.0" />
 
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_upcoming_movies"
                 android:layout_width="match_parent"
@@ -119,15 +119,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_upcoming_movies"/>
 
-            <ProgressBar
-                android:id="@+id/pb_1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminateTint="@color/red_netflix"
-                app:layout_constraintBottom_toBottomOf="@+id/rv_upcoming_movies"
-                app:layout_constraintEnd_toEndOf="@+id/rv_upcoming_movies"
-                app:layout_constraintStart_toStartOf="@+id/rv_upcoming_movies"
-                app:layout_constraintTop_toTopOf="@+id/rv_upcoming_movies"/>
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_loading_up"
+                android:visibility="invisible"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                app:shimmer_intensity="0.3"
+                app:shimmer_auto_start="true"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                app:shimmer_duration="800"
+                app:shimmer_direction="left_to_right"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_upcoming_movies">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_shimmer_loading_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
             <TextView
                 android:id="@+id/tv_popular_movies"
@@ -155,7 +167,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/tv_popular_movies"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/tv_popular_movies" />
+                app:layout_constraintStart_toEndOf="@+id/tv_popular_movies"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_popular_movies"
@@ -165,17 +177,29 @@
                 android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_popular_movies" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_popular_movies"/>
 
-            <ProgressBar
-                android:id="@+id/pb_2"
-                android:indeterminateTint="@color/red_netflix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="@+id/rv_popular_movies"
-                app:layout_constraintEnd_toEndOf="@+id/rv_popular_movies"
-                app:layout_constraintStart_toStartOf="@+id/rv_popular_movies"
-                app:layout_constraintTop_toTopOf="@+id/rv_popular_movies" />
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:visibility="invisible"
+                android:id="@+id/shimmer_loading_pop"
+                android:layout_width="match_parent"
+                android:layout_height="210dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_popular_movies"
+                app:shimmer_intensity="0.3"
+                app:shimmer_auto_start="true"
+                app:shimmer_duration="800"
+                app:shimmer_direction="left_to_right">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_shimmer_loading_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
             <TextView
                 android:id="@+id/tv_now_playing_movies"
@@ -202,30 +226,41 @@
                 android:text="@string/see_all"
                 android:textColor="@color/red_netflix"
                 app:layout_constraintBottom_toBottomOf="@id/tv_now_playing_movies"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintStart_toEndOf="@+id/tv_now_playing_movies" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_now_playing_movies"
                 android:layout_width="match_parent"
                 android:layout_marginStart="8dp"
-                android:layout_height="210dp"
+                android:layout_height="190dp"
                 android:layout_marginTop="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_now_playing_movies" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_now_playing_movies"/>
 
-            <ProgressBar
-                android:id="@+id/pb_3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:indeterminateTint="@color/red_netflix"
-                app:layout_constraintTop_toTopOf="@+id/rv_now_playing_movies"
-                app:layout_constraintStart_toStartOf="@+id/rv_now_playing_movies"
-                app:layout_constraintEnd_toEndOf="@+id/rv_now_playing_movies"
-                app:layout_constraintBottom_toBottomOf="@+id/rv_now_playing_movies"/>
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:visibility="invisible"
+                android:id="@+id/shimmer_loading_now"
+                android:layout_width="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_height="190dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_now_playing_movies"
+                app:shimmer_intensity="0.3"
+                app:shimmer_auto_start="true"
+                app:shimmer_duration="800"
+                app:shimmer_direction="left_to_right">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_shimmer_loading_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

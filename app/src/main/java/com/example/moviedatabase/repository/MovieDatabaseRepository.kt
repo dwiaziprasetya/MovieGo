@@ -20,6 +20,7 @@ class MovieDatabaseRepository(
     private val apiService: ApiService,
     private val favouriteDao: FavouriteDao
 ) {
+
     suspend fun getUpComingMovieData() : UpComingMovieResponse {
         return apiService.getUpComingMovies()
     }

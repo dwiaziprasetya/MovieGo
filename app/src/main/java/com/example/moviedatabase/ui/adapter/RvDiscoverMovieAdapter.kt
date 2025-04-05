@@ -59,7 +59,6 @@ class RvDiscoverMovieAdapter: PagingDataAdapter<DiscoverMovieItem, RvDiscoverMov
         holder.binding.itemMovies.startAnimation(android.view.animation.AnimationUtils.loadAnimation(holder.binding.itemMovies.context, R.anim.scale_up))
     }
 
-
     fun setOnItemClickCallback(onItemClickCallback: OnitemClickCallback){
         this.onItemCallback = onItemClickCallback
     }

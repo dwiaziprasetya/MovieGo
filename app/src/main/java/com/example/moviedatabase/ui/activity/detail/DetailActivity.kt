@@ -83,22 +83,19 @@ class DetailActivity : AppCompatActivity() {
 
         viewModel.isLoading.observe(this) { isLoading ->
             if (isLoading) {
-                binding.pb.visibility = View.VISIBLE
+                binding.shimmerLayout.visibility = View.VISIBLE
+                binding.btnWatchTrailerShimmer.visibility = View.VISIBLE
+                binding.shimmerLayout.startShimmer()
             } else {
-                binding.pb.visibility = View.GONE
+                binding.shimmerLayout.stopShimmer()
+                binding.shimmerLayout.visibility = View.GONE
+                binding.btnWatchTrailerShimmer.visibility = View.GONE
+                binding.cnsDetail.visibility = View.VISIBLE
+                binding.btnWatchTrailer.visibility = View.VISIBLE
                 setUpAnimation()
             }
         }
 
-        viewModel.isSetting.observe(this) { isSetting ->
-            if (isSetting) {
-                binding.cnsDetail.visibility = View.VISIBLE
-                binding.btnWatchTrailer.visibility = View.VISIBLE
-            } else {
-                binding.btnWatchTrailer.visibility = View.GONE
-                binding.cnsDetail.visibility = View.GONE
-            }
-        }
     }
 
     @SuppressLint("SetTextI18n")

@@ -50,11 +50,18 @@
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_discover_movies"
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-        
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_discover_movies"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
         <com.facebook.shimmer.ShimmerFrameLayout
             android:visibility="invisible"
             android:id="@+id/shimmer_loading"
@@ -66,7 +73,7 @@
             app:shimmer_direction="left_to_right">
 
             <include
-                layout="@layout/shimmer_layout_grid"
+                layout="@layout/shimmer_layout_movie_grid"
                 android:id="@+id/rv_shimmer_grid"/>
 
         </com.facebook.shimmer.ShimmerFrameLayout>
