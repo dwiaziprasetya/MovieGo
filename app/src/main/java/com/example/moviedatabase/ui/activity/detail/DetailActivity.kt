@@ -88,11 +88,12 @@ class DetailActivity : AppCompatActivity() {
                 binding.shimmerLayout.startShimmer()
             } else {
                 binding.shimmerLayout.stopShimmer()
+                setUpAnimation()
                 binding.shimmerLayout.visibility = View.GONE
                 binding.btnWatchTrailerShimmer.visibility = View.GONE
                 binding.cnsDetail.visibility = View.VISIBLE
                 binding.btnWatchTrailer.visibility = View.VISIBLE
-                setUpAnimation()
+//                setUpAnimation()
             }
         }
 
