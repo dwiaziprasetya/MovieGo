@@ -56,6 +56,10 @@ class MovieDatabaseRepository(
         favouriteDao.insert(favourite)
     }
 
+    suspend fun getAllFavourites(): List<Favourite> {
+        return favouriteDao.getAllFavourites()
+    }
+
     companion object {
         fun getInstance(
             apiService: ApiService,
