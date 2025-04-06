@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.moviedatabase.data.local.entity.Favourite
+import com.example.moviedatabase.R
 import com.example.moviedatabase.databinding.FragmentFavouriteBinding
 import com.example.moviedatabase.ui.adapter.FavouriteAdapter
 import com.example.moviedatabase.utils.ViewModelFactory
@@ -34,16 +34,36 @@ class FavouriteFragment : Fragment() {
 
         factory = ViewModelFactory.getInstance(requireActivity())
 
-        viewModel.favourites.observe(requireActivity()) {
-            setUpComingMovieData(it)
-        }
-    }
-
-    private fun setUpComingMovieData(movies : List<Favourite>){
         adapter = FavouriteAdapter()
-        adapter.submitList(movies)
         binding.rvFavouriteMovie.adapter = adapter
         binding.rvFavouriteMovie.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
-        binding.rvFavouriteMovie.hasFixedSize()
+        binding.rvFavouriteMovie.setHasFixedSize(true)
+
+        binding.swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.background_theme)
+
+        binding.swipeRefreshLayout.setColorSchemeResources(
+            R.color.red_netflix,
+        )
+
+        viewModel.favourites.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
+        }
+
+        viewModel.loading.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.rvFavouriteMovie.visibility = View.GONE
+                binding.shimmerLoading.visibility = View.VISIBLE
+                binding.shimmerLoading.startShimmer()
+            } else {
+                binding.shimmerLoading.visibility = View.GONE
+                binding.shimmerLoading.stopShimmer()
+                binding.rvFavouriteMovie.visibility = View.VISIBLE
+            }
+        }
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            viewModel.getAllFavourites()
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
     }
 }

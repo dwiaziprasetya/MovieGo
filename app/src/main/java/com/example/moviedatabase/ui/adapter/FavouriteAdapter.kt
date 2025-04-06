@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.BuildConfig
+import com.example.moviedatabase.R
 import com.example.moviedatabase.data.local.entity.Favourite
 import com.example.moviedatabase.databinding.ItemMovieListBinding
 
@@ -22,7 +23,7 @@ class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHo
         }
     }
 
-    inner class FavouriteViewHolder(private val binding: ItemMovieListBinding) :
+    inner class FavouriteViewHolder(val binding: ItemMovieListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
         fun bind(favourite: Favourite) {
@@ -41,5 +42,7 @@ class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHo
 
     override fun onBindViewHolder(holder: FavouriteViewHolder, position: Int) {
         holder.bind(getItem(position))
+
+        holder.binding.itemMoviesList.startAnimation(android.view.animation.AnimationUtils.loadAnimation(holder.binding.itemMoviesList.context, R.anim.scale_up))
     }
 }

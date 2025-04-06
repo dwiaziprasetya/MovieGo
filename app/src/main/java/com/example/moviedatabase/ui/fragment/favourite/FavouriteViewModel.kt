@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moviedatabase.data.local.entity.Favourite
 import com.example.moviedatabase.repository.MovieDatabaseRepository
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 class FavouriteViewModel(private val repository:  MovieDatabaseRepository) : ViewModel() {
@@ -13,13 +14,23 @@ class FavouriteViewModel(private val repository:  MovieDatabaseRepository) : Vie
     private val _favourites = MutableLiveData<List<Favourite>>()
     val favourites: LiveData<List<Favourite>> get() = _favourites
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> get() = _isLoading
+
     init {
         getAllFavourites()
     }
 
-    private fun getAllFavourites() {
+    fun getAllFavourites() {
         viewModelScope.launch {
-            _favourites.postValue(repository.getAllFavourites())
+            _isLoading.value = true
+            delay(1000)
+            try {
+                val response = repository.getAllFavourites()
+                _favourites.value = response
+            } catch (e: Exception) {
+                e.printStackTrace()
+            } finally {  _isLoading.value = false }
         }
     }
 }

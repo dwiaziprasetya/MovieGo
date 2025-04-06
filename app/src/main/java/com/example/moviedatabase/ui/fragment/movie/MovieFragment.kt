@@ -53,7 +53,8 @@ class MovieFragment : Fragment() {
 
         binding.swipeRefreshLayout.setColorSchemeResources(
             R.color.red_netflix,
-        ) }
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

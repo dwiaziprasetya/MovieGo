@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:id="@+id/item_movies_list"
     card_view:cardBackgroundColor="@color/background_theme"
     android:layout_height="wrap_content"
     card_view:cardElevation="0dp">
@@ -14,63 +12,64 @@
         android:background="@color/background_theme"
         android:layout_margin="16dp">
 
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/img_movie_list_photo"
+        <View
+            android:background="@color/grey"
+            android:id="@+id/img_movie_list_photo_shimmer"
             android:layout_width="90dp"
-            card_view:riv_corner_radius="10dp"
             android:layout_height="120dp"
-            android:scaleType="centerCrop"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintStart_toStartOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
-            tools:src="@tools:sample/avatars" />
+            card_view:layout_constraintTop_toTopOf="parent"/>
 
         <TextView
-            android:id="@+id/tv_movie_list_name"
+            android:id="@+id/tv_movie_list_name_shimmer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_toEndOf="@id/img_movie_list_photo"
+            android:layout_marginEnd="150dp"
+            android:layout_toEndOf="@id/img_movie_list_photo_shimmer"
+            android:background="@color/grey"
             android:fontFamily="@font/dmsans_bold"
             android:textColor="@color/white"
             android:textSize="14sp"
             android:textStyle="bold"
             card_view:layout_constraintBottom_toBottomOf="parent"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/img_movie_list_photo"
-            card_view:layout_constraintTop_toTopOf="@id/img_movie_list_photo"
-            card_view:layout_constraintVertical_bias="0.0"
-            tools:text="@string/title_movie" />
+            card_view:layout_constraintStart_toEndOf="@+id/img_movie_list_photo_shimmer"
+            card_view:layout_constraintTop_toTopOf="@id/img_movie_list_photo_shimmer"
+            card_view:layout_constraintVertical_bias="0.0" />
 
 
         <TextView
-            android:id="@+id/tv_movie_genre"
+            android:id="@+id/tv_movie_genre_shimmer"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_toEndOf="@id/img_movie_list_photo"
+            android:layout_marginEnd="200dp"
+            android:layout_toEndOf="@id/img_movie_list_photo_shimmer"
+            android:background="@color/grey"
             android:fontFamily="@font/dmsans_bold"
             android:textColor="@color/grey"
             android:textSize="11sp"
             card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintStart_toEndOf="@+id/img_movie_list_photo"
-            card_view:layout_constraintTop_toBottomOf="@id/tv_movie_list_name"
-            tools:text="@string/movie_genre" />
+            card_view:layout_constraintStart_toEndOf="@+id/img_movie_list_photo_shimmer"
+            card_view:layout_constraintTop_toBottomOf="@id/tv_movie_list_name_shimmer" />
 
         <TextView
-            android:id="@+id/tv_rating_movie"
-            android:layout_width="wrap_content"
+            android:id="@+id/tv_rating_movie_shimmer"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="180dp"
+            android:background="@color/grey"
             android:fontFamily="@font/dmsans_bold"
-            android:text="2024 • 3h 20m"
             android:textColor="@color/white"
             android:textSize="14sp"
-            android:layout_marginTop="8dp"
-            card_view:layout_constraintStart_toStartOf="@+id/tv_movie_genre"
-            card_view:layout_constraintTop_toBottomOf="@+id/tv_movie_genre" />
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintHorizontal_bias="0.0"
+            card_view:layout_constraintStart_toStartOf="@+id/tv_movie_genre_shimmer"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_movie_genre_shimmer" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
