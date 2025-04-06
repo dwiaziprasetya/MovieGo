@@ -1,5 +1,6 @@
 package com.example.moviedatabase.data.local.dao
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -13,4 +14,7 @@ interface FavouriteDao {
 
     @Query("SELECT * FROM favourite")
     suspend fun getAllFavourites(): List<Favourite>
+
+    @Query("SELECT COUNT(*) from favourite WHERE movie_name = :movieName")
+    fun isUserFavourite(movieName: String): LiveData<Boolean>
 }
