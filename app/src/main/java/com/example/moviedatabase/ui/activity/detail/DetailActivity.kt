@@ -111,16 +111,15 @@ class DetailActivity : AppCompatActivity() {
 
         binding.btnFavourite.setOnClickListener {
             checkFavourite = !checkFavourite
-            viewModel.addToFavorite(
-                movieName = movie.title,
-                movieId = movie.id,
-                moviePhoto = movie.posterPath
-            )
-
             if (checkFavourite) {
                 binding.icFavourite.setImageResource(R.drawable.icon_favourite_fill)
             } else {
                 binding.icFavourite.setImageResource(R.drawable.icon_favourite)
+                viewModel.addToFavorite(
+                    movieName = movie.title,
+                    movieId = movie.id,
+                    moviePhoto = movie.posterPath
+                )
             }
         }
 
