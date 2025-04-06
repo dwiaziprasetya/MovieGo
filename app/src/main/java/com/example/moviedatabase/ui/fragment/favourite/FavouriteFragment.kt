@@ -63,7 +63,13 @@ class FavouriteFragment : Fragment() {
 
         binding.swipeRefreshLayout.setOnRefreshListener {
             viewModel.getAllFavourites()
+            adapter.setAnimateItems(true)
             binding.swipeRefreshLayout.isRefreshing = false
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

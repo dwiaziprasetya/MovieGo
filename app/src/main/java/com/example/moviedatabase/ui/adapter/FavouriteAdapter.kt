@@ -1,5 +1,6 @@
 package com.example.moviedatabase.ui.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -23,6 +24,14 @@ class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHo
         }
     }
 
+    private var animateItems = true
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setAnimateItems(animate: Boolean) {
+        animateItems = animate
+        notifyDataSetChanged()
+    }
+
     inner class FavouriteViewHolder(val binding: ItemMovieListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
@@ -43,6 +52,13 @@ class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHo
     override fun onBindViewHolder(holder: FavouriteViewHolder, position: Int) {
         holder.bind(getItem(position))
 
-        holder.binding.itemMoviesList.startAnimation(android.view.animation.AnimationUtils.loadAnimation(holder.binding.itemMoviesList.context, R.anim.scale_up))
+        if (animateItems) {
+            holder.binding.itemMoviesList.startAnimation(
+                android.view.animation.AnimationUtils.loadAnimation(
+                    holder.binding.itemMoviesList.context,
+                    R.anim.scale_up
+                )
+            )
+        }
     }
 }
