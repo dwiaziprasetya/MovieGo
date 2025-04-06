@@ -46,13 +46,6 @@ class DetailActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        binding.btnFavourite.setOnClickListener {
-            viewModel.addToFavorite(
-                movieId = movieId,
-                movieName = binding.tvDetailMovieName.text.toString(),
-                moviePhoto = binding.imgDetailMoviePhoto.toString()
-            )
-        }
 
         setUpData()
     }
@@ -99,22 +92,30 @@ class DetailActivity : AppCompatActivity() {
     }
 
     @SuppressLint("SetTextI18n")
-    private fun populateUI(detail: DetailMovieResponse) {
+    private fun populateUI(movie: DetailMovieResponse) {
         val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_ORIGINAL
-        binding.tvDetailMovieName.text = detail.title
-        binding.ratingBar.rating = (detail.voteAverage / 2).toFloat()
-        binding.tvDetailMovieGenre.text = "${detail.releaseDate.substring(0, 4)} | ${detail.genres.take(2).joinToString(", ") { it.name }} | ${formatRuntime(detail.runtime)}"
+        binding.tvDetailMovieName.text = movie.title
+        binding.ratingBar.rating = (movie.voteAverage / 2).toFloat()
+        binding.tvDetailMovieGenre.text = "${movie.releaseDate.substring(0, 4)} | ${movie.genres.take(2).joinToString(", ") { it.name }} | ${formatRuntime(movie.runtime)}"
 
-        binding.tvDetailMovieOverviewData.text = detail.overview
+        binding.tvDetailMovieOverviewData.text = movie.overview
 
         binding.rvCastMovie.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvCastMovie.hasFixedSize()
         binding.rvCastMovie.adapter = adapter
         Glide.with(baseContext)
-            .load(imageBaseUrl + detail.backdropPath)
+            .load(imageBaseUrl + movie.backdropPath)
             .override(800, 450)
             .fitCenter()
             .into(binding.imgDetailMoviePhoto)
+
+        binding.btnFavourite.setOnClickListener {
+            viewModel.addToFavorite(
+                movieName = movie.title,
+                movieId = movie.id,
+                moviePhoto = movie.posterPath
+            )
+        }
     }
 
     private fun setUpAnimation(){
