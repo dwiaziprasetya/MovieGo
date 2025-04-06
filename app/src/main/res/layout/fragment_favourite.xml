@@ -48,6 +48,11 @@
         android:layout_height="match_parent"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_favourite_movie"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
