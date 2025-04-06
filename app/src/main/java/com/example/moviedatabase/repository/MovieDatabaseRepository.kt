@@ -52,6 +52,10 @@ class MovieDatabaseRepository(
         ).liveData
     }
 
+    suspend fun deleteToFavourite(favourite: Favourite) {
+        favouriteDao.delete(favourite)
+    }
+
     suspend fun addToFavourite(favourite: Favourite) {
         favouriteDao.insert(favourite)
     }

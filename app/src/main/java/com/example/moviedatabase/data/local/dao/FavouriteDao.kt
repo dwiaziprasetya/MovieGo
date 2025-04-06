@@ -14,7 +14,7 @@ interface FavouriteDao {
     suspend fun insert(favourite: Favourite)
 
     @Delete
-    fun delete(favourite: Favourite)
+    suspend fun delete(favourite: Favourite)
 
     @Query("SELECT * FROM favourite")
     suspend fun getAllFavourites(): List<Favourite>
