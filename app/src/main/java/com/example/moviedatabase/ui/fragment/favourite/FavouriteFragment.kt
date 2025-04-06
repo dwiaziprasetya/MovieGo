@@ -5,12 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.moviedatabase.data.local.entity.Favourite
 import com.example.moviedatabase.databinding.FragmentFavouriteBinding
+import com.example.moviedatabase.ui.adapter.FavouriteAdapter
+import com.example.moviedatabase.utils.ViewModelFactory
 
 class FavouriteFragment : Fragment() {
 
     private var _binding: FragmentFavouriteBinding? = null
     private val binding get() = _binding!!
+    private lateinit var adapter: FavouriteAdapter
+
+    private lateinit var factory: ViewModelFactory
+    private val viewModel by viewModels<FavouriteViewModel> { factory }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,5 +31,19 @@ class FavouriteFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        factory = ViewModelFactory.getInstance(requireActivity())
+
+        viewModel.favourites.observe(requireActivity()) {
+            setUpComingMovieData(it)
+        }
+    }
+
+    private fun setUpComingMovieData(movies : List<Favourite>){
+        adapter = FavouriteAdapter()
+        adapter.submitList(movies)
+        binding.rvFavouriteMovie.adapter = adapter
+        binding.rvFavouriteMovie.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
+        binding.rvFavouriteMovie.hasFixedSize()
     }
 }

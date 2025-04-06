@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.moviedatabase.di.Injection
 import com.example.moviedatabase.repository.MovieDatabaseRepository
 import com.example.moviedatabase.ui.activity.detail.DetailViewModel
+import com.example.moviedatabase.ui.fragment.favourite.FavouriteViewModel
 import com.example.moviedatabase.ui.fragment.home.HomeViewModel
 import com.example.moviedatabase.ui.fragment.movie.MovieViewModel
 
@@ -21,6 +22,8 @@ class ViewModelFactory(
             return HomeViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(MovieViewModel::class.java)) {
             return MovieViewModel(repository) as T
+        } else if (modelClass.isAssignableFrom(FavouriteViewModel::class.java)) {
+            return FavouriteViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }

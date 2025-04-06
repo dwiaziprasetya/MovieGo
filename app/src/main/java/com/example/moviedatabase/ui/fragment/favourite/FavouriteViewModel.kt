@@ -13,7 +13,11 @@ class FavouriteViewModel(private val repository:  MovieDatabaseRepository) : Vie
     private val _favourites = MutableLiveData<List<Favourite>>()
     val favourites: LiveData<List<Favourite>> get() = _favourites
 
-    fun getAllFavourites() {
+    init {
+        getAllFavourites()
+    }
+
+    private fun getAllFavourites() {
         viewModelScope.launch {
             _favourites.postValue(repository.getAllFavourites())
         }

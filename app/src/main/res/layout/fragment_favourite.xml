@@ -12,36 +12,38 @@
         android:layout_height="wrap_content"
         android:backgroundTint="?attr/colorOnPrimary"
         app:liftOnScroll="?attr/colorOnPrimary"
-        android:background="?attr/colorOnPrimary"/>
+        android:background="?attr/colorOnPrimary">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleTextColor="?attr/colorOnSurfaceVariant"
-        app:titleCentered="true"
-        app:titleTextAppearance="@style/toolbar_text">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleTextColor="?attr/colorOnSurfaceVariant"
+            app:titleCentered="true"
+            app:titleTextAppearance="@style/toolbar_text">
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_height="wrap_content">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:src="@drawable/logo"/>
-
-            <TextView
+            <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                style="@style/toolbar_text"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                android:text="Favourite"/>
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_height="wrap_content">
 
-        </LinearLayout>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/logo" />
 
-    </com.google.android.material.appbar.MaterialToolbar>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/toolbar_text"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:text="Favourite" />
+
+            </LinearLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -52,18 +54,6 @@
             android:id="@+id/rv_favourite_movie"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/movie_favorite_template"
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            android:fontFamily="@font/dmsans_bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
