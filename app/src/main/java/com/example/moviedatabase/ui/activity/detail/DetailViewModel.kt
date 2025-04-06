@@ -57,6 +57,8 @@ class DetailViewModel(
         }
     }
 
+    fun isMovieFavourite(movieName: String): LiveData<Boolean> = repository.isMovieFavourite(movieName)
+
     fun addToFavorite(
         movieId: Int,
         movieName: String,
