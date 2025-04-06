@@ -93,7 +93,6 @@ class DetailActivity : AppCompatActivity() {
                 binding.btnWatchTrailerShimmer.visibility = View.GONE
                 binding.cnsDetail.visibility = View.VISIBLE
                 binding.btnWatchTrailer.visibility = View.VISIBLE
-//                setUpAnimation()
             }
         }
 
