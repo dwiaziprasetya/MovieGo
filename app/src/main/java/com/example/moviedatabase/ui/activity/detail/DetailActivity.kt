@@ -27,6 +27,7 @@ class DetailActivity : AppCompatActivity() {
     private var adapter = RvCastMovieAdapter()
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<DetailViewModel> {factory}
+    private var checkFavourite = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,11 +110,27 @@ class DetailActivity : AppCompatActivity() {
             .into(binding.imgDetailMoviePhoto)
 
         binding.btnFavourite.setOnClickListener {
+            checkFavourite = !checkFavourite
             viewModel.addToFavorite(
                 movieName = movie.title,
                 movieId = movie.id,
                 moviePhoto = movie.posterPath
             )
+
+            if (checkFavourite) {
+                binding.icFavourite.setImageResource(R.drawable.icon_favourite_fill)
+            } else {
+                binding.icFavourite.setImageResource(R.drawable.icon_favourite)
+            }
+        }
+
+        viewModel.isMovieFavourite(movie.title).observe(this) { isFavourite ->
+            checkFavourite = isFavourite
+            if (isFavourite) {
+                binding.icFavourite.setImageResource(R.drawable.icon_favourite_fill)
+            } else {
+                binding.icFavourite.setImageResource(R.drawable.icon_favourite)
+            }
         }
     }
 

@@ -312,10 +312,10 @@
                     tools:ignore="UseCompoundDrawables">
 
                     <ImageView
+                        android:id="@+id/ic_favourite"
                         android:layout_width="24dp"
                         android:layout_height="24dp"
-                        android:src="@drawable/icon_favourite"
-                        app:tint="@color/white" />
+                        android:src="@drawable/icon_favourite"/>
 
                     <TextView
                         android:layout_width="wrap_content"
