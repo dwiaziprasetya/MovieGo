@@ -60,6 +60,8 @@ class MovieDatabaseRepository(
         return favouriteDao.getAllFavourites()
     }
 
+    fun isMovieFavourite(movieName: String): LiveData<Boolean> = favouriteDao.isMovieFavourite(movieName)
+
     companion object {
         fun getInstance(
             apiService: ApiService,
