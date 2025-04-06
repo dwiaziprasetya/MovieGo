@@ -46,7 +46,6 @@ class DetailActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-
         setUpData()
     }
 
