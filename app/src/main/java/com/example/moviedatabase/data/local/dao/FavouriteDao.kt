@@ -16,5 +16,5 @@ interface FavouriteDao {
     suspend fun getAllFavourites(): List<Favourite>
 
     @Query("SELECT COUNT(*) from favourite WHERE movie_name = :movieName")
-    fun isUserFavourite(movieName: String): LiveData<Boolean>
+    fun isMovieFavourite(movieName: String): LiveData<Boolean>
 }
