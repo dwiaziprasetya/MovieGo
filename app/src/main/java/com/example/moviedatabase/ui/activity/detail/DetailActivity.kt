@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
@@ -113,13 +114,20 @@ class DetailActivity : AppCompatActivity() {
             checkFavourite = !checkFavourite
             if (checkFavourite) {
                 binding.icFavourite.setImageResource(R.drawable.icon_favourite_fill)
-            } else {
-                binding.icFavourite.setImageResource(R.drawable.icon_favourite)
                 viewModel.addToFavorite(
                     movieName = movie.title,
                     movieId = movie.id,
                     moviePhoto = movie.posterPath
                 )
+                Toast.makeText(this, "${movie.title} Added to Favourite", Toast.LENGTH_SHORT).show()
+            } else {
+                binding.icFavourite.setImageResource(R.drawable.icon_favourite)
+                viewModel.deleteFromFavorite(
+                    movieName = movie.title,
+                    movieId = movie.id,
+                    moviePhoto = movie.posterPath
+                )
+                Toast.makeText(this, "${movie.title} Removed from Favourite", Toast.LENGTH_SHORT).show()
             }
         }
 

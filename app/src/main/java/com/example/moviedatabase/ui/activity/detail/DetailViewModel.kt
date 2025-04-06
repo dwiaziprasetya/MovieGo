@@ -59,8 +59,19 @@ class DetailViewModel(
 
     fun isMovieFavourite(movieName: String): LiveData<Boolean> = repository.isMovieFavourite(movieName)
 
-    fun deleteFromFavorite(movie: Favourite) {
-
+    fun deleteFromFavorite(
+        movieId: Int,
+        movieName: String,
+        moviePhoto: String
+    ) {
+        viewModelScope.launch {
+            val movie = Favourite(
+                movieId = movieId,
+                movieName = movieName,
+                moviePhoto = moviePhoto
+            )
+            repository.deleteToFavourite(movie)
+        }
     }
 
     fun addToFavorite(
