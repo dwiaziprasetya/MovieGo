@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnimationUtils
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.WindowCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -16,7 +16,9 @@ import com.example.moviedatabase.data.local.entity.Favourite
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
 import com.example.moviedatabase.databinding.ActivityDetailBinding
 import com.example.moviedatabase.ui.adapter.RvCastMovieAdapter
+import com.example.moviedatabase.utils.TopSnackbar
 import com.example.moviedatabase.utils.ViewModelFactory
+import com.google.android.material.snackbar.Snackbar
 
 @Suppress("DEPRECATION")
 class DetailActivity : AppCompatActivity() {
@@ -39,31 +41,16 @@ class DetailActivity : AppCompatActivity() {
 
         WindowCompat.setDecorFitsSystemWindows(window,false)
 
-        handleWindowInsets()
 
         val movieId = intent.getIntExtra(MOVIE_ID, -1)
 
         factory = ViewModelFactory.getInstance(this, movieId)
-
 
         binding.imgBtnBack.setOnClickListener {
             onBackPressed()
         }
 
         setUpData()
-    }
-
-    private fun handleWindowInsets() {
-        binding.root.setOnApplyWindowInsetsListener { view, insets ->
-            val navigationBarHeight = insets.systemGestureInsets.bottom
-            binding.detailActivity.setPadding(
-                view.paddingLeft,
-                0,
-                view.paddingRight,
-                navigationBarHeight
-            )
-            insets
-        }
     }
 
     private fun setUpData() {
@@ -91,10 +78,9 @@ class DetailActivity : AppCompatActivity() {
                 binding.btnWatchTrailer.visibility = View.VISIBLE
             }
         }
-
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint("SetTextI18n", "ResourceAsColor")
     private fun populateUI(movie: DetailMovieResponse) {
         val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_ORIGINAL
         binding.tvDetailMovieName.text = movie.title
@@ -123,11 +109,29 @@ class DetailActivity : AppCompatActivity() {
             if (checkFavourite) {
                 binding.icFavourite.setImageResource(R.drawable.icon_favourite_fill)
                 viewModel.addToFavorite(favourite)
-                Toast.makeText(this, "${movie.title} Added to Favourite", Toast.LENGTH_SHORT).show()
+
+                // Menggunakan TopSnackbar alih-alih Snackbar biasa
+                val snackbar = TopSnackbar.make(
+                    binding.root,
+                    "${movie.title} added to Favourite",
+                    Snackbar.LENGTH_SHORT
+                )
+                // Opsional: Ubah warna background
+                snackbar.setBackgroundTint(ContextCompat.getColor(this, R.color.green))
+                snackbar.show()
             } else {
                 binding.icFavourite.setImageResource(R.drawable.icon_favourite)
                 viewModel.deleteFromFavorite(movie.id)
-                Toast.makeText(this, "${movie.title} Removed from Favourite", Toast.LENGTH_SHORT).show()
+
+                // Menggunakan TopSnackbar alih-alih Snackbar biasa
+                val snackbar = TopSnackbar.make(
+                    binding.root,
+                    "${movie.title} removed from Favourite",
+                    Snackbar.LENGTH_SHORT
+                )
+                // Opsional: Ubah warna background
+                snackbar.setBackgroundTint(ContextCompat.getColor(this, R.color.red_netflix))
+                snackbar.show()
             }
         }
 

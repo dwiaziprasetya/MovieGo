@@ -10,6 +10,6 @@
     <color name="background_theme">#040009</color>
     <color name="grey">#DDDDDD</color>
     <color name="gold">#F79327</color>
-    <color name="green">#4CAF50</color> <!-- Hijau material -->
+    <color name="green">#18af28</color> <!-- Hijau material -->
     <color name="red_netflix">	#db0000</color>
 </resources>
