@@ -47,17 +47,34 @@ class FavouriteFragment : Fragment() {
 
         viewModel.favourites.observe(viewLifecycleOwner) {
             adapter.submitList(it)
+
+            if (it.isEmpty()) {
+                binding.rvFavouriteMovie.visibility = View.GONE
+                binding.tvEmptyFavourite.visibility = View.VISIBLE
+            } else {
+                binding.rvFavouriteMovie.visibility = View.VISIBLE
+                binding.tvEmptyFavourite.visibility = View.GONE
+            }
         }
 
         viewModel.loading.observe(viewLifecycleOwner) {
-            if (it) {
-                binding.rvFavouriteMovie.visibility = View.GONE
-                binding.shimmerLoading.visibility = View.VISIBLE
-                binding.shimmerLoading.startShimmer()
-            } else {
-                binding.shimmerLoading.visibility = View.GONE
-                binding.shimmerLoading.stopShimmer()
-                binding.rvFavouriteMovie.visibility = View.VISIBLE
+            viewModel.loading.observe(viewLifecycleOwner) {
+                if (it) {
+                    binding.rvFavouriteMovie.visibility = View.GONE
+                    binding.tvEmptyFavourite.visibility = View.GONE
+                    binding.shimmerLoading.visibility = View.VISIBLE
+                    binding.shimmerLoading.startShimmer()
+                } else {
+                    binding.shimmerLoading.visibility = View.GONE
+                    binding.shimmerLoading.stopShimmer()
+                    if (viewModel.favourites.value?.isNotEmpty() == true) {
+                        binding.rvFavouriteMovie.visibility = View.VISIBLE
+                        binding.tvEmptyFavourite.visibility = View.GONE
+                    } else {
+                        binding.rvFavouriteMovie.visibility = View.GONE
+                        binding.tvEmptyFavourite.visibility = View.VISIBLE
+                    }
+                }
             }
         }
 

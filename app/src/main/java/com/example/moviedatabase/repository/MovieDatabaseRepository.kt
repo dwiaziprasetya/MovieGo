@@ -52,8 +52,8 @@ class MovieDatabaseRepository(
         ).liveData
     }
 
-    suspend fun deleteToFavourite(favourite: Favourite) {
-        favouriteDao.delete(favourite)
+    suspend fun deleteToFavourite(movieId: Int) {
+        favouriteDao.deleteByMovieId(movieId)
     }
 
     suspend fun addToFavourite(favourite: Favourite) {
@@ -64,7 +64,7 @@ class MovieDatabaseRepository(
         return favouriteDao.getAllFavourites()
     }
 
-    fun isMovieFavourite(movieName: String): LiveData<Boolean> = favouriteDao.isMovieFavourite(movieName)
+    fun isMovieFavourite(movieId: Int): LiveData<Boolean> = favouriteDao.isMovieFavourite(movieId)
 
     companion object {
         fun getInstance(

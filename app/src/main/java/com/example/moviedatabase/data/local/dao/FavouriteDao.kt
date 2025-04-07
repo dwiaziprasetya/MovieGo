@@ -2,7 +2,6 @@ package com.example.moviedatabase.data.local.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -13,12 +12,12 @@ interface FavouriteDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(favourite: Favourite)
 
-    @Delete
-    suspend fun delete(favourite: Favourite)
+    @Query("DELETE FROM favourite WHERE movie_id = :movieId")
+    suspend fun deleteByMovieId(movieId: Int)
 
     @Query("SELECT * FROM favourite")
     suspend fun getAllFavourites(): List<Favourite>
 
-    @Query("SELECT COUNT(*) from favourite WHERE movie_name = :movieName")
-    fun isMovieFavourite(movieName: String): LiveData<Boolean>
+    @Query("SELECT EXISTS(SELECT 1 FROM favourite WHERE movie_id = :movieId)")
+    fun isMovieFavourite(movieId: Int): LiveData<Boolean>
 }

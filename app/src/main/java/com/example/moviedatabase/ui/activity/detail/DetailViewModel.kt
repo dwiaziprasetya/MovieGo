@@ -57,35 +57,17 @@ class DetailViewModel(
         }
     }
 
-    fun isMovieFavourite(movieName: String): LiveData<Boolean> = repository.isMovieFavourite(movieName)
+    fun isMovieFavourite(movieId: Int): LiveData<Boolean> = repository.isMovieFavourite(movieId)
 
-    fun deleteFromFavorite(
-        movieId: Int,
-        movieName: String,
-        moviePhoto: String
-    ) {
+    fun deleteFromFavorite(movieId: Int) {
         viewModelScope.launch {
-            val movie = Favourite(
-                movieId = movieId,
-                movieName = movieName,
-                moviePhoto = moviePhoto
-            )
-            repository.deleteToFavourite(movie)
+            repository.deleteToFavourite(movieId)
         }
     }
 
-    fun addToFavorite(
-        movieId: Int,
-        movieName: String,
-        moviePhoto: String
-    ) {
+    fun addToFavorite(favourite: Favourite) {
         viewModelScope.launch {
-            val movie = Favourite(
-                movieId = movieId,
-                movieName = movieName,
-                moviePhoto = moviePhoto
-            )
-            repository.addToFavourite(movie)
+            repository.addToFavourite(favourite)
         }
     }
 }

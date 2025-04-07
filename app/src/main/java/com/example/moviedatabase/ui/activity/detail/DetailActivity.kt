@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.BuildConfig
 import com.example.moviedatabase.R
+import com.example.moviedatabase.data.local.entity.Favourite
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
 import com.example.moviedatabase.databinding.ActivityDetailBinding
 import com.example.moviedatabase.ui.adapter.RvCastMovieAdapter
@@ -29,6 +30,7 @@ class DetailActivity : AppCompatActivity() {
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<DetailViewModel> {factory}
     private var checkFavourite = false
+    private lateinit var favourite: Favourite
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -101,6 +103,12 @@ class DetailActivity : AppCompatActivity() {
 
         binding.tvDetailMovieOverviewData.text = movie.overview
 
+        favourite = Favourite(
+            movieId = movie.id,
+            movieName = movie.title,
+            moviePhoto = movie.posterPath
+        )
+
         binding.rvCastMovie.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         binding.rvCastMovie.hasFixedSize()
         binding.rvCastMovie.adapter = adapter
@@ -114,24 +122,16 @@ class DetailActivity : AppCompatActivity() {
             checkFavourite = !checkFavourite
             if (checkFavourite) {
                 binding.icFavourite.setImageResource(R.drawable.icon_favourite_fill)
-                viewModel.addToFavorite(
-                    movieName = movie.title,
-                    movieId = movie.id,
-                    moviePhoto = movie.posterPath
-                )
+                viewModel.addToFavorite(favourite)
                 Toast.makeText(this, "${movie.title} Added to Favourite", Toast.LENGTH_SHORT).show()
             } else {
                 binding.icFavourite.setImageResource(R.drawable.icon_favourite)
-                viewModel.deleteFromFavorite(
-                    movieName = movie.title,
-                    movieId = movie.id,
-                    moviePhoto = movie.posterPath
-                )
+                viewModel.deleteFromFavorite(movie.id)
                 Toast.makeText(this, "${movie.title} Removed from Favourite", Toast.LENGTH_SHORT).show()
             }
         }
 
-        viewModel.isMovieFavourite(movie.title).observe(this) { isFavourite ->
+        viewModel.isMovieFavourite(movie.id).observe(this) { isFavourite ->
             checkFavourite = isFavourite
             if (isFavourite) {
                 binding.icFavourite.setImageResource(R.drawable.icon_favourite_fill)
