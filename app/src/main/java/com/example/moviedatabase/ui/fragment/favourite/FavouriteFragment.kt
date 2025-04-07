@@ -1,5 +1,6 @@
 package com.example.moviedatabase.ui.fragment.favourite
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviedatabase.R
 import com.example.moviedatabase.databinding.FragmentFavouriteBinding
+import com.example.moviedatabase.ui.activity.detail.DetailActivity
 import com.example.moviedatabase.ui.adapter.FavouriteAdapter
 import com.example.moviedatabase.utils.ViewModelFactory
 
@@ -44,6 +46,14 @@ class FavouriteFragment : Fragment() {
         binding.swipeRefreshLayout.setColorSchemeResources(
             R.color.red_netflix,
         )
+
+        adapter.setOnItemClickCallback(object : FavouriteAdapter.OnItemClickCallback {
+            override fun onItemClicked(movieId: Int) {
+                val intent = Intent(requireActivity(), DetailActivity::class.java)
+                intent.putExtra(DetailActivity.MOVIE_ID, movieId)
+                startActivity(intent)
+            }
+        })
 
         viewModel.favourites.observe(viewLifecycleOwner) {
             adapter.submitList(it)

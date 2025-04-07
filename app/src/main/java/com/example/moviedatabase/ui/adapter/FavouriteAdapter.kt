@@ -14,6 +14,16 @@ import com.example.moviedatabase.databinding.ItemMovieListBinding
 
 class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHolder>(DIFF_CALLBACK) {
 
+    private lateinit var onItemCallback : OnItemClickCallback
+
+    private var animateItems = true
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun setAnimateItems(animate: Boolean) {
+        animateItems = animate
+        notifyDataSetChanged()
+    }
+
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<Favourite>() {
             override fun areItemsTheSame(oldItem: Favourite, newItem: Favourite): Boolean =
@@ -24,17 +34,10 @@ class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHo
         }
     }
 
-    private var animateItems = true
-
-    @SuppressLint("NotifyDataSetChanged")
-    fun setAnimateItems(animate: Boolean) {
-        animateItems = animate
-        notifyDataSetChanged()
-    }
-
     inner class FavouriteViewHolder(val binding: ItemMovieListBinding) :
         RecyclerView.ViewHolder(binding.root) {
         private val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
+        @SuppressLint("SetTextI18n")
         fun bind(favourite: Favourite) {
             binding.tvMovieListName.text = favourite.movieName
             binding.tvMovieGenre.text = "Action, Supranatural"
@@ -51,6 +54,9 @@ class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHo
 
     override fun onBindViewHolder(holder: FavouriteViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.binding.root.setOnClickListener {
+            onItemCallback.onItemClicked(getItem(position).movieId)
+        }
 
         if (animateItems) {
             holder.binding.itemMoviesList.startAnimation(
@@ -60,5 +66,13 @@ class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHo
                 )
             )
         }
+    }
+
+    fun setOnItemClickCallback(onItemClickCallback : OnItemClickCallback){
+        this.onItemCallback = onItemClickCallback
+    }
+
+    interface OnItemClickCallback {
+        fun onItemClicked(movieId : Int)
     }
 }
