@@ -123,26 +123,22 @@ class DetailActivity : AppCompatActivity() {
                 binding.icFavourite.setImageResource(R.drawable.icon_favourite_fill)
                 viewModel.addToFavorite(favourite)
 
-                // Menggunakan TopSnackbar alih-alih Snackbar biasa
                 val snackbar = TopSnackbar.make(
                     binding.root,
                     "${movie.title} added to Favourite",
                     Snackbar.LENGTH_SHORT
                 )
-                // Opsional: Ubah warna background
                 snackbar.setBackgroundTint(ContextCompat.getColor(this, R.color.green))
                 snackbar.show()
             } else {
                 binding.icFavourite.setImageResource(R.drawable.icon_favourite)
                 viewModel.deleteFromFavorite(movie.id)
 
-                // Menggunakan TopSnackbar alih-alih Snackbar biasa
                 val snackbar = TopSnackbar.make(
                     binding.root,
                     "${movie.title} removed from Favourite",
                     Snackbar.LENGTH_SHORT
                 )
-                // Opsional: Ubah warna background
                 snackbar.setBackgroundTint(ContextCompat.getColor(this, R.color.red_netflix))
                 snackbar.show()
             }
