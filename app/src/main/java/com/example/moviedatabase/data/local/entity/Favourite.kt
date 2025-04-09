@@ -20,5 +20,8 @@ data class Favourite(
     var movieName: String,
 
     @ColumnInfo(name = "movie_photo")
-    var moviePhoto: String
+    var moviePhoto: String,
+
+    @ColumnInfo(name = "genres_item")
+    var genres: String
 ) : Parcelable

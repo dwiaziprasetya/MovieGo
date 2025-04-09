@@ -39,9 +39,8 @@ class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHo
         private val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
         @SuppressLint("SetTextI18n")
         fun bind(favourite: Favourite) {
-//            val genreName = MovieUtils.getGenreNames(favourite.ge)
             binding.tvMovieListName.text = favourite.movieName
-            binding.tvMovieGenre.text = "Action, Supranatural"
+            binding.tvMovieGenre.text = favourite.genres
             Glide.with(binding.root)
                 .load(imageBaseUrl + favourite.moviePhoto)
                 .into(binding.imgMovieListPhoto)
