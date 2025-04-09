@@ -5,7 +5,7 @@ import androidx.paging.PagingState
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
 import com.example.moviedatabase.data.remote.retrofit.ApiService
 
-class MoviePagingSource(
+class DiscoverMoviePagingSource(
     private val apiService: ApiService
 ) : PagingSource<Int, DiscoverMovieItem>() {
 

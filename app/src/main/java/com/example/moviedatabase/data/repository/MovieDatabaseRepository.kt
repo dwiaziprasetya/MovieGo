@@ -7,7 +7,7 @@ import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.example.moviedatabase.data.local.dao.FavouriteDao
 import com.example.moviedatabase.data.local.entity.Favourite
-import com.example.moviedatabase.data.remote.paging.MoviePagingSource
+import com.example.moviedatabase.data.remote.paging.DiscoverMoviePagingSource
 import com.example.moviedatabase.data.remote.response.CastandCrewResponse
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
@@ -31,7 +31,7 @@ class MovieDatabaseRepository(
                 pageSize = 5
             ),
             pagingSourceFactory = {
-                MoviePagingSource(apiService)
+                DiscoverMoviePagingSource(apiService)
             }
         ).liveData
     }
