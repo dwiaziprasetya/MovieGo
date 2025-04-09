@@ -14,11 +14,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.moviedatabase.R
 import com.example.moviedatabase.databinding.ActivityIntroductionBinding
 import com.example.moviedatabase.presentation.screen.main.MainActivity
-import com.example.moviedatabase.presentation.adapter.ImageGridAdapter
+import com.example.moviedatabase.presentation.adapter.RvIntroductionAdapter
 
 class IntroductionActivity : AppCompatActivity() {
 
-    private lateinit var adapter: ImageGridAdapter
+    private lateinit var adapter: RvIntroductionAdapter
     private lateinit var itemList: ArrayList<Int>
     private lateinit var binding : ActivityIntroductionBinding
 
@@ -67,7 +67,7 @@ class IntroductionActivity : AppCompatActivity() {
         binding.rvIntroduction.setHasFixedSize(true)
         binding.rvIntroduction.layoutManager = GridLayoutManager(this, 2)
         addImageToList()
-        adapter = ImageGridAdapter(itemList)
+        adapter = RvIntroductionAdapter(itemList)
         binding.rvIntroduction.adapter = adapter
     }
 

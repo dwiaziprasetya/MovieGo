@@ -12,7 +12,7 @@ import com.example.moviedatabase.R
 import com.example.moviedatabase.data.local.entity.Favourite
 import com.example.moviedatabase.databinding.ItemMovieListBinding
 
-class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHolder>(DIFF_CALLBACK) {
+class RvFavouriteAdapter : ListAdapter<Favourite, RvFavouriteAdapter.FavouriteViewHolder>(DIFF_CALLBACK) {
 
     private lateinit var onItemCallback : OnItemClickCallback
 

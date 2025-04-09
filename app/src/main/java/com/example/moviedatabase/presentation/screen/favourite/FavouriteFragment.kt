@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviedatabase.R
 import com.example.moviedatabase.databinding.FragmentFavouriteBinding
-import com.example.moviedatabase.presentation.adapter.FavouriteAdapter
+import com.example.moviedatabase.presentation.adapter.RvFavouriteAdapter
 import com.example.moviedatabase.presentation.screen.detail.DetailActivity
 import com.example.moviedatabase.utils.ViewModelFactory
 
@@ -18,7 +18,7 @@ class FavouriteFragment : Fragment() {
 
     private var _binding: FragmentFavouriteBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter: FavouriteAdapter
+    private lateinit var adapter: RvFavouriteAdapter
 
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<FavouriteViewModel> { factory }
@@ -36,7 +36,7 @@ class FavouriteFragment : Fragment() {
 
         factory = ViewModelFactory.getInstance(requireActivity())
 
-        adapter = FavouriteAdapter()
+        adapter = RvFavouriteAdapter()
         binding.rvFavouriteMovie.adapter = adapter
         binding.rvFavouriteMovie.layoutManager = LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false)
         binding.rvFavouriteMovie.setHasFixedSize(true)
@@ -47,7 +47,7 @@ class FavouriteFragment : Fragment() {
             R.color.red_netflix,
         )
 
-        adapter.setOnItemClickCallback(object : FavouriteAdapter.OnItemClickCallback {
+        adapter.setOnItemClickCallback(object : RvFavouriteAdapter.OnItemClickCallback {
             override fun onItemClicked(movieId: Int) {
                 val intent = Intent(requireActivity(), DetailActivity::class.java)
                 intent.putExtra(DetailActivity.MOVIE_ID, movieId)

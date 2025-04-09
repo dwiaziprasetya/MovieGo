@@ -6,9 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.databinding.ItemMoviesGridBinding
 
-class ImageGridAdapter(
+class RvIntroductionAdapter(
     private val images: List<Int>
-) : RecyclerView.Adapter<ImageGridAdapter.ViewHolder>() {
+) : RecyclerView.Adapter<RvIntroductionAdapter.ViewHolder>() {
 
 
     class ViewHolder(

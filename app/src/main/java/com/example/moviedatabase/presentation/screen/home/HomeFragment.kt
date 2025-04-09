@@ -25,7 +25,7 @@ import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 import com.example.moviedatabase.data.remote.response.PopularMovieItem
 import com.example.moviedatabase.data.remote.response.UpComingMovieItem
 import com.example.moviedatabase.databinding.FragmentHomeBinding
-import com.example.moviedatabase.presentation.adapter.ImageSliderAdapter
+import com.example.moviedatabase.presentation.adapter.RvHomeImageSliderAdapter
 import com.example.moviedatabase.presentation.adapter.RvNowPlayingMovieAdapter
 import com.example.moviedatabase.presentation.adapter.RvPopularMovieAdapter
 import com.example.moviedatabase.presentation.adapter.RvUpComingMovieAdapter
@@ -42,7 +42,7 @@ class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-    private lateinit var adapter : ImageSliderAdapter
+    private lateinit var adapter : RvHomeImageSliderAdapter
     private val list = ArrayList<ImageData>()
     private lateinit var dots : ArrayList<TextView>
     private lateinit var handler: Handler
@@ -195,7 +195,7 @@ class HomeFragment : Fragment() {
 
     private fun showImageSlider() {
         list.addAll(getListImageSlider())
-        adapter = ImageSliderAdapter(list, binding.viewPager)
+        adapter = RvHomeImageSliderAdapter(list, binding.viewPager)
         with(binding){
             viewPager.adapter = adapter
             viewPager.offscreenPageLimit = 3

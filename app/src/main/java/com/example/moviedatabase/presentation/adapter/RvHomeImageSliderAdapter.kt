@@ -9,7 +9,7 @@ import com.bumptech.glide.Glide
 import com.example.moviedatabase.data.local.model.ImageData
 import com.example.moviedatabase.databinding.ItemSlideBinding
 
-class ImageSliderAdapter(private val items: ArrayList<ImageData>, private val viewPager2: ViewPager2) : RecyclerView.Adapter<ImageSliderAdapter.ImageViewHolder>(){
+class RvHomeImageSliderAdapter(private val items: ArrayList<ImageData>, private val viewPager2: ViewPager2) : RecyclerView.Adapter<RvHomeImageSliderAdapter.ImageViewHolder>(){
     inner class ImageViewHolder(itemView : ItemSlideBinding) : RecyclerView.ViewHolder(itemView.root){
         private val binding = itemView
         fun bind(data: ImageData){
