@@ -54,7 +54,7 @@
             android:layout_toEndOf="@id/img_movie_list_photo"
             android:fontFamily="@font/dmsans_bold"
             android:textColor="@color/grey"
-            android:textSize="11sp"
+            android:textSize="12sp"
             card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintStart_toEndOf="@+id/img_movie_list_photo"
             card_view:layout_constraintTop_toBottomOf="@id/tv_movie_list_name"
@@ -67,7 +67,7 @@
             android:fontFamily="@font/dmsans_bold"
             android:text="2024 • 3h 20m"
             android:textColor="@color/white"
-            android:textSize="14sp"
+            android:textSize="12sp"
             android:layout_marginTop="8dp"
             card_view:layout_constraintStart_toStartOf="@+id/tv_movie_genre"
             card_view:layout_constraintTop_toBottomOf="@+id/tv_movie_genre" />
