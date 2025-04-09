@@ -16,16 +16,16 @@
         android:theme="@style/Theme.MovieDatabase"
         tools:targetApi="31">
         <activity
-            android:name=".ui.activity.detail.DetailActivity"
+            android:name=".presentation.screen.detail.DetailActivity"
             android:theme="@style/Theme.TransparentStatusBar"
             android:exported="false" />
         <activity
-            android:name=".ui.activity.main.MainActivity"
+            android:name=".presentation.screen.main.MainActivity"
             android:exported="true">
 
         </activity>
         <activity
-            android:name=".ui.activity.introduction.IntroductionActivity"
+            android:name=".presentation.screen.introduction.IntroductionActivity"
             android:exported="true"
             android:theme="@style/Theme.MovieDatabase.SplashScreen"
             android:label="@string/app_name"

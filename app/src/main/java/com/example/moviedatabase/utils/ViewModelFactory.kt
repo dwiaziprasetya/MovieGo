@@ -4,11 +4,11 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.moviedatabase.di.Injection
-import com.example.moviedatabase.repository.MovieDatabaseRepository
-import com.example.moviedatabase.ui.activity.detail.DetailViewModel
-import com.example.moviedatabase.ui.fragment.favourite.FavouriteViewModel
-import com.example.moviedatabase.ui.fragment.home.HomeViewModel
-import com.example.moviedatabase.ui.fragment.movie.MovieViewModel
+import com.example.moviedatabase.data.repository.MovieDatabaseRepository
+import com.example.moviedatabase.presentation.screen.detail.DetailViewModel
+import com.example.moviedatabase.presentation.screen.favourite.FavouriteViewModel
+import com.example.moviedatabase.presentation.screen.home.HomeViewModel
+import com.example.moviedatabase.presentation.screen.movie.MovieViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(

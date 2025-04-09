@@ -6,7 +6,7 @@
     android:id="@+id/detail_activity_shimmer"
     android:layout_height="match_parent"
     android:background="@color/background_theme"
-    tools:context=".ui.activity.detail.DetailActivity">
+    tools:context=".presentation.screen.detail.DetailActivity">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/nsv_detail"
