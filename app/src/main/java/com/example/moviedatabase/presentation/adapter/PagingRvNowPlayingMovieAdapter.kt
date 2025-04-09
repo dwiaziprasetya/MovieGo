@@ -8,16 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moviedatabase.BuildConfig
 import com.example.moviedatabase.R
-import com.example.moviedatabase.data.remote.response.UpComingMovieItem
+import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 import com.example.moviedatabase.databinding.ItemMovies2Binding
 
-class PagingRvUpComingMovieAdapter: PagingDataAdapter<UpComingMovieItem, PagingRvUpComingMovieAdapter.MyViewHolder>(
+class PagingRvNowPlayingMovieAdapter: PagingDataAdapter<NowPlayingMovieItem, PagingRvNowPlayingMovieAdapter.MyViewHolder>(
     DIFF_CALLBACK) {
     private lateinit var onItemCallback : OnitemClickCallback
 
     class MyViewHolder(val binding : ItemMovies2Binding) : RecyclerView.ViewHolder(binding.root) {
         private val imageBaseUrl = BuildConfig.BASE_IMAGE_URL_MOVIE_DB_W500
-        fun bind(movie : UpComingMovieItem){
+        fun bind(movie : NowPlayingMovieItem){
             Glide.with(itemView)
                 .load(imageBaseUrl + movie.posterPath)
                 .into(binding.imgItemPhoto)
@@ -25,17 +25,17 @@ class PagingRvUpComingMovieAdapter: PagingDataAdapter<UpComingMovieItem, PagingR
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<UpComingMovieItem>() {
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<NowPlayingMovieItem>() {
             override fun areItemsTheSame(
-                oldItem: UpComingMovieItem,
-                newItem: UpComingMovieItem
+                oldItem: NowPlayingMovieItem,
+                newItem: NowPlayingMovieItem
             ): Boolean {
                 return oldItem == newItem
             }
 
             override fun areContentsTheSame(
-                oldItem: UpComingMovieItem,
-                newItem: UpComingMovieItem
+                oldItem: NowPlayingMovieItem,
+                newItem: NowPlayingMovieItem
             ): Boolean {
                 return oldItem == newItem
             }

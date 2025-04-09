@@ -17,17 +17,17 @@ interface ApiService {
         @Query("size") size: Int = 5
     ): DiscoverMovieResponse
 
-    @GET("/3/movie/upcoming")
-    suspend fun getUpComingMovies(
+    @GET("/3/movie/now_playing")
+    suspend fun getNowPlayingMovies(
         @Query("page") page: Int = 1,
         @Query("size") size: Int = 5
-    ): UpComingMovieResponse
+    ):  NowPlayingMovieResponse
 
     @GET("/3/movie/popular")
     suspend fun getPopularMovies(): PopularMovieResponse
 
-    @GET("/3/movie/now_playing")
-    suspend fun getNowPlayingMovies(): NowPlayingMovieResponse
+    @GET("/3/movie/upcoming")
+    suspend fun getUpComingMovies(): UpComingMovieResponse
 
     @GET("/3/movie/{movie_id}")
     suspend fun getMovieDetail(
