@@ -24,7 +24,7 @@ class FavouriteViewModel(private val repository: MovieDatabaseRepository) : View
     fun getAllFavourites() {
         viewModelScope.launch {
             _isLoading.value = true
-            delay(1000)
+            delay(500)
             try {
                 val response = repository.getAllFavourites()
                 _favourites.value = response
