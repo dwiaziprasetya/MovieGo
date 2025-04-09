@@ -7,7 +7,7 @@ import androidx.paging.PagingData
 import androidx.paging.liveData
 import com.example.moviedatabase.data.local.dao.FavouriteDao
 import com.example.moviedatabase.data.local.entity.Favourite
-import com.example.moviedatabase.data.remote.MoviePagingSource
+import com.example.moviedatabase.data.remote.paging.MoviePagingSource
 import com.example.moviedatabase.data.remote.response.CastandCrewResponse
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
