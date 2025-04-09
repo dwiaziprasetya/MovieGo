@@ -5,9 +5,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.liveData
-import com.example.moviedatabase.data.remote.MoviePagingSource
 import com.example.moviedatabase.data.local.dao.FavouriteDao
 import com.example.moviedatabase.data.local.entity.Favourite
+import com.example.moviedatabase.data.remote.MoviePagingSource
 import com.example.moviedatabase.data.remote.response.CastandCrewResponse
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
@@ -25,6 +25,17 @@ class MovieDatabaseRepository(
         return apiService.getUpComingMovies()
     }
 
+    fun getDiscoverMovieDataPaging(): LiveData<PagingData<DiscoverMovieItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            pagingSourceFactory = {
+                MoviePagingSource(apiService)
+            }
+        ).liveData
+    }
+
     suspend fun getMovieCredits(movieId : Int) : CastandCrewResponse {
         return apiService.getMovieCredits(movieId)
     }
@@ -39,17 +50,6 @@ class MovieDatabaseRepository(
 
     suspend fun getNowPlayingMovieData() : NowPlayingMovieResponse {
         return apiService.getNowPlayingMovies()
-    }
-
-    fun getDiscoverMovieDataPaging(): LiveData<PagingData<DiscoverMovieItem>> {
-        return Pager(
-            config = PagingConfig(
-                pageSize = 5
-            ),
-            pagingSourceFactory = {
-                MoviePagingSource(apiService)
-            }
-        ).liveData
     }
 
     suspend fun deleteToFavourite(movieId: Int) {
