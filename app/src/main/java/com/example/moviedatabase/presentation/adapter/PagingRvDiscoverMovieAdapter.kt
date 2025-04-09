@@ -11,7 +11,7 @@ import com.example.moviedatabase.R
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
 import com.example.moviedatabase.databinding.ItemMovies2Binding
 
-class RvDiscoverMovieAdapter: PagingDataAdapter<DiscoverMovieItem, RvDiscoverMovieAdapter.MyViewHolder>(
+class PagingRvDiscoverMovieAdapter: PagingDataAdapter<DiscoverMovieItem, PagingRvDiscoverMovieAdapter.MyViewHolder>(
     DIFF_CALLBACK
 ) {
     private lateinit var onItemCallback : OnitemClickCallback

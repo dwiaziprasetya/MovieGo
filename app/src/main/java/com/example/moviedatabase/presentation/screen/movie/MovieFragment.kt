@@ -14,7 +14,7 @@ import com.example.moviedatabase.R
 import com.example.moviedatabase.presentation.adapter.LoadingStateAdapter
 import com.example.moviedatabase.databinding.FragmentMovieBinding
 import com.example.moviedatabase.presentation.screen.detail.DetailActivity
-import com.example.moviedatabase.presentation.adapter.RvDiscoverMovieAdapter
+import com.example.moviedatabase.presentation.adapter.PagingRvDiscoverMovieAdapter
 import com.example.moviedatabase.presentation.adapter.ShimmerItemMovieAdapter
 import com.example.moviedatabase.utils.ViewModelFactory
 
@@ -25,7 +25,7 @@ class MovieFragment : Fragment() {
 
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<MovieViewModel> { factory }
-    private val adapter = RvDiscoverMovieAdapter()
+    private val adapter = PagingRvDiscoverMovieAdapter()
     private lateinit var shimmerAdapter: ShimmerItemMovieAdapter
 
 
@@ -34,7 +34,7 @@ class MovieFragment : Fragment() {
 
         factory = ViewModelFactory.getInstance(requireActivity())
 
-        adapter.setOnItemClickCallback(object : RvDiscoverMovieAdapter.OnitemClickCallback {
+        adapter.setOnItemClickCallback(object : PagingRvDiscoverMovieAdapter.OnitemClickCallback {
             override fun onItemClicked(movieId: Int) {
                 val intent = Intent(requireActivity(), DetailActivity::class.java)
                 intent.putExtra(DetailActivity.MOVIE_ID, movieId)
