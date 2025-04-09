@@ -25,13 +25,14 @@ import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 import com.example.moviedatabase.data.remote.response.PopularMovieItem
 import com.example.moviedatabase.data.remote.response.UpComingMovieItem
 import com.example.moviedatabase.databinding.FragmentHomeBinding
-import com.example.moviedatabase.presentation.screen.detail.DetailActivity
 import com.example.moviedatabase.presentation.adapter.ImageSliderAdapter
 import com.example.moviedatabase.presentation.adapter.RvNowPlayingMovieAdapter
 import com.example.moviedatabase.presentation.adapter.RvPopularMovieAdapter
 import com.example.moviedatabase.presentation.adapter.RvUpComingMovieAdapter
 import com.example.moviedatabase.presentation.adapter.ShimmerItemMoviePopularAdapter
 import com.example.moviedatabase.presentation.adapter.ShimmerItemUpComingMovieAdapter
+import com.example.moviedatabase.presentation.screen.detail.DetailActivity
+import com.example.moviedatabase.presentation.screen.nowplaying.NowPlayingActivity
 import com.example.moviedatabase.utils.ViewModelFactory
 import kotlin.math.abs
 
@@ -77,6 +78,12 @@ class HomeFragment : Fragment() {
             isLoading.observe(requireActivity()) {
                 showLoading(it)
             }
+        }
+
+
+        binding.tvMovieNowPlayingSeeAll.setOnClickListener {
+            val intent = Intent(requireActivity(), NowPlayingActivity::class.java)
+            startActivity(intent)
         }
 
         binding.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback(){
