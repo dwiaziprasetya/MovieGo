@@ -41,6 +41,7 @@ class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHo
         fun bind(favourite: Favourite) {
             binding.tvMovieListName.text = favourite.movieName
             binding.tvMovieGenre.text = favourite.genres
+            binding.tvReleaseDate.text = "${favourite.releaseDate.substring(0, 4)} • ${formatRuntime(favourite.runtime)}"
             Glide.with(binding.root)
                 .load(imageBaseUrl + favourite.moviePhoto)
                 .into(binding.imgMovieListPhoto)
@@ -74,5 +75,11 @@ class FavouriteAdapter : ListAdapter<Favourite, FavouriteAdapter.FavouriteViewHo
 
     interface OnItemClickCallback {
         fun onItemClicked(movieId : Int)
+    }
+
+    private fun formatRuntime(runtime: Int): String {
+        val hours = runtime / 60
+        val minutes = runtime % 60
+        return "$hours h $minutes m"
     }
 }

@@ -106,7 +106,9 @@ class DetailActivity : AppCompatActivity() {
             movieId = movie.id,
             movieName = movie.title,
             moviePhoto = movie.posterPath,
-            genres = movie.genres.take(2).joinToString(", ") { it.name }
+            genres = movie.genres.take(2).joinToString(", ") { it.name },
+            releaseDate = movie.releaseDate,
+            runtime = movie.runtime
         )
 
         binding.rvCastMovie.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
