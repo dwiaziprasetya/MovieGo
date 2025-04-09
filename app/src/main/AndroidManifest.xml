@@ -16,6 +16,9 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".presentation.screen.popular.PopularActivity"
+            android:exported="false" />
+        <activity
             android:name=".presentation.screen.nowplaying.NowPlayingActivity"
             android:exported="false"
             android:theme="@style/Theme.MovieDatabase" />
