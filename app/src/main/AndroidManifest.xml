@@ -25,7 +25,7 @@
             android:theme="@style/Theme.TransparentStatusBar" />
         <activity
             android:name=".presentation.screen.main.MainActivity"
-            android:exported="true"></activity>
+            android:exported="true" />
         <activity
             android:name=".presentation.screen.introduction.IntroductionActivity"
             android:exported="true"

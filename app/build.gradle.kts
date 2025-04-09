@@ -83,6 +83,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:2.8.4")
     implementation("com.github.bumptech.glide:glide:4.16.0")
     implementation("com.makeramen:roundedimageview:2.3.0")
+    implementation("androidx.activity:activity:1.10.1")
     testImplementation("junit:junit:4.13.2")
     annotationProcessor("com.github.bumptech.glide:compiler:4.16.0")
     androidTestImplementation("androidx.test.ext:junit:1.2.1")
