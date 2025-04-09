@@ -10,8 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moviedatabase.R
 import com.example.moviedatabase.databinding.FragmentFavouriteBinding
-import com.example.moviedatabase.presentation.screen.detail.DetailActivity
 import com.example.moviedatabase.presentation.adapter.FavouriteAdapter
+import com.example.moviedatabase.presentation.screen.detail.DetailActivity
 import com.example.moviedatabase.utils.ViewModelFactory
 
 class FavouriteFragment : Fragment() {
