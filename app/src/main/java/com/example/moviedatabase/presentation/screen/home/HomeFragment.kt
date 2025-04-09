@@ -34,6 +34,7 @@ import com.example.moviedatabase.presentation.adapter.ShimmerItemUpComingMovieAd
 import com.example.moviedatabase.presentation.screen.detail.DetailActivity
 import com.example.moviedatabase.presentation.screen.nowplaying.NowPlayingActivity
 import com.example.moviedatabase.presentation.screen.popular.PopularActivity
+import com.example.moviedatabase.presentation.screen.upcoming.UpComingActivity
 import com.example.moviedatabase.utils.ViewModelFactory
 import kotlin.math.abs
 
@@ -89,6 +90,11 @@ class HomeFragment : Fragment() {
 
         binding.tvMoviePopularSeeAll.setOnClickListener {
             val intent = Intent(requireActivity(), PopularActivity::class.java)
+            startActivity(intent)
+        }
+
+        binding.tvMovieUpcomingSeeAll.setOnClickListener {
+            val intent = Intent(requireActivity(), UpComingActivity::class.java)
             startActivity(intent)
         }
 
