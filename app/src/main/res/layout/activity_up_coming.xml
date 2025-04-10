@@ -56,7 +56,7 @@
             android:layout_height="match_parent">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_discover_movies"
+                android:id="@+id/rv_up_coming_movies"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
 
