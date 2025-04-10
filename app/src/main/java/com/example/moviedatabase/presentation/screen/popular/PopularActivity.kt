@@ -1,5 +1,6 @@
 package com.example.moviedatabase.presentation.screen.popular
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.SystemBarStyle
@@ -11,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.moviedatabase.databinding.ActivityPopularBinding
 import com.example.moviedatabase.presentation.adapter.PagingRvPopularMovieAdapter
 import com.example.moviedatabase.presentation.adapter.ShimmerItemMovieAdapter
+import com.example.moviedatabase.presentation.screen.detail.DetailActivity
 import com.example.moviedatabase.utils.ViewModelFactory
 
 class PopularActivity : AppCompatActivity() {
@@ -35,5 +37,25 @@ class PopularActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        adapter.setOnItemClickCallback(object : PagingRvPopularMovieAdapter.OnitemClickCallback {
+            override fun onItemClicked(movieId: Int) {
+                val intent = Intent(this@PopularActivity, DetailActivity::class.java)
+                intent.putExtra(DetailActivity.MOVIE_ID, movieId)
+                startActivity(intent)
+            }
+        })
+
+        factory = ViewModelFactory.getInstance(this)
+        showRecyclerViewPopularMovie()
+        setupShimmer()
+    }
+
+    private fun setupShimmer() {
+
+    }
+
+    private fun showRecyclerViewPopularMovie() {
+
     }
 }
