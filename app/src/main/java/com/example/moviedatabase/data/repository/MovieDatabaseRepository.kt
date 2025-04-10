@@ -9,11 +9,13 @@ import com.example.moviedatabase.data.local.dao.FavouriteDao
 import com.example.moviedatabase.data.local.entity.Favourite
 import com.example.moviedatabase.data.remote.paging.DiscoverMoviePagingSource
 import com.example.moviedatabase.data.remote.paging.NowPlayingMoviePagingSource
+import com.example.moviedatabase.data.remote.paging.PopularMoviePagingSource
 import com.example.moviedatabase.data.remote.response.CastandCrewResponse
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieResponse
+import com.example.moviedatabase.data.remote.response.PopularMovieItem
 import com.example.moviedatabase.data.remote.response.PopularMovieResponse
 import com.example.moviedatabase.data.remote.response.UpComingMovieResponse
 import com.example.moviedatabase.data.remote.retrofit.ApiService
@@ -22,11 +24,6 @@ class MovieDatabaseRepository(
     private val apiService: ApiService,
     private val favouriteDao: FavouriteDao
 ) {
-
-    suspend fun getUpComingMovieData() : UpComingMovieResponse {
-        return apiService.getUpComingMovies()
-    }
-
     fun getDiscoverMovieDataPaging(): LiveData<PagingData<DiscoverMovieItem>> {
         return Pager(
             config = PagingConfig(
@@ -47,6 +44,21 @@ class MovieDatabaseRepository(
                 NowPlayingMoviePagingSource(apiService)
             }
         ).liveData
+    }
+
+    fun getPopularMovieDataPaging(): LiveData<PagingData<PopularMovieItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            pagingSourceFactory = {
+                PopularMoviePagingSource(apiService)
+            }
+        ).liveData
+    }
+
+    suspend fun getUpComingMovieData() : UpComingMovieResponse {
+        return apiService.getUpComingMovies()
     }
 
     suspend fun getMovieCredits(movieId : Int) : CastandCrewResponse {
