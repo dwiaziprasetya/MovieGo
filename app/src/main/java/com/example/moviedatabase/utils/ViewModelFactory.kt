@@ -10,6 +10,8 @@ import com.example.moviedatabase.presentation.screen.favourite.FavouriteViewMode
 import com.example.moviedatabase.presentation.screen.home.HomeViewModel
 import com.example.moviedatabase.presentation.screen.movie.MovieViewModel
 import com.example.moviedatabase.presentation.screen.nowplaying.NowPlayingViewModel
+import com.example.moviedatabase.presentation.screen.popular.PopularViewModel
+import com.example.moviedatabase.presentation.screen.upcoming.UpComingViewModel
 
 @Suppress("UNCHECKED_CAST")
 class ViewModelFactory(
@@ -27,6 +29,10 @@ class ViewModelFactory(
             return FavouriteViewModel(repository) as T
         } else if (modelClass.isAssignableFrom(NowPlayingViewModel::class.java)) {
             return NowPlayingViewModel(repository) as T
+        } else if (modelClass.isAssignableFrom(PopularViewModel::class.java)) {
+            return PopularViewModel(repository) as T
+        } else if (modelClass.isAssignableFrom(UpComingViewModel::class.java)) {
+            return UpComingViewModel(repository) as T
         }
         throw IllegalArgumentException("Unknown ViewModel class")
     }
