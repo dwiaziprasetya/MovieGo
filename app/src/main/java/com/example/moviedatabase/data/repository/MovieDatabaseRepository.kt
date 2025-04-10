@@ -10,6 +10,7 @@ import com.example.moviedatabase.data.local.entity.Favourite
 import com.example.moviedatabase.data.remote.paging.DiscoverMoviePagingSource
 import com.example.moviedatabase.data.remote.paging.NowPlayingMoviePagingSource
 import com.example.moviedatabase.data.remote.paging.PopularMoviePagingSource
+import com.example.moviedatabase.data.remote.paging.UpComingMoviePagingSource
 import com.example.moviedatabase.data.remote.response.CastandCrewResponse
 import com.example.moviedatabase.data.remote.response.DetailMovieResponse
 import com.example.moviedatabase.data.remote.response.DiscoverMovieItem
@@ -17,6 +18,7 @@ import com.example.moviedatabase.data.remote.response.NowPlayingMovieItem
 import com.example.moviedatabase.data.remote.response.NowPlayingMovieResponse
 import com.example.moviedatabase.data.remote.response.PopularMovieItem
 import com.example.moviedatabase.data.remote.response.PopularMovieResponse
+import com.example.moviedatabase.data.remote.response.UpComingMovieItem
 import com.example.moviedatabase.data.remote.response.UpComingMovieResponse
 import com.example.moviedatabase.data.remote.retrofit.ApiService
 
@@ -53,6 +55,17 @@ class MovieDatabaseRepository(
             ),
             pagingSourceFactory = {
                 PopularMoviePagingSource(apiService)
+            }
+        ).liveData
+    }
+
+    fun getUpComingMovieDataPaging(): LiveData<PagingData<UpComingMovieItem>> {
+        return Pager(
+            config = PagingConfig(
+                pageSize = 5
+            ),
+            pagingSourceFactory = {
+                UpComingMoviePagingSource(apiService)
             }
         ).liveData
     }
