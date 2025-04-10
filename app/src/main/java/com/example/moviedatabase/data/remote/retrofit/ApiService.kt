@@ -24,7 +24,10 @@ interface ApiService {
     ):  NowPlayingMovieResponse
 
     @GET("/3/movie/popular")
-    suspend fun getPopularMovies(): PopularMovieResponse
+    suspend fun getPopularMovies(
+        @Query("page") page: Int = 1,
+        @Query("size") size: Int = 5
+    ): PopularMovieResponse
 
     @GET("/3/movie/upcoming")
     suspend fun getUpComingMovies(): UpComingMovieResponse
