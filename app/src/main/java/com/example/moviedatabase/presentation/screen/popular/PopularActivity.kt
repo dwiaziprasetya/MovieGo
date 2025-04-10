@@ -9,7 +9,12 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.isVisible
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.GridLayoutManager
+import com.example.moviedatabase.R
 import com.example.moviedatabase.databinding.ActivityPopularBinding
+import com.example.moviedatabase.presentation.adapter.LoadingStateAdapter
 import com.example.moviedatabase.presentation.adapter.PagingRvPopularMovieAdapter
 import com.example.moviedatabase.presentation.adapter.ShimmerItemMovieAdapter
 import com.example.moviedatabase.presentation.screen.detail.DetailActivity
@@ -49,13 +54,56 @@ class PopularActivity : AppCompatActivity() {
         factory = ViewModelFactory.getInstance(this)
         showRecyclerViewPopularMovie()
         setupShimmer()
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            adapter.refresh()
+        }
+
+        binding.swipeRefreshLayout.setProgressBackgroundColorSchemeResource(R.color.background_theme)
+
+        binding.swipeRefreshLayout.setColorSchemeResources(
+            R.color.red_netflix,
+        )
     }
 
     private fun setupShimmer() {
+        shimmerAdapter = ShimmerItemMovieAdapter()
 
+        binding.rvShimmerGrid.shimmerRecyclerView.layoutManager = GridLayoutManager(this, 2)
+        binding.rvShimmerGrid.shimmerRecyclerView.adapter = shimmerAdapter
+
+        binding.shimmerLoading.startShimmer()
     }
 
     private fun showRecyclerViewPopularMovie() {
+        binding.rvPopularMovies.setHasFixedSize(true)
 
+        val gridLayoutManager = GridLayoutManager(this, 2)
+
+        gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int): Int {
+                return if (position == binding.rvPopularMovies.adapter?.itemCount?.minus(1)) {
+                    2
+                } else {
+                    1
+                }
+            }
+        }
+
+        binding.rvPopularMovies.layoutManager = gridLayoutManager
+        binding.rvPopularMovies.adapter = adapter.withLoadStateFooter(
+            footer = LoadingStateAdapter()
+        )
+
+        viewModel.movie.observe(this) {
+            adapter.submitData(lifecycle, it)
+        }
+
+        adapter.addLoadStateListener { loadState ->
+            val isLoading = loadState.refresh is LoadState.Loading
+            binding.shimmerLoading.isVisible = isLoading
+            binding.rvPopularMovies.isVisible = !isLoading
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
     }
 }
