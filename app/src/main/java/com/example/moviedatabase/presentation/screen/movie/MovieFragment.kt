@@ -1,6 +1,7 @@
 package com.example.moviedatabase.presentation.screen.movie
 
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,12 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.moviedatabase.R
-import com.example.moviedatabase.presentation.adapter.LoadingStateAdapter
 import com.example.moviedatabase.databinding.FragmentMovieBinding
-import com.example.moviedatabase.presentation.screen.detail.DetailActivity
+import com.example.moviedatabase.presentation.adapter.LoadingStateAdapter
 import com.example.moviedatabase.presentation.adapter.PagingRvDiscoverMovieAdapter
 import com.example.moviedatabase.presentation.adapter.ShimmerItemMovieAdapter
+import com.example.moviedatabase.presentation.screen.detail.DetailActivity
 import com.example.moviedatabase.utils.ViewModelFactory
 
 class MovieFragment : Fragment() {
@@ -41,6 +43,23 @@ class MovieFragment : Fragment() {
                 startActivity(intent)
             }
         })
+
+        binding.rvDiscoverMovies.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            private val space = 24
+
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                outRect.left = space / 2
+                outRect.right = space / 2
+                outRect.top = space / 2
+                outRect.bottom = space / 2
+            }
+        })
+
 
         showRecyclerViewDiscoverMovie()
         setupShimmer()
