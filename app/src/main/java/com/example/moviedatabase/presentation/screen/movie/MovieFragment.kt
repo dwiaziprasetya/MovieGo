@@ -21,9 +21,9 @@ import com.example.moviedatabase.presentation.screen.detail.DetailActivity
 import com.example.moviedatabase.utils.ViewModelFactory
 
 class MovieFragment : Fragment() {
+
     private var _binding : FragmentMovieBinding? = null
     private val binding get() = _binding!!
-
 
     private lateinit var factory: ViewModelFactory
     private val viewModel by viewModels<MovieViewModel> { factory }
