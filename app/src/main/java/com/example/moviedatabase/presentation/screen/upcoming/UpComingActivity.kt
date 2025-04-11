@@ -2,7 +2,9 @@ package com.example.moviedatabase.presentation.screen.upcoming
 
 import android.content.Intent
 import android.graphics.Color
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -12,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.moviedatabase.R
 import com.example.moviedatabase.databinding.ActivityUpComingBinding
 import com.example.moviedatabase.presentation.adapter.LoadingStateAdapter
@@ -51,6 +54,22 @@ class UpComingActivity : AppCompatActivity() {
                 val intent = Intent(this@UpComingActivity, DetailActivity::class.java)
                 intent.putExtra(DetailActivity.MOVIE_ID, movieId)
                 startActivity(intent)
+            }
+        })
+
+        binding.rvUpComingMovies.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            private val space = 24
+
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                outRect.left = space / 2
+                outRect.right = space / 2
+                outRect.top = space / 2
+                outRect.bottom = space / 2
             }
         })
 
