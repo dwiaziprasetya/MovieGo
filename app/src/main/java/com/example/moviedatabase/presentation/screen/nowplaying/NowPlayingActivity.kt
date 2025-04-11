@@ -1,7 +1,9 @@
 package com.example.moviedatabase.presentation.screen.nowplaying
 
 import android.content.Intent
+import android.graphics.Rect
 import android.os.Bundle
+import android.view.View
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
@@ -11,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.moviedatabase.R
 import com.example.moviedatabase.databinding.ActivityNowPlayingBinding
 import com.example.moviedatabase.presentation.adapter.LoadingStateAdapter
@@ -63,6 +66,22 @@ class NowPlayingActivity : AppCompatActivity() {
         binding.swipeRefreshLayout.setColorSchemeResources(
             R.color.red_netflix,
         )
+
+        binding.rvNowPlayingMovies.addItemDecoration(object : RecyclerView.ItemDecoration() {
+            private val space = 24
+
+            override fun getItemOffsets(
+                outRect: Rect,
+                view: View,
+                parent: RecyclerView,
+                state: RecyclerView.State
+            ) {
+                outRect.left = space / 2
+                outRect.right = space / 2
+                outRect.top = space / 2
+                outRect.bottom = space / 2
+            }
+        })
     }
 
     private fun setupShimmer() {
